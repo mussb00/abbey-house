@@ -1,0 +1,19 @@
+{
+  "primary_category": "Central Heating Services",
+  "city": "Brent",
+  "primary_service": "Central Heating Services",
+  "local_neighbourhood": "Brent (Borough)",
+  "target_tone": "Authoritative, conversational, local expert",
+  "secondary_categories": [
+    "Gas installation service",
+    "Gas engineer",
+    "Plumber"
+  ],
+  "services": [
+    "Boiler repair",
+    "Boiler service",
+    "New boiler installation",
+    "Boiler replacement"
+  ],
+  "example": "Upgrading a boiler in Kilburn is often a game of 'Tetris.' Space is at a premium, whether you’re in a studio near the station or a family home in Brondesbury. We specialise in swapping out those massive, ancient water tanks for sleek, high-efficiency combi boilers that fit perfectly into those narrow London kitchen cupboards, giving you back your storage space and lowering those eye-watering energy bills"
+}
