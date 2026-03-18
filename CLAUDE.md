@@ -1,205 +1,143 @@
-# CLAUDE.md
+# Abbey House Plumbing & Heating — Claude Project File
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## What This Project Is
 
-## Project Overview
+This is a Next.js (App Router) website for Abbey House Plumbing & Heating Services,
+a London-based plumbing and heating company. The goal is to build a fully static,
+SEO-optimised dynamic service pages system where adding a single entry to a config
+file publishes a complete, schema-marked, SEO-optimised service page automatically.
+The site must rank as highly as possible organically for local London plumbing searches.
 
-Abbey House is a Next.js 16 application for a plumbing services website (BlueLine Plumbing). The project uses:
-- **Next.js 16.1.6** with App Router
-- **React 19.2.3**
-- **TypeScript** with strict mode enabled
-- **Tailwind CSS v4** for styling
-- **shadcn/ui** components (Radix Nova style)
-- **Lucide React** for icons
+---
 
-## Development Commands
+## File Structure
+
+```
+abbey-house/
+  app/
+    services/
+      page.tsx                          # All categories index — /services
+      [categorySlug]/
+        page.tsx                        # Category page — /services/[cat]
+        [serviceSlug]/
+          page.tsx                      # Service page — /services/[cat]/[svc]
+    sitemap.ts                          # Auto-generated sitemap
+    not-found.tsx                       # 404 page
+  components/
+    Navbar.tsx                          # Active state via usePathname()
+    Breadcrumb.tsx                      # Upward internal links on all sub-pages
+    CategoryPageTemplate.tsx            # Shared layout for category pages
+    ServicePageTemplate.tsx             # Shared layout for service pages
+    ServiceSchema.tsx                   # LocalBusiness JSON-LD — category + service
+  lib/
+    services.ts                         # Single source of truth — categories with
+                                        # nested services — edit here to add content
+  public/
+    robots.txt
+  PRD.md                                # Full requirements and code patterns per epic
+  plan.md                               # Full feature checklist — tick off as you go
+  activity.md                           # Session log — read first, update last
+```
+
+### URL Structure
+
+```
+/services                               # Lists all categories
+/services/[categorySlug]                # Category page
+/services/[categorySlug]/[serviceSlug]  # Service page
+```
+
+### Internal Linking Chain
+
+Homepage → /services → /services/[cat] → /services/[cat]/[svc]
+Every page links back up via breadcrumb. This mirrors the GBP hierarchy exactly.
+
+---
+
+## How to Start Every Session
+
+1. **Read `activity.md`** — understand what was last worked on, what is broken,
+   and what the next task is. Also read the previous session entries for context.
+2. **Read `plan.md`** — find the first uncompleted task. That is your target.
+3. **Read `PRD.md`** — find the epic that contains your target task. Read the
+   requirements, code pattern, and acceptance criteria before writing any code.
+4. **Read existing components** — before writing any UI, read `Navbar.tsx`,
+   `Footer.tsx`, and at least one existing page. Match all styles exactly.
+5. **Work on one task at a time.** Do not move to the next task until the current
+   one passes its E2E test.
+
+---
+
+## Design Integration Rule
+
+> All new components must be indistinguishable from the existing site.
+
+Before writing any markup, extract the exact Tailwind classes used for headings,
+body text, buttons, containers, and cards from the existing codebase. Use those
+exact classes. Do not invent new styles.
+
+---
+
+## Testing Rule
+
+Every epic has a defined E2E test in `PRD.md`. Use Chrome DevTools MCP to run it.
+Do not mark a task as complete based on code inspection alone — a browser-based
+test must pass first.
+
+---
+
+## Git Commit Rules
+
+- Commit after every completed task
+- Use descriptive messages in this format:
+
+```
+feat(epic-1): add dynamic active state to navbar using usePathname
+feat(epic-4): implement ServicePageTemplate matching existing site styles
+fix(epic-3): resolve 404 not returning correct styled page
+test(epic-6): confirmed schema passes validator.schema.org with zero errors
+chore: end of session — 8/23 tasks complete
+```
+
+- Never commit broken code. If a task is incomplete at session end,
+  revert to the last clean state and document this in `activity.md`.
+
+---
+
+## Updating activity.md
+
+At the end of every session, append a new entry to `activity.md`:
+
+```
+### YYYY-MM-DD HH:MM
+**Completed:** [task from plan.md]
+**Changes Made:** [files created or modified]
+**Status:** [what works now]
+**Next:** [next task to work on]
+**Blockers:** [any issues, or "None"]
+```
+
+New agents must read all previous entries before starting work.
+
+---
+
+## Commands
 
 ```bash
-# Start development server (runs on http://localhost:3000)
+# Start the development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Lint code
-npm run lint
+# Runs at http://localhost:3000
 ```
 
-## Intended Site Architecture
+Always start the dev server before running any E2E tests via Chrome DevTools MCP.
 
-This is a **multi-page site** with a hierarchical structure based on Google Business Profile categories and services. The site will have:
+---
 
-1. **Homepage** - Main landing page (content generated using `skills/homepage/`)
-2. **Category Pages** - Pages for each Google Business Profile category
-3. **Service Pages** - Individual pages for services within each category (hierarchical)
-4. **Service Area Pages** - Pages for each geographic service area
+## Key Rules Summary
 
-### Website Structure Diagram
-
-```
-Homepage (/)
-│
-├── Category 1 (/category-1)
-│   ├── Service 1.1 (/category-1/service-1-1)
-│   ├── Service 1.2 (/category-1/service-1-2)
-│   └── Service 1.3 (/category-1/service-1-3)
-│
-├── Category 2 (/category-2)
-│   ├── Service 2.1 (/category-2/service-2-1)
-│   ├── Service 2.2 (/category-2/service-2-2)
-│   └── Service 2.3 (/category-2/service-2-3)
-│
-├── Category N (/category-n)
-│   └── Service N.x (/category-n/service-n-x)
-│
-└── Service Areas
-    ├── Area 1 (/service-areas/area-1)
-    ├── Area 2 (/service-areas/area-2)
-    └── Area N (/service-areas/area-n)
-```
-
-### App Router Structure
-
-The above website structure should be reflected in the Next.js App Router as follows:
-
-```
-app/
-├── page.tsx                           # Homepage
-├── layout.tsx                         # Root layout
-├── [category]/
-│   ├── page.tsx                       # Category landing page (dynamic)
-│   └── [service]/
-│       └── page.tsx                   # Service page (dynamic)
-├── service-areas/
-│   └── [area]/
-│       └── page.tsx                   # Service area page (dynamic)
-└── (shared components for sections)
-    ├── header.tsx
-    ├── footer.tsx
-    ├── hero.tsx
-    ├── services.tsx
-    ├── about.tsx
-    └── contact.tsx
-```
-
-### Content Generation & Configuration
-
-**All service pages, category pages, and service area pages must be configurable** to allow dynamic content generation:
-
-- Each page type should accept configuration for:
-  - Page title and metadata
-  - Hero section content
-  - Service/category descriptions
-  - Unique selling points
-  - FAQ sections
-  - Call-to-action sections
-  - Images and media
-
-- Content should be generated using the skills system (`skills/` directory) or through a content management approach that allows per-page customization
-
-- Configuration should be structured to support:
-  - Template-based content generation
-  - Dynamic metadata (title tags, meta descriptions, OG tags)
-  - Customizable sections per page
-  - Reusable content blocks
-
-### Schema Markup
-
-**Schema.org markup must be added to every page** and must be configurable:
-
-- **Homepage**: Organization, LocalBusiness schema
-- **Category Pages**: Service, BreadcrumbList schema
-- **Service Pages**: Service, BreadcrumbList, FAQPage schema
-- **Service Area Pages**: LocalBusiness, Service, BreadcrumbList schema
-
-Schema markup should:
-- Be configurable per page type
-- Support dynamic data injection (business info, service details, locations)
-- Be validated against Schema.org specifications
-- Include proper JSON-LD implementation
-- Support rich snippets (reviews, ratings, pricing when applicable)
-
-Configuration for schema should be stored in a structured format (JSON, TypeScript config, or database) to allow easy updates without code changes.
-
-## Current Component Structure
-
-The existing components in `app/` directory are intended for the homepage and can be reused across different page types:
-
-- `app/page.tsx` - Homepage entry point
-- `app/layout.tsx` - Root layout with Geist fonts
-- `app/header.tsx` - Sticky navigation header
-- `app/hero.tsx` - Hero/banner section
-- `app/services.tsx` - Services showcase section
-- `app/about.tsx` - About section
-- `app/contact.tsx` - Contact form section
-- `app/footer.tsx` - Footer section
-
-These components should be refactored to:
-1. Accept props for customization
-2. Be reusable across category, service, and service area pages
-3. Support dynamic content based on page configuration
-
-## UI Components
-
-Reusable UI components live in `components/ui/`:
-- `button.tsx` - Button component with variants
-- `card.tsx` - Card components (Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter)
-- `input.tsx` - Form input component
-- `textarea.tsx` - Form textarea component
-
-Error handling components in `components/errors/`:
-- `ImageWithFallback.tsx` - Image component with fallback handling
-
-## Utilities
-
-- `lib/utils.ts` - Contains the `cn()` utility function for merging Tailwind classes using `clsx` and `tailwind-merge`
-
-## Path Aliases
-
-TypeScript path aliases are configured in `tsconfig.json`:
-```typescript
-"@/*": ["./*"]
-```
-
-This allows imports like:
-```typescript
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-```
-
-## shadcn/ui Configuration
-
-The project uses shadcn/ui with the following configuration (`components.json`):
-- Style: **radix-nova**
-- RSC: enabled
-- CSS Variables: enabled
-- Base color: **neutral**
-- Icon library: **lucide**
-- Global CSS: `globals.css` (in project root)
-
-When adding new shadcn/ui components, they will be placed in `components/ui/`.
-
-## Styling Conventions
-
-- Uses Tailwind CSS v4 with CSS variables for theming
-- Global styles in `globals.css` at project root
-- Geist fonts (Geist and Geist Mono) loaded via `next/font/google`
-- Color scheme uses neutral base with CSS variables for primary, secondary, muted, etc.
-- Responsive design with mobile-first approach
-
-## Key Technical Details
-
-- **TypeScript target**: ES2017
-- **Module resolution**: bundler
-- **JSX mode**: react-jsx (React 19 new transform)
-- **Strict mode**: enabled
-- All TSX/TS files automatically included in compilation
-
-## Project Status
-
-Current branch: `adding-service-pages`
-
-The project is transitioning from a single-page layout to a multi-page hierarchical structure. The `skills/` directory contains documentation and prompts for content generation (completion, homepage).
+- Edit `lib/services.ts` to add new categories or services — no other files need changing
+- Categories contain nested services — the full hierarchy lives in one config file
+- Only tick off tasks in `plan.md` — never edit task descriptions
+- Match existing site styles exactly — no new design patterns
+- One task at a time — finish and test before moving on
+- Always update `activity.md` before ending a session
