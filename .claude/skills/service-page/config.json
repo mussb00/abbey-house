@@ -1,0 +1,314 @@
+{
+  "areas_served": [
+    "London",
+    "West London",
+    "North West London",
+    "North London",
+    "Paddington",
+    "Marylebone",
+    "Notting Hill",
+    "Camden Town",
+    "West Kilburn",
+    "South Hampstead",
+    "Belsize Park",
+    "Maida Vale",
+    "Brondesbury",
+    "Chiswick",
+    "Ealing",
+    "West Hampstead",
+    "Hampstead",
+    "Richmond",
+    "Hammersmith",
+    "Kilburn",
+    "Kentish Town",
+    "St John's Wood",
+    "Cricklewood",
+    "Westminster",
+    "Willesden Green",
+    "Colindale",
+    "London Borough of Brent",
+    "Fulham",
+    "Chelsea",
+    "Kensington"
+  ],
+  "pages": [
+    {
+      "slug": "boiler-repair",
+      "content_generated": false,
+      "primary_category": "Boiler Repair Service",
+      "city": "London",
+      "primary_service": "Boiler Repair",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Urgent, reassuring, expert",
+      "secondary_categories": [
+        "Emergency Boiler Repair",
+        "Gas Safe Boiler Engineer",
+        "Boiler Fault Diagnosis"
+      ],
+      "services": [
+        "Boiler fault code diagnostics",
+        "Same-day boiler repair",
+        "Boiler part replacement",
+        "No-fix no-fee callouts",
+        "All makes and models"
+      ],
+      "example": "When a boiler breaks down in Hammersmith in January, it's not an inconvenience — it's an emergency. We get calls from Fulham and Chiswick too, usually within hours of the temperature dropping. Nine times out of ten, we can fix it the same day."
+    },
+    {
+      "slug": "boiler-service",
+      "content_generated": false,
+      "primary_category": "Boiler Service",
+      "city": "London",
+      "primary_service": "Boiler Service",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Preventative, practical, trustworthy",
+      "secondary_categories": [
+        "Annual Boiler Service",
+        "Boiler Maintenance",
+        "Gas Safety Check"
+      ],
+      "services": [
+        "Annual boiler inspection",
+        "Combustion analysis",
+        "Component cleaning and check",
+        "Carbon monoxide detection test",
+        "Service report issued same day"
+      ],
+      "example": "We service a lot of boilers in Camden Town and Kentish Town every autumn — homeowners who want to get ahead of winter before the first cold week hits. A boiler that's been serviced runs more efficiently, breaks down less, and lasts longer."
+    },
+    {
+      "slug": "new-boiler-installation",
+      "content_generated": false,
+      "primary_category": "Boiler Installation",
+      "city": "London",
+      "primary_service": "New Boiler Installation",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Consultative, expert, investment-minded",
+      "secondary_categories": [
+        "Boiler Replacement",
+        "Combi Boiler Installation",
+        "Boiler Upgrade"
+      ],
+      "services": [
+        "Like-for-like boiler replacement",
+        "Boiler relocation",
+        "Back boiler removal",
+        "Conventional to combi conversion",
+        "Manufacturer warranty registration"
+      ],
+      "example": "A lot of the new boiler jobs we do in Kensington and Chelsea are replacements that were overdue by three or four years. The old boiler was still running but costing a fortune. A modern condensing boiler uses significantly less gas for the same heat output."
+    },
+    {
+      "slug": "power-flush",
+      "content_generated": false,
+      "primary_category": "Power Flush",
+      "city": "London",
+      "primary_service": "Power Flush",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Diagnostic, practical, efficiency-focused",
+      "secondary_categories": [
+        "Central Heating Power Flush",
+        "Magnetic Filter Installation",
+        "Radiator Cold Spots"
+      ],
+      "services": [
+        "Powerflush with magnetic filter installation",
+        "Chemical flush and inhibitor dose",
+        "Sludge and scale removal",
+        "System pressure testing post-flush",
+        "Heating efficiency report"
+      ],
+      "example": "We did a power flush on a Victorian terrace in Maida Vale last spring — seven radiators, half of them stone cold at the bottom. After the flush, the whole system heated up evenly within 20 minutes."
+    },
+    {
+      "slug": "smart-thermostat-installation",
+      "content_generated": false,
+      "primary_category": "Smart Thermostat Installation",
+      "city": "London",
+      "primary_service": "Smart Thermostat Installation",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Modern, practical, energy-saving",
+      "secondary_categories": [
+        "Nest Thermostat Installation",
+        "Hive Thermostat Installation",
+        "Heating Controls Upgrade"
+      ],
+      "services": [
+        "Nest thermostat fitting and app setup",
+        "Hive thermostat fitting and app setup",
+        "Tado installation",
+        "Smart TRV installation",
+        "Heating controls compatibility check"
+      ],
+      "example": "We install a lot of Nest and Hive thermostats across West Hampstead and Hampstead — mostly for homeowners who want to stop heating empty rooms. The setup takes about an hour and most people are controlling their heating from their phone before we leave."
+    },
+    {
+      "slug": "radiator-services",
+      "content_generated": false,
+      "primary_category": "Radiator Installation",
+      "city": "London",
+      "primary_service": "Radiator Installation & Repair",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Practical, clear, solution-focused",
+      "secondary_categories": [
+        "Radiator Installation",
+        "Radiator Valve Replacement",
+        "Radiator Not Heating Up"
+      ],
+      "services": [
+        "New radiator installation",
+        "Radiator replacement",
+        "TRV replacement",
+        "Lockshield valve replacement",
+        "Radiator bleeding",
+        "Cold radiator diagnosis"
+      ],
+      "example": "A lot of the radiator calls we get from Kilburn and Brondesbury are for TRVs that have seized up over summer. The radiator looks fine, the boiler is working, but one room stays cold. Nine times out of ten it's a stuck thermostatic valve."
+    },
+    {
+      "slug": "heating-system-repairs",
+      "content_generated": false,
+      "primary_category": "Heating Engineer",
+      "city": "London",
+      "primary_service": "Heating System Repairs",
+      "parent_category": "Central Heating",
+      "parent_slug": "central-heating",
+      "target_tone": "Diagnostic, methodical, trustworthy",
+      "secondary_categories": [
+        "Heating Pump Replacement",
+        "Expansion Vessel Repair",
+        "Central Heating Balancing"
+      ],
+      "services": [
+        "Heating pump replacement",
+        "Expansion vessel replacement",
+        "Central heating system balancing",
+        "Zone valve replacement",
+        "Lockshield valve replacement"
+      ],
+      "example": "A noisy heating system in a Marylebone flat turned out to be a failing pump — the kind of problem that gets worse slowly until it stops working entirely on the coldest night of the year. Catching it early saved the homeowner a more expensive emergency callout."
+    },
+    {
+      "slug": "shower-installation",
+      "content_generated": false,
+      "primary_category": "Shower Installation",
+      "city": "London",
+      "primary_service": "Shower Installation",
+      "parent_category": "Plumbing Services",
+      "parent_slug": "plumbing-services",
+      "target_tone": "Practical, reliable, residential expert",
+      "secondary_categories": [
+        "Electric Shower Installation",
+        "Power Shower Fitting",
+        "Shower Repair"
+      ],
+      "services": [
+        "Electric shower installation",
+        "Mixer shower fitting",
+        "Power shower installation",
+        "Shower tray and enclosure plumbing",
+        "Shower repair and replacement"
+      ],
+      "example": "We fit a lot of showers across Paddington and Maida Vale — conversions from bath-only bathrooms and replacements for units that have given up. Most electric shower installations take half a day."
+    },
+    {
+      "slug": "bathroom-plumbing",
+      "content_generated": false,
+      "primary_category": "Plumber",
+      "city": "London",
+      "primary_service": "Tap, Toilet & Sink Plumber",
+      "parent_category": "Plumbing Services",
+      "parent_slug": "plumbing-services",
+      "target_tone": "Straightforward, no-nonsense, fast",
+      "secondary_categories": [
+        "Tap Installation & Repair",
+        "Toilet Installation & Repair",
+        "Sink Repair"
+      ],
+      "services": [
+        "Tap installation",
+        "Dripping tap repair",
+        "Toilet installation",
+        "Running toilet repair",
+        "Sink repair and basin replacement"
+      ],
+      "example": "A dripping tap in Willesden Green was wasting close to 5,000 litres of water a month. The homeowner had been ignoring it for a year. A new cartridge and 45 minutes of our time fixed it."
+    },
+    {
+      "slug": "gas-engineer",
+      "content_generated": false,
+      "primary_category": "Gas Engineer",
+      "city": "London",
+      "primary_service": "Gas Engineer",
+      "parent_category": "Gas Services",
+      "parent_slug": "gas-services",
+      "target_tone": "Safety-first, authoritative, emergency-ready",
+      "secondary_categories": [
+        "Gas Leak Detection",
+        "Emergency Gas Engineer",
+        "Gas Safe Registered Engineer"
+      ],
+      "services": [
+        "Gas leak detection and repair",
+        "Gas tightness testing",
+        "Emergency gas callouts",
+        "Gas pipe repair",
+        "Gas appliance isolation"
+      ],
+      "example": "If you can smell gas in your Westminster or Kensington home, don't wait. Open windows, don't use switches, and call the National Gas Emergency line on 0800 111 999 first, then us. We're Gas Safe registered and can attend the same day."
+    },
+    {
+      "slug": "gas-safety-certificate",
+      "content_generated": false,
+      "primary_category": "Gas Safety Certificate",
+      "city": "London",
+      "primary_service": "Gas Safety Certificate",
+      "parent_category": "Gas Services",
+      "parent_slug": "gas-services",
+      "target_tone": "Regulatory, landlord-focused, reliable",
+      "secondary_categories": [
+        "CP12 Certificate",
+        "Landlord Gas Safety Check",
+        "HMO Gas Inspection"
+      ],
+      "services": [
+        "Annual landlord gas safety inspection",
+        "CP12 certificate issued same day",
+        "HMO multi-appliance inspection",
+        "Letting agent gas compliance",
+        "Carbon monoxide alarm fitting",
+        "Remedial work and re-inspection"
+      ],
+      "example": "We cover a lot of rental properties across the London Borough of Brent and Willesden Green — mostly for letting agents who need CP12 certificates before a new tenancy starts. We can usually fit a same-week appointment and issue the certificate on the day."
+    },
+    {
+      "slug": "gas-appliance-installation",
+      "content_generated": false,
+      "primary_category": "Gas Appliance Installation",
+      "city": "London",
+      "primary_service": "Gas Appliance Installation",
+      "parent_category": "Gas Services",
+      "parent_slug": "gas-services",
+      "target_tone": "Practical, safety-conscious, skilled",
+      "secondary_categories": [
+        "Gas Cooker Installation",
+        "Gas Hob Installation",
+        "Gas Fire Service & Repair"
+      ],
+      "services": [
+        "Gas cooker installation",
+        "Gas hob installation",
+        "Gas fire service and repair",
+        "Gas meter relocation",
+        "Flexible gas hose replacement"
+      ],
+      "example": "A new gas hob in a Notting Hill kitchen renovation sounds straightforward until you discover the existing gas point is in the wrong place. We handle gas meter relocations, new gas point installations, and full appliance fitting — all Gas Safe registered."
+    }
+  ]
+}

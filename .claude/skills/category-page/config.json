@@ -1,0 +1,104 @@
+{
+  "areas_served": [
+    "London",
+    "West London",
+    "North West London",
+    "North London",
+    "Paddington",
+    "Marylebone",
+    "Notting Hill",
+    "Camden Town",
+    "West Kilburn",
+    "South Hampstead",
+    "Belsize Park",
+    "Maida Vale",
+    "Brondesbury",
+    "Chiswick",
+    "Ealing",
+    "West Hampstead",
+    "Hampstead",
+    "Richmond",
+    "Hammersmith",
+    "Kilburn",
+    "Kentish Town",
+    "St John's Wood",
+    "Cricklewood",
+    "Westminster",
+    "Willesden Green",
+    "Colindale",
+    "London Borough of Brent",
+    "Fulham",
+    "Chelsea",
+    "Kensington"
+  ],
+  "pages": [
+    {
+      "slug": "central-heating",
+      "content_generated": false,
+      "primary_category": "Central Heating Services",
+      "city": "London",
+      "primary_service": "Central Heating",
+      "target_tone": "Authoritative, conversational, local expert",
+      "secondary_categories": [
+        "Boiler Repair",
+        "Boiler Service",
+        "New Boiler Installation",
+        "Power Flush",
+        "Smart Thermostat Installation",
+        "Radiator Services",
+        "Heating System Repairs"
+      ],
+      "child_services": [
+        "Boiler Repair",
+        "Boiler Service",
+        "New Boiler Installation",
+        "Power Flush",
+        "Smart Thermostat Installation",
+        "Radiator Installation & Repair",
+        "Heating System Repairs"
+      ],
+      "example": "Last November, we had calls from across Hampstead and Camden Town after the first cold snap — boilers that hadn't been touched since the previous winter suddenly refusing to fire up. Most of them just needed a service. A few needed parts. But a handful needed a full replacement, and those homeowners wished they hadn't waited."
+    },
+    {
+      "slug": "plumbing-services",
+      "content_generated": false,
+      "primary_category": "Plumber",
+      "city": "London",
+      "primary_service": "Plumbing Services",
+      "target_tone": "Reliable, practical, locally trusted",
+      "secondary_categories": [
+        "Leak Detection & Repair",
+        "Shower Installation",
+        "Tap, Toilet & Sink Plumber",
+        "Pipe Repair",
+        "Emergency Plumber"
+      ],
+      "child_services": [
+        "Shower Installation",
+        "Tap, Toilet & Sink Plumber"
+      ],
+      "example": "A slow drip under the kitchen sink in Hammersmith turned into a soaked cabinet and a warped floor in three weeks. The homeowner thought it could wait. It couldn't. Most plumbing problems in London properties are like that — easy to fix early, expensive to ignore."
+    },
+    {
+      "slug": "gas-services",
+      "content_generated": false,
+      "primary_category": "Gas Services",
+      "city": "London",
+      "primary_service": "Gas Services",
+      "target_tone": "Safety-focused, authoritative, regulatory aware",
+      "secondary_categories": [
+        "Gas Engineer",
+        "Gas Leak Detection & Repair",
+        "Gas Safety Certificate",
+        "Gas Appliance Installation",
+        "Landlord Gas Safety"
+      ],
+      "child_services": [
+        "Gas Engineer",
+        "Gas Safety Certificate (CP12)",
+        "Gas Appliance Installation"
+      ],
+      "example": "We get calls from Westminster and Kensington every week from landlords who didn't realise their CP12 had expired until a letting agent flagged it. A gas safety certificate is a legal requirement, not a nice-to-have. Getting it sorted takes less than an hour."
+    }
+  ]
+}
