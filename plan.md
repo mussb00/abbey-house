@@ -921,6 +921,113 @@
       "Navigate to a service page without faqs and confirm the FAQ section is absent and zero console errors"
     ],
     "passes": true
+  },
+   {
+    "id": "F-67",
+    "category": "Epic 16 - Navbar Mega-Menu and Mobile Hamburger",
+    "description": "Rebuild Navbar to replace the Services link with three hub dropdowns on desktop and a hamburger overlay on mobile",
+    "steps": [
+      "Read components/Navbar.tsx, lib/services.ts, and at least one existing page component before writing any code",
+      "Extract exact Tailwind classes used for text, links, borders, backgrounds, and buttons — use those exact classes throughout, do not introduce new styles",
+      "Add 'use client' directive — component requires usePathname and useState",
+      "Import getAllCategories from @/lib/services and call it at the top of the component — all hub names, slugs, and child service names must come from the data layer, never hardcoded",
+      "Remove the single Services link from the desktop nav",
+      "Render one hub label per category from getAllCategories() in the desktop nav",
+      "Wrap each hub label and its dropdown panel in a single <div className='relative group'> so hover state persists when the cursor moves into the panel",
+      "Show the dropdown panel on CSS group-hover — no JavaScript for open/close on desktop",
+      "Render each child service in the panel as a Link to /services/[category.slug]/[service.slug] using the service name field",
+      "Each service link in the panel must highlight with text-primary on hover and be fully clickable",
+      "Apply active highlight (text-primary font-medium) to a hub label when pathname.startsWith('/services/' + category.slug)",
+      "Apply active highlight to a service link in the panel when pathname equals /services/[category.slug]/[service.slug] exactly",
+      "Position the panel absolutely below the hub label with z-50, white background, border border-border, rounded-lg, shadow-lg, and sufficient min-width to prevent text wrapping",
+      "Keep Home, About, and Contact links with their existing active state logic unchanged",
+      "On mobile (below md) hide the desktop nav entirely",
+      "Show a Menu icon (lucide-react) hamburger button in the header bar on mobile alongside the existing phone number and CTA button",
+      "On hamburger tap open a full-screen fixed overlay (inset-0, z-50, white background, scrollable) matching the Pimlico Plumbers pattern — full width, stacked rows",
+      "Overlay must contain: a CLOSE button with X icon top right, Home / About / Contact as plain links, and the three hub categories as expandable rows with a chevron",
+      "Tapping a hub row expands it inline to reveal its child service links — tapping again collapses it — only one hub expanded at a time",
+      "All service links in the mobile overlay navigate correctly and close the overlay on tap",
+      "Child service links in the mobile overlay highlight on hover and tap",
+      "Use useState for overlay open/close and for which hub is currently expanded",
+      "Phone number and Get Quote CTA remain in the header at all breakpoints (phone hidden below sm as currently)",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to /, /services/[categorySlug], and /services/[categorySlug]/[serviceSlug] on desktop and confirm the correct hub label is highlighted on each",
+      "Take a screenshot of the desktop nav with a hub dropdown open and confirm visual consistency with the existing site",
+      "Take a screenshot of the mobile overlay open and confirm it matches the Pimlico Plumbers pattern — full-screen, stacked hub rows, chevron, expandable child services",
+      "Run Lighthouse SEO audit via Chrome DevTools MCP and confirm score is 100/100",
+      "Confirm zero console errors on all page types",
+      "Make one git commit: feat(navbar): replace services link with hub mega-menu and mobile hamburger overlay"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-68",
+    "category": "Epic 16 - Navbar Mega-Menu and Mobile Hamburger",
+    "description": "Verify navbar active state is correct across all routes after data layer reconciliation replaces category and service slugs",
+    "steps": [
+      "Navigate to /services/central-heating and confirm the Central Heating hub label is highlighted and no other hub label is",
+      "Navigate to /services/central-heating/boiler-repair and confirm the Central Heating hub label remains highlighted and the Boiler Repair service link inside the dropdown is also highlighted",
+      "Navigate to /services/plumbing-services and confirm the Plumbing Services hub label is highlighted and no other hub label is",
+      "Navigate to /services/gas-services and confirm the Gas Services hub label is highlighted and no other hub label is",
+      "Navigate to / and confirm no hub label is highlighted and the Home link is highlighted",
+      "Navigate to /about and confirm no hub label is highlighted and the About link is highlighted",
+      "Navigate to /contact and confirm no hub label is highlighted and the Contact link is highlighted",
+      "Confirm all dropdown service links on desktop resolve without a 404",
+      "Confirm all service links in the mobile overlay resolve without a 404",
+      "Confirm zero console errors on all tested routes"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-69",
+    "category": "Epic 17 - Radix Navigation Menu",
+    "description": "Install @radix-ui/react-navigation-menu and remove all manual hover timer logic from Navbar",
+    "steps": [
+      "Run: npm install @radix-ui/react-navigation-menu",
+      "Open components/Navbar.tsx",
+      "Remove openDesktopHub state, openDesktopHubRef, closeTimer, switchTimer, handleHubEnter, and handleHubLeave entirely",
+      "Confirm no timer refs or manual open/close state remain in the file",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to any page and confirm zero console errors — no regressions from the removal"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-70",
+    "category": "Epic 17 - Radix Navigation Menu",
+    "description": "Replace the desktop nav block with the Radix NavigationMenu implementation",
+    "steps": [
+      "Import * as Nav from @radix-ui/react-navigation-menu at the top of components/Navbar.tsx",
+      "Replace the existing desktop <nav> block with Nav.Root containing Nav.List",
+      "Render Home as a Nav.Item with Nav.Link asChild wrapping a Next.js Link",
+      "Render each category from getAllCategories() as a Nav.Item with Nav.Trigger for the label and Nav.Content for the dropdown panel",
+      "Inside each Nav.Content render an All [Category Name] link followed by a divider then a Nav.Link asChild per service linking to /services/[category.slug]/[service.slug]",
+      "Render About and Contact as Nav.Item with Nav.Link asChild wrapping Next.js Links",
+      "Add Nav.Viewport as a direct sibling of Nav.List inside Nav.Root — this handles floating panel positioning",
+      "Confirm the mobile overlay accordion block is completely unchanged",
+      "Run tsc --noEmit and confirm zero TypeScript errors"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-71",
+    "category": "Epic 17 - Radix Navigation Menu",
+    "description": "Confirm active state and visual consistency after Radix migration",
+    "steps": [
+      "Start dev server with npm run dev",
+      "Navigate to / and confirm Home link shows text-primary font-medium",
+      "Navigate to /services/central-heating and confirm the Central Heating hub trigger shows text-primary font-medium",
+      "Navigate to /services/central-heating/boiler-repair and confirm Central Heating trigger still shows active style",
+      "Navigate to /about and confirm About link shows active style and no hub trigger is active",
+      "Hover each hub trigger on desktop and confirm the dropdown panel opens with all child service links listed",
+      "Click a service link in a dropdown and confirm it navigates to the correct page without a 404",
+      "Take a screenshot of the desktop nav with a dropdown open and confirm visual consistency with the existing site — no new styles introduced",
+      "Resize to mobile and confirm the hamburger overlay still opens and all accordion hub rows still expand and link correctly",
+      "Run Lighthouse SEO audit via Chrome DevTools MCP and confirm score is 100/100",
+      "Confirm zero console errors on all page types",
+      "Amend the previous navbar commit: git commit --amend with message feat(navbar): migrate desktop nav to radix navigation-menu"
+    ],
+    "passes": true
   }
 ]
 ```

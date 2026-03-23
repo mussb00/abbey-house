@@ -1,9 +1,9 @@
 # Abbey House Plumbing & Heating — Activity Log
 
 ## Current Status
-**Last Updated:** Not started
-**Tasks Completed:** 0 / 42
-**Current Task:** None
+**Last Updated:** 2026-03-23
+**Tasks Completed:** 71 / 71
+**Current Task:** Complete
 
 ---
 
@@ -151,6 +151,57 @@ After completing each task, add an entry below in this format:
 - FAQPage JSON-LD schema on all 12 service pages, zero errors
 - Lighthouse SEO: 100/100 on tested pages
 - Zero console errors
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None
+
+---
+
+### 2026-03-23 01:00
+**Completed:**
+- F-67: Rebuilt Navbar with hub mega-menu dropdowns (desktop) and hamburger overlay (mobile)
+- F-68: Verified navbar active state across all routes
+
+**Changes Made:**
+- Updated: components/Navbar.tsx (hub dropdowns with CSS group-hover, mobile full-screen overlay with expandable category rows, useState for overlay/hub expand)
+- Updated: plan.md (F-67 and F-68 marked passing)
+
+**Status:**
+- ALL 68 tasks passing
+- Desktop: three hub dropdowns (Central Heating, Plumbing Services, Gas Services) with CSS group-hover, active highlight via pathname.startsWith
+- Mobile: hamburger button opens full-screen overlay with expandable hub rows, chevron, X close button, phone + Get Quote CTA
+- Lighthouse SEO: 100/100 on boiler-repair service page
+- Zero console errors on all tested routes
+- TypeScript: zero errors (tsc --noEmit)
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None
+
+---
+
+### 2026-03-23 02:00
+**Completed:**
+- F-69: Removed all manual hover timer state (openDesktopHub, openDesktopHubRef, closeTimer, switchTimer, handleHubEnter, handleHubLeave) from Navbar.tsx
+- F-70: Replaced desktop nav block with Radix NavigationMenu (Nav.Root, Nav.List, Nav.Item, Nav.Trigger, Nav.Content, Nav.Link, Nav.Viewport)
+- F-71: Verified active state, visual consistency, Lighthouse SEO 100/100, zero console errors after Radix migration
+
+**Changes Made:**
+- Updated: components/Navbar.tsx (migrated desktop nav to @radix-ui/react-navigation-menu, removed all manual timer/ref hover logic)
+- Updated: plan.md (F-69, F-70, F-71 marked passing)
+
+**Status:**
+- ALL 71 tasks passing
+- Desktop nav now uses Radix NavigationMenu for accessible hover dropdown handling
+- Mobile overlay accordion unchanged
+- Lighthouse SEO: 100/100 on /services/central-heating
+- Zero console errors
+- TypeScript: zero errors (tsc --noEmit)
 
 **Next:**
 - All tasks complete
