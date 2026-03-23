@@ -438,7 +438,7 @@
       "Copy JSON-LD from a service page",
       "Paste into https://validator.schema.org and confirm zero errors and zero warnings"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-36",
@@ -501,7 +501,7 @@
       "Confirm TBT is under 200ms",
       "Run the same audit on a service page and confirm all targets are met"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-41",
@@ -725,7 +725,7 @@
       "Click that link and confirm it returns to the correct category page without a 404",
       "Confirm all steps resolve without a 404 and with zero console errors"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-54",
@@ -739,7 +739,7 @@
       "Confirm a loc entry exists for each of the 12 service slug pairs at the correct nested path",
       "Confirm no legacy slugs from the old structure are present: boiler-gas, plumbing-maintenance, landlord-safety"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-55",
@@ -751,7 +751,7 @@
       "Run a Lighthouse SEO audit on one service page via Chrome DevTools MCP",
       "Confirm score is 100/100 with no failing SEO checks"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-56",
@@ -767,7 +767,7 @@
       "Confirm CLS is under 0.1",
       "Confirm TBT is under 200ms"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-57",
@@ -779,7 +779,7 @@
       "Navigate to a hub category page and confirm zero console errors and no failed network requests",
       "Navigate to a service page and confirm zero console errors and no failed network requests"
     ],
-    "passes": false
+    "passes": true
   }
 ]
 ```

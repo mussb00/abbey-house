@@ -25,13 +25,12 @@ export function Footer() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl">BlueLine Plumbing</h3>
-                <p className="text-sm opacity-80">Licensed & Insured</p>
+                <h3 className="text-xl">Central Heating Services Brent</h3>
+                <p className="text-sm opacity-80">Gas Safe Registered</p>
               </div>
             </div>
             <p className="text-sm opacity-90 max-w-md">
-              Professional plumbing services you can trust. Serving the community 
-              with excellence since 1999.
+              Central heating services in Brent — boiler repair, boiler service, new boiler installation, and boiler replacement. Gas Safe engineers covering Kilburn, Wembley, Brondesbury, and all of Brent.
             </p>
           </div>
 

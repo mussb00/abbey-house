@@ -38,8 +38,7 @@ export function Contact() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl mb-4 text-foreground">Get In Touch</h2>
           <p className="text-lg text-muted-foreground">
-            Have a plumbing emergency or need to schedule a service? 
-            Contact us today for fast, reliable service.
+            Boiler broken down? Need a service or quote for a new installation? Call us or fill in the form. We cover all of Brent — Kilburn, Wembley, Brondesbury, and beyond.
           </p>
         </div>
 
