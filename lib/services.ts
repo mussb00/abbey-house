@@ -126,7 +126,7 @@ export const categories: Category[] = [
         name: 'New Boiler Installation',
         tagline: 'New boiler installation across London',
         intro:
-          'New Boiler Installation London — most of the new boiler jobs we do in Kensington and Chelsea are replacements that were three or four years overdue. The old boiler was still running, but only just, and costing a lot more to run than a modern unit would. Installing a new boiler is one of the most cost-effective decisions a London homeowner can make. A modern condensing boiler uses significantly less gas for the same heat output. New Boiler Installation is part of our Central Heating service. We cover new boiler installations across London.',
+          'New Boiler Installation London — most of the new boiler jobs we do in Kensington and Chelsea are replacements that were three or four years overdue. The old boiler was still running, but only just, and costing a lot more to run than a modern unit would. Installing a new boiler is one of the most cost-effective decisions a London homeowner can make. A modern condensing boiler uses far less gas for the same heat output. New Boiler Installation is part of our Central Heating service. We cover new boiler installations across London.',
         sections: [
           {
             heading: 'Boiler Replacement',
@@ -306,7 +306,7 @@ export const categories: Category[] = [
           },
           {
             heading: 'Power Shower Fitting',
-            body: 'A Power Shower Fitting installs a pump-assisted shower that draws from both the hot and cold supplies and boosts the flow rate to give a stronger spray than a standard mixer shower. Power showers are particularly popular in older London properties where gravity-fed hot water systems produce low pressure at the showerhead. The pump increases the flow rate significantly. Power shower installation involves connecting to both hot and cold supplies, fitting the pump unit either within the shower enclosure or in an airing cupboard, and connecting the shower head and controls. We carry out power shower fitting across Camden Town, Kentish Town, and the wider London area. Shower repair and replacement is also something we handle — if your existing power shower has lost pressure, is leaking, or has stopped working, we can usually diagnose and repair it on the same visit.',
+            body: 'A Power Shower Fitting installs a pump-assisted shower that draws from both the hot and cold supplies and boosts the flow rate to give a stronger spray than a standard mixer shower. Power showers are particularly popular in older London properties where gravity-fed hot water systems produce low pressure at the showerhead. The pump increases the flow rate noticeably. Power shower installation involves connecting to both hot and cold supplies, fitting the pump unit either within the shower enclosure or in an airing cupboard, and connecting the shower head and controls. We carry out power shower fitting across Camden Town, Kentish Town, and the wider London area. Shower repair and replacement is also something we handle — if your existing power shower has lost pressure, is leaking, or has stopped working, we can usually diagnose and repair it on the same visit.',
           },
           {
             heading: 'Shower Repair',

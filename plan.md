@@ -686,7 +686,7 @@
       "Confirm all meta titles are under 60 characters",
       "Confirm all meta descriptions are under 160 characters"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-52",
@@ -710,7 +710,7 @@
       "Confirm zero brand accreditation claims across all 15 pages",
       "Confirm zero HTML tags in any intro or sections field across all 15 pages"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-53",
