@@ -1,312 +1,310 @@
 {
   "areas_served": [
-    "London",
-    "West London",
-    "North West London",
-    "North London",
-    "Paddington",
-    "Marylebone",
-    "Notting Hill",
-    "Camden Town",
-    "West Kilburn",
-    "South Hampstead",
-    "Belsize Park",
-    "Maida Vale",
-    "Brondesbury",
-    "Chiswick",
-    "Ealing",
-    "West Hampstead",
-    "Hampstead",
-    "Richmond",
-    "Hammersmith",
-    "Kilburn",
-    "Kentish Town",
-    "St John's Wood",
-    "Cricklewood",
-    "Westminster",
-    "Willesden Green",
-    "Colindale",
-    "London Borough of Brent",
-    "Fulham",
-    "Chelsea",
-    "Kensington"
+    "London", "West London", "North West London", "North London", "Paddington", "Marylebone",
+    "Notting Hill", "Camden Town", "West Kilburn", "South Hampstead", "Belsize Park",
+    "Maida Vale", "Brondesbury", "Chiswick", "Ealing", "West Hampstead", "Hampstead",
+    "Richmond", "Hammersmith", "Kilburn", "Kentish Town", "St John's Wood",
+    "Cricklewood", "Westminster", "Willesden Green", "Colindale", "London Borough of Brent",
+    "Fulham", "Chelsea", "Kensington"
   ],
   "pages": [
     {
       "slug": "boiler-repair",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Boiler Repair Service",
       "city": "London",
       "primary_service": "Boiler Repair",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Urgent, reassuring, expert",
-      "secondary_categories": [
-        "Emergency Boiler Repair",
-        "Gas Safe Boiler Engineer",
-        "Boiler Fault Diagnosis"
-      ],
-      "services": [
-        "Boiler fault code diagnostics",
-        "Same-day boiler repair",
-        "Boiler part replacement",
-        "No-fix no-fee callouts",
-        "All makes and models"
+      "secondary_categories": ["Emergency Boiler Repair", "Gas Safe Boiler Engineer", "Boiler Fault Diagnosis"],
+      "services": ["Boiler fault code diagnostics", "Same-day boiler repair", "Boiler part replacement", "No-fix no-fee callouts", "All makes and models"],
+      "article_url": "https://www.gassaferegister.co.uk/gas-safety/gas-appliances/boiler-appliance-guide/",
+      "paa_questions": [
+        "How much does a boiler repair cost in London?",
+        "What are the most common boiler problems?",
+        "Should I repair or replace my boiler?",
+        "How long does a boiler repair take?",
+        "Can a boiler be repaired without a Gas Safe engineer?",
+        "What does a boiler fault code mean?",
+        "Is it safe to use my boiler if it has a fault?",
+        "How do I know if my boiler needs repairing?"
       ],
       "example": "When a boiler breaks down in Hammersmith in January, it's not an inconvenience — it's an emergency. We get calls from Fulham and Chiswick too, usually within hours of the temperature dropping. Nine times out of ten, we can fix it the same day."
     },
     {
       "slug": "boiler-service",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Boiler Service",
       "city": "London",
       "primary_service": "Boiler Service",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Preventative, practical, trustworthy",
-      "secondary_categories": [
-        "Annual Boiler Service",
-        "Boiler Maintenance",
-        "Gas Safety Check"
-      ],
-      "services": [
-        "Annual boiler inspection",
-        "Combustion analysis",
-        "Component cleaning and check",
-        "Carbon monoxide detection test",
-        "Service report issued same day"
+      "secondary_categories": ["Annual Boiler Service", "Boiler Maintenance", "Gas Safety Check"],
+      "services": ["Annual boiler inspection", "Combustion analysis", "Component cleaning and check", "Carbon monoxide detection test", "Service report issued same day"],
+      "article_url": "https://www.gassaferegister.co.uk/gas-safety/gas-appliances/boiler-appliance-guide/",
+      "paa_questions": [
+        "How often should a boiler be serviced?",
+        "What does a boiler service involve?",
+        "How long does a boiler service take?",
+        "Does a boiler service include a gas safety check?",
+        "What happens if I don't service my boiler?",
+        "Will a boiler service improve efficiency?",
+        "Does servicing a boiler extend its life?",
+        "Do I need a boiler service every year by law?"
       ],
       "example": "We service a lot of boilers in Camden Town and Kentish Town every autumn — homeowners who want to get ahead of winter before the first cold week hits. A boiler that's been serviced runs more efficiently, breaks down less, and lasts longer."
     },
     {
       "slug": "new-boiler-installation",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Boiler Installation",
       "city": "London",
       "primary_service": "New Boiler Installation",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Consultative, expert, investment-minded",
-      "secondary_categories": [
-        "Boiler Replacement",
-        "Combi Boiler Installation",
-        "Boiler Upgrade"
-      ],
-      "services": [
-        "Like-for-like boiler replacement",
-        "Boiler relocation",
-        "Back boiler removal",
-        "Conventional to combi conversion",
-        "Manufacturer warranty registration"
+      "secondary_categories": ["Boiler Replacement", "Combi Boiler Installation", "Boiler Upgrade"],
+      "services": ["Like-for-like boiler replacement", "Boiler relocation", "Back boiler removal", "Conventional to combi conversion", "Manufacturer warranty registration"],
+      "article_url": "https://www.gassaferegister.co.uk/gas-safety/home-gas-safety/new-gas-appliance-installation/",
+      "paa_questions": [
+        "What certificates do I need after a new boiler is installed?",
+        "Does a new boiler installation require building regulations notification?",
+        "How do I check my engineer is qualified to install a boiler?",
+        "What is a Building Regulations Compliance Certificate?",
+        "How long does a new boiler installation take?",
+        "What type of boiler is best for a London home?",
+        "Do I need to be home when a new boiler is installed?",
+        "How long does a new boiler warranty last?"
       ],
       "example": "A lot of the new boiler jobs we do in Kensington and Chelsea are replacements that were overdue by three or four years. The old boiler was still running but costing a fortune. A modern condensing boiler uses significantly less gas for the same heat output."
     },
     {
       "slug": "power-flush",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Power Flush",
       "city": "London",
       "primary_service": "Power Flush",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Diagnostic, practical, efficiency-focused",
-      "secondary_categories": [
-        "Central Heating Power Flush",
-        "Magnetic Filter Installation",
-        "Radiator Cold Spots"
-      ],
-      "services": [
-        "Powerflush with magnetic filter installation",
-        "Chemical flush and inhibitor dose",
-        "Sludge and scale removal",
-        "System pressure testing post-flush",
-        "Heating efficiency report"
+      "secondary_categories": ["Central Heating Power Flush", "Magnetic Filter Installation", "Radiator Cold Spots"],
+      "services": ["Powerflush with magnetic filter installation", "Chemical flush and inhibitor dose", "Sludge and scale removal", "System pressure testing post-flush", "Heating efficiency report"],
+      "article_url": "https://trustedtraders.which.co.uk/articles/quick-guide-central-heating-powerflushing/",
+      "paa_questions": [
+        "What is a power flush and do I need one?",
+        "How do I know if my central heating needs a power flush?",
+        "Can power flushing damage old radiators?",
+        "How long does a power flush take?",
+        "Will a power flush fix cold spots on radiators?",
+        "Does power flushing remove all sludge from the system?",
+        "Can I power flush my heating system myself?",
+        "How often should a central heating system be power flushed?"
       ],
       "example": "We did a power flush on a Victorian terrace in Maida Vale last spring — seven radiators, half of them stone cold at the bottom. After the flush, the whole system heated up evenly within 20 minutes."
     },
     {
       "slug": "smart-thermostat-installation",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Smart Thermostat Installation",
       "city": "London",
       "primary_service": "Smart Thermostat Installation",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Modern, practical, energy-saving",
-      "secondary_categories": [
-        "Nest Thermostat Installation",
-        "Hive Thermostat Installation",
-        "Heating Controls Upgrade"
-      ],
-      "services": [
-        "Nest thermostat fitting and app setup",
-        "Hive thermostat fitting and app setup",
-        "Tado installation",
-        "Smart TRV installation",
-        "Heating controls compatibility check"
+      "secondary_categories": ["Nest Thermostat Installation", "Hive Thermostat Installation", "Heating Controls Upgrade"],
+      "services": ["Nest thermostat fitting and app setup", "Hive thermostat fitting and app setup", "Tado installation", "Smart TRV installation", "Heating controls compatibility check"],
+      "article_url": "https://energysavingtrust.org.uk/advice/thermostats-and-heating-controls/",
+      "paa_questions": [
+        "How much can a smart thermostat save on heating bills?",
+        "What is a thermostatic radiator valve and how does it work?",
+        "Do I need a smart thermostat if I already have a programmer?",
+        "What heating controls does a boiler system need?",
+        "Can smart controls work with any boiler?",
+        "What is geo-fencing on a smart thermostat?",
+        "How do TRVs help reduce heating bills?",
+        "What temperature should I set my thermostat to?"
       ],
       "example": "We install a lot of Nest and Hive thermostats across West Hampstead and Hampstead — mostly for homeowners who want to stop heating empty rooms. The setup takes about an hour and most people are controlling their heating from their phone before we leave."
     },
     {
       "slug": "radiator-services",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Radiator Installation",
       "city": "London",
       "primary_service": "Radiator Installation & Repair",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Practical, clear, solution-focused",
-      "secondary_categories": [
-        "Radiator Installation",
-        "Radiator Valve Replacement",
-        "Radiator Not Heating Up"
-      ],
-      "services": [
-        "New radiator installation",
-        "Radiator replacement",
-        "TRV replacement",
-        "Lockshield valve replacement",
-        "Radiator bleeding",
-        "Cold radiator diagnosis"
+      "secondary_categories": ["Radiator Installation", "Radiator Valve Replacement", "Radiator Not Heating Up"],
+      "services": ["New radiator installation", "Radiator replacement", "TRV replacement", "Lockshield valve replacement", "Radiator bleeding", "Cold radiator diagnosis"],
+      "article_url": "https://energysavingtrust.org.uk/quick-tips-and-home-improvements-to-help-you-heat-your-home-for-less/",
+      "paa_questions": [
+        "How do I bleed a radiator?",
+        "Why is my radiator cold at the bottom?",
+        "Why is my radiator cold at the top?",
+        "Can I add a new radiator to my existing central heating system?",
+        "What is a TRV and how does it work?",
+        "Do radiator reflector panels actually work?",
+        "When should I replace a radiator instead of repairing it?",
+        "Why is only one radiator not heating up?"
       ],
       "example": "A lot of the radiator calls we get from Kilburn and Brondesbury are for TRVs that have seized up over summer. The radiator looks fine, the boiler is working, but one room stays cold. Nine times out of ten it's a stuck thermostatic valve."
     },
     {
       "slug": "heating-system-repairs",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Heating Engineer",
       "city": "London",
       "primary_service": "Heating System Repairs",
       "parent_category": "Central Heating",
       "parent_slug": "central-heating",
       "target_tone": "Diagnostic, methodical, trustworthy",
-      "secondary_categories": [
-        "Heating Pump Replacement",
-        "Expansion Vessel Repair",
-        "Central Heating Balancing"
-      ],
-      "services": [
-        "Heating pump replacement",
-        "Expansion vessel replacement",
-        "Central heating system balancing",
-        "Zone valve replacement",
-        "Lockshield valve replacement"
+      "secondary_categories": ["Heating Pump Replacement", "Expansion Vessel Repair", "Central Heating Balancing"],
+      "services": ["Heating pump replacement", "Expansion vessel replacement", "Central heating system balancing", "Zone valve replacement", "Lockshield valve replacement"],
+      "article_url": "https://www.gassaferegister.co.uk/gas-safety/gas-appliances/boiler-appliance-guide/",
+      "paa_questions": [
+        "Why is my central heating making a banging noise?",
+        "Why is my central heating not working even though the boiler is on?",
+        "What does a heating pump do?",
+        "How do I know if my expansion vessel needs replacing?",
+        "What is central heating balancing and why does it matter?",
+        "Why does my boiler keep losing pressure?",
+        "Can I replace a zone valve myself?",
+        "What causes kettling in a central heating system?"
       ],
       "example": "A noisy heating system in a Marylebone flat turned out to be a failing pump — the kind of problem that gets worse slowly until it stops working entirely on the coldest night of the year. Catching it early saved the homeowner a more expensive emergency callout."
     },
     {
       "slug": "shower-installation",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Shower Installation",
       "city": "London",
       "primary_service": "Shower Installation",
       "parent_category": "Plumbing Services",
       "parent_slug": "plumbing-services",
       "target_tone": "Practical, reliable, residential expert",
-      "secondary_categories": [
-        "Electric Shower Installation",
-        "Power Shower Fitting",
-        "Shower Repair"
-      ],
-      "services": [
-        "Electric shower installation",
-        "Mixer shower fitting",
-        "Power shower installation",
-        "Shower tray and enclosure plumbing",
-        "Shower repair and replacement"
+      "secondary_categories": ["Electric Shower Installation", "Power Shower Fitting", "Shower Repair"],
+      "services": ["Electric shower installation", "Mixer shower fitting", "Power shower installation", "Shower tray and enclosure plumbing", "Shower repair and replacement"],
+      "article_url": "https://www.watersafe.org.uk/help-and-advice/",
+      "paa_questions": [
+        "Do I need a plumber or electrician to install a shower?",
+        "What is the difference between an electric shower and a mixer shower?",
+        "How long does it take to install a shower?",
+        "Do I need building regulations approval for a new shower?",
+        "How do I know if my water pressure is suitable for a power shower?",
+        "Can any plumber install a shower or do they need to be registered?",
+        "How much does shower installation cost in London?",
+        "What is a thermostatic shower and is it worth having?"
       ],
       "example": "We fit a lot of showers across Paddington and Maida Vale — conversions from bath-only bathrooms and replacements for units that have given up. Most electric shower installations take half a day."
     },
     {
       "slug": "bathroom-plumbing",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Plumber",
       "city": "London",
       "primary_service": "Tap, Toilet & Sink Plumber",
       "parent_category": "Plumbing Services",
       "parent_slug": "plumbing-services",
       "target_tone": "Straightforward, no-nonsense, fast",
-      "secondary_categories": [
-        "Tap Installation & Repair",
-        "Toilet Installation & Repair",
-        "Sink Repair"
-      ],
-      "services": [
-        "Tap installation",
-        "Dripping tap repair",
-        "Toilet installation",
-        "Running toilet repair",
-        "Sink repair and basin replacement"
+      "secondary_categories": ["Tap Installation & Repair", "Toilet Installation & Repair", "Sink Repair"],
+      "services": ["Tap installation", "Dripping tap repair", "Toilet installation", "Running toilet repair", "Sink repair and basin replacement"],
+      "article_url": "https://www.watersafe.org.uk/help-and-advice/",
+      "paa_questions": [
+        "Can I replace a tap myself or do I need a plumber?",
+        "Why is my tap dripping and how do I fix it?",
+        "How long does it take to install a new toilet?",
+        "What causes a toilet to keep running?",
+        "Do I need to turn off the water to fix a dripping tap?",
+        "How do I know if a plumber is approved?",
+        "What should I do if my sink is leaking underneath?",
+        "How much does a plumber cost for a tap repair in London?"
       ],
       "example": "A dripping tap in Willesden Green was wasting close to 5,000 litres of water a month. The homeowner had been ignoring it for a year. A new cartridge and 45 minutes of our time fixed it."
     },
     {
       "slug": "gas-engineer",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Gas Engineer",
       "city": "London",
       "primary_service": "Gas Engineer",
       "parent_category": "Gas Services",
       "parent_slug": "gas-services",
       "target_tone": "Safety-first, authoritative, emergency-ready",
-      "secondary_categories": [
-        "Gas Leak Detection",
-        "Emergency Gas Engineer",
-        "Gas Safe Registered Engineer"
-      ],
-      "services": [
-        "Gas leak detection and repair",
-        "Gas tightness testing",
-        "Emergency gas callouts",
-        "Gas pipe repair",
-        "Gas appliance isolation"
+      "secondary_categories": ["Gas Leak Detection", "Emergency Gas Engineer", "Gas Safe Registered Engineer"],
+      "services": ["Gas leak detection and repair", "Gas tightness testing", "Emergency gas callouts", "Gas pipe repair", "Gas appliance isolation"],
+      "article_url": "https://www.gassaferegister.co.uk/gas-safety/frequently-asked-questions/",
+      "paa_questions": [
+        "What should I do if I smell gas at home?",
+        "Does a gas engineer have to be Gas Safe registered?",
+        "Can all Gas Safe engineers do all types of gas work?",
+        "How do I check if a gas engineer is registered?",
+        "What qualifications does a Gas Safe engineer need?",
+        "What happens if gas work is done by an unregistered engineer?",
+        "Do I need a gas engineer for a non-gas component inside a boiler casing?",
+        "What is a Gas Safe ID card and what should I check on it?"
       ],
       "example": "If you can smell gas in your Westminster or Kensington home, don't wait. Open windows, don't use switches, and call the National Gas Emergency line on 0800 111 999 first, then us. We're Gas Safe registered and can attend the same day."
     },
     {
       "slug": "gas-safety-certificate",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Gas Safety Certificate",
       "city": "London",
       "primary_service": "Gas Safety Certificate",
       "parent_category": "Gas Services",
       "parent_slug": "gas-services",
       "target_tone": "Regulatory, landlord-focused, reliable",
-      "secondary_categories": [
-        "CP12 Certificate",
-        "Landlord Gas Safety Check",
-        "HMO Gas Inspection"
-      ],
-      "services": [
-        "Annual landlord gas safety inspection",
-        "CP12 certificate issued same day",
-        "HMO multi-appliance inspection",
-        "Letting agent gas compliance",
-        "Carbon monoxide alarm fitting",
-        "Remedial work and re-inspection"
+      "secondary_categories": ["CP12 Certificate", "Landlord Gas Safety Check", "HMO Gas Inspection"],
+      "services": ["Annual landlord gas safety inspection", "CP12 certificate issued same day", "HMO multi-appliance inspection", "Letting agent gas compliance", "Carbon monoxide alarm fitting", "Remedial work and re-inspection"],
+      "article_url": "https://www.hse.gov.uk/gas/landlords/gassaferecord.htm",
+      "paa_questions": [
+        "What must a landlord gas safety record contain?",
+        "How long must a landlord keep gas safety records?",
+        "When must a landlord give a gas safety record to a new tenant?",
+        "Can a gas safety record be sent electronically to a tenant?",
+        "What happens if a landlord does not carry out a gas safety check?",
+        "Does a landlord gas safety check cover all appliances in the property?",
+        "Can a landlord carry out the gas safety check early?",
+        "What action must a landlord take if a fault is found during a gas safety check?"
       ],
       "example": "We cover a lot of rental properties across the London Borough of Brent and Willesden Green — mostly for letting agents who need CP12 certificates before a new tenancy starts. We can usually fit a same-week appointment and issue the certificate on the day."
     },
     {
       "slug": "gas-appliance-installation",
       "content_generated": true,
+      "faq_generated": true,
       "primary_category": "Gas Appliance Installation",
       "city": "London",
       "primary_service": "Gas Appliance Installation",
       "parent_category": "Gas Services",
       "parent_slug": "gas-services",
       "target_tone": "Practical, safety-conscious, skilled",
-      "secondary_categories": [
-        "Gas Cooker Installation",
-        "Gas Hob Installation",
-        "Gas Fire Service & Repair"
-      ],
-      "services": [
-        "Gas cooker installation",
-        "Gas hob installation",
-        "Gas fire service and repair",
-        "Gas meter relocation",
-        "Flexible gas hose replacement"
+      "secondary_categories": ["Gas Cooker Installation", "Gas Hob Installation", "Gas Fire Service & Repair"],
+      "services": ["Gas cooker installation", "Gas hob installation", "Gas fire service and repair", "Gas meter relocation", "Flexible gas hose replacement"],
+      "article_url": "https://www.gassaferegister.co.uk/gas-safety/home-gas-safety/new-gas-appliance-installation/",
+      "paa_questions": [
+        "Do I need a Gas Safe engineer to install a gas cooker?",
+        "What certificates should I receive after a gas appliance is installed?",
+        "What is a Building Regulations Compliance Certificate for a gas appliance?",
+        "How do I check a gas engineer is qualified to install my appliance?",
+        "Should all gas appliances be serviced annually?",
+        "Can a plumber or electrician replace a non-gas part inside a boiler casing?",
+        "What should I check before an engineer starts gas work in my home?",
+        "What is a gas appliance commissioning document?"
       ],
       "example": "A new gas hob in a Notting Hill kitchen renovation sounds straightforward until you discover the existing gas point is in the wrong place. We handle gas meter relocations, new gas point installations, and full appliance fitting — all Gas Safe registered."
     }

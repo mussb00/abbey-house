@@ -8,6 +8,7 @@ export type Service = {
   metaDescription: string
   keywords: string[]
   coverImage: string
+  faqs?: { question: string; answer: string }[]
 }
 
 export type Category = {
@@ -93,6 +94,28 @@ export const categories: Category[] = [
         keywords: ['boiler repair London', 'emergency boiler repair London', 'boiler not working London'],
         coverImage:
           'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'What are the most common boiler problems?',
+            answer: 'Common boiler problems include pressure loss, frozen condensate pipes, faulty thermostats, airlocks in the system, and worn ignition leads. Many faults display as error codes on the boiler display. A Gas Safe engineer can diagnose the fault, identify the cause, and repair it on the same visit in most cases.',
+          },
+          {
+            question: 'Should I repair or replace my boiler?',
+            answer: 'If your boiler is under 10 years old and the repair cost is below one-third of the cost of a replacement, repair is usually the right choice. If your boiler is over 15 years old, needs frequent repairs, or is running inefficiently, replacement is likely more cost-effective in the long run.',
+          },
+          {
+            question: 'Can a boiler be repaired without a Gas Safe engineer?',
+            answer: 'No. Any work on a gas boiler must be carried out by an engineer registered with the Gas Safe Register. Using an unregistered person to carry out gas work is illegal, invalidates your home insurance, and can be dangerous. Always check the engineer\'s Gas Safe ID card before work begins.',
+          },
+          {
+            question: 'Is it safe to use my boiler if it has a fault?',
+            answer: 'It depends on the fault. A boiler displaying a fault code or losing pressure slowly may still be safe to use temporarily, but should be inspected promptly. If you smell gas, the boiler is making unusual sounds, or you suspect a carbon monoxide issue, turn off the gas supply and call a Gas Safe engineer immediately.',
+          },
+          {
+            question: 'How do I know if my boiler needs repairing?',
+            answer: 'Signs that your boiler needs attention include a fault code on the display, a noticeable drop in heating efficiency, radiators that take longer than usual to heat up, the boiler cutting out frequently, or a pilot light that will not stay lit. Any of these symptoms are worth having checked by a registered engineer.',
+          },
+        ],
       },
       {
         slug: 'boiler-service',
@@ -120,6 +143,36 @@ export const categories: Category[] = [
         keywords: ['boiler service London', 'annual boiler service London', 'boiler maintenance London'],
         coverImage:
           'https://images.unsplash.com/photo-1597762117709-859f744b84c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'How often should a boiler be serviced?',
+            answer: 'A boiler should be serviced once a year. Annual servicing keeps the appliance running safely, maintains manufacturer warranty conditions, and allows an engineer to identify worn components before they cause a breakdown. For landlords, an annual service is a legal requirement under gas safety regulations.',
+          },
+          {
+            question: 'What does a boiler service involve?',
+            answer: 'A boiler service involves removing the casing, inspecting the heat exchanger and burner, checking the flue for blockages or damage, testing the gas rate and combustion, and verifying that all safety devices are working correctly. The engineer cleans components where needed, checks for gas leaks, and issues a written report at the end of the visit.',
+          },
+          {
+            question: 'How long does a boiler service take?',
+            answer: 'A boiler service typically takes between 45 minutes and an hour and a half. The exact duration depends on the age, make, and condition of the boiler. Older boilers or those that have not been serviced for several years may take longer if additional cleaning is needed.',
+          },
+          {
+            question: 'Does a boiler service include a gas safety check?',
+            answer: 'A boiler service includes checks on the boiler itself — combustion, flue, heat exchanger, and controls. A gas safety check covers all gas appliances and pipework in the property. The two can be carried out in the same visit, and landlords often combine them to receive both records together on the same day.',
+          },
+          {
+            question: 'What happens if I don\'t service my boiler?',
+            answer: 'An unserviced boiler is more likely to break down without warning, runs less efficiently, and can develop faults that go undetected. Carbon monoxide leaks, blocked flues, and failing components are all risks that a routine annual service is designed to catch early. Failing to service can also void the manufacturer warranty.',
+          },
+          {
+            question: 'Will a boiler service improve efficiency?',
+            answer: 'Yes. A service includes cleaning the burner and heat exchanger, which can become coated with combustion residue over time. A clean, well-adjusted boiler burns gas more effectively. The combustion analysis carried out during a service allows the engineer to check that the boiler is operating within its designed parameters.',
+          },
+          {
+            question: 'Does servicing a boiler extend its life?',
+            answer: 'Yes. Regular annual servicing extends the working life of a boiler by catching small faults before they cause serious damage. Components such as seals, O-rings, and ignition electrodes wear out gradually. Replacing them during a routine service costs far less than repairing the damage caused when they fail completely.',
+          },
+        ],
       },
       {
         slug: 'new-boiler-installation',
@@ -147,6 +200,36 @@ export const categories: Category[] = [
         keywords: ['new boiler installation London', 'boiler replacement London', 'combi boiler installation London'],
         coverImage:
           'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'What certificates do I need after a new boiler is installed?',
+            answer: 'After a new boiler is installed you should receive a commissioning document confirming the boiler has been set up and tested correctly, and a Building Regulations Compliance Certificate confirming the work was carried out to the required standard. The engineer should also register the manufacturer warranty on your behalf. Keep all documents safe.',
+          },
+          {
+            question: 'Does a new boiler installation require building regulations notification?',
+            answer: 'Yes. A new boiler installation is notifiable work under Building Regulations. A Gas Safe registered engineer can self-certify the work, which means they notify the local authority on your behalf and you receive a compliance certificate. You do not need to separately notify the council if your engineer is registered to self-certify.',
+          },
+          {
+            question: 'How do I check my engineer is qualified to install a boiler?',
+            answer: 'Ask to see the engineer\'s Gas Safe ID card before work begins. The card shows the engineer\'s name, registration number, and the categories of gas work they are qualified to carry out. You can also verify registration online at the Gas Safe Register website by entering the registration number or the business name.',
+          },
+          {
+            question: 'What is a Building Regulations Compliance Certificate?',
+            answer: 'A Building Regulations Compliance Certificate is issued after notifiable gas work is completed to confirm it meets the required standard. For a boiler installation, it is issued by the Gas Safe registered engineer or their employer and sent to the local authority. It is an important document if you sell the property.',
+          },
+          {
+            question: 'How long does a new boiler installation take?',
+            answer: 'A straightforward like-for-like boiler replacement typically takes most of a working day. A more complex installation involving pipework changes, a conversion from one boiler type to another, or a boiler relocation can take a day and a half to two days. Your engineer should be able to give you a realistic time estimate after a survey.',
+          },
+          {
+            question: 'Do I need to be home when a new boiler is installed?',
+            answer: 'Yes. An adult should be present throughout a boiler installation. The engineer will need access to the boiler location, radiators, and gas and water supply points. At the end of the installation the engineer will walk you through the controls and settings, which requires you to be present.',
+          },
+          {
+            question: 'How long does a new boiler warranty last?',
+            answer: 'Most new boilers come with a manufacturer warranty of between two and ten years depending on the brand and model. Some manufacturers require annual servicing by a registered engineer to keep the warranty valid. The engineer installing the boiler should register the warranty with the manufacturer on the day of installation.',
+          },
+        ],
       },
       {
         slug: 'power-flush',
@@ -174,6 +257,36 @@ export const categories: Category[] = [
         keywords: ['power flush London', 'power flushing London', 'central heating power flush London'],
         coverImage:
           'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'What is a power flush and do I need one?',
+            answer: 'A power flush is a process carried out by central heating engineers to remove sludge, scale, and iron oxide that builds up inside boilers, pipes, and radiators over time. A specialised machine circulates water at high velocity through the system to dislodge and flush out the debris. You may need one if radiators have cold spots at the bottom, the system is slow to heat up, or the boiler is noisier than usual.',
+          },
+          {
+            question: 'How do I know if my central heating needs a power flush?',
+            answer: 'Signs that a power flush may be needed include cold areas at the bottom of radiators, slow or uneven heating across the system, black or discoloured water when a radiator is removed, a boiler that is noisier than usual, or a magnet sticking to copper pipework. Any of these symptoms suggest iron sludge has accumulated and is restricting water flow.',
+          },
+          {
+            question: 'Can power flushing damage old radiators?',
+            answer: 'Power flushing pushes water through the system at high velocity, which can increase pressure on weak points such as rusting or corroded radiators. On older systems with already compromised metalwork, this can cause leaks. An engineer should assess the condition of radiators before flushing and advise whether any should be replaced first to avoid problems during the process.',
+          },
+          {
+            question: 'How long does a power flush take?',
+            answer: 'A power flush typically takes several hours to a full day depending on the size of the system and how much contamination has built up. A small system with five or six radiators may be completed in three to four hours. A larger property with ten or more radiators and years of sludge accumulation can take the full working day.',
+          },
+          {
+            question: 'Will a power flush fix cold spots on radiators?',
+            answer: 'A power flush is specifically designed to address cold spots at the bottom of radiators, which are caused by settled iron oxide sludge. By circulating a chemical solution at high velocity, the process suspends the debris and flushes it out of the system. Cold spots caused by sludge typically disappear after a successful flush and the radiators heat evenly again.',
+          },
+          {
+            question: 'Can I power flush my heating system myself?',
+            answer: 'No. Power flushing requires a specialised pumping machine and chemical solutions that are not available to homeowners. The process also requires knowledge of how to isolate circuits, protect the boiler, and safely dispose of the contaminated water. It should only be carried out by a qualified central heating engineer.',
+          },
+          {
+            question: 'How often should a central heating system be power flushed?',
+            answer: 'There is no fixed interval, but systems that are well-maintained with a magnetic filter and inhibitor dose from the outset rarely need power flushing. Older systems that have never been treated may need one, and some engineers recommend a flush when installing a new boiler to protect the new unit from existing contamination in the pipework.',
+          },
+        ],
       },
       {
         slug: 'smart-thermostat-installation',
@@ -201,6 +314,36 @@ export const categories: Category[] = [
         keywords: ['smart thermostat installation London', 'Nest installation London', 'Hive thermostat London'],
         coverImage:
           'https://images.unsplash.com/photo-1585771724684-38269d6639fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'How much can a smart thermostat save on heating bills?',
+            answer: 'Installing heating controls including a smart thermostat could save around £110 a year according to the Energy Saving Trust. The actual saving depends on how well you currently control your heating. Homes that currently heat on a fixed schedule without any adjustment stand to save more than homes that are already managed carefully.',
+          },
+          {
+            question: 'What is a thermostatic radiator valve and how does it work?',
+            answer: 'A thermostatic radiator valve, or TRV, controls how much hot water flows through an individual radiator. It has a dial numbered 0 to 6 that you turn to set the temperature you want in that room. The valve senses the room temperature and automatically adjusts to allow more or less hot water through, reducing flow when the room reaches the set temperature and increasing it when the room cools.',
+          },
+          {
+            question: 'Do I need a smart thermostat if I already have a programmer?',
+            answer: 'A basic programmer only controls when your heating comes on and off. A smart thermostat adds temperature control, remote access via a smartphone app, and in many cases learning features that adjust your schedule automatically. Whether upgrading is worthwhile depends on how actively you use your existing controls and how much flexibility you want over your heating.',
+          },
+          {
+            question: 'What heating controls does a boiler system need?',
+            answer: 'Central heating systems with a boiler should include at least a programmer for time control, at least one room thermostat, and thermostatic radiator valves on radiators. Systems with a hot water cylinder also need a cylinder thermostat. Building regulations require all new and replacement systems to be interlocked so the boiler switches off when thermostats reach their set temperatures.',
+          },
+          {
+            question: 'What is geo-fencing on a smart thermostat?',
+            answer: 'Geo-fencing is a feature on some smart thermostats that uses your smartphone\'s location to detect when you leave or return home. It can automatically switch off your heating when you go out and turn it back on as you approach, so the house is warm when you arrive without heating an empty property. This feature is optional and can be turned off if you prefer not to share your location.',
+          },
+          {
+            question: 'How do TRVs help reduce heating bills?',
+            answer: 'TRVs allow you to set lower temperatures in rooms that do not need as much heat, such as spare bedrooms or hallways. By reducing the temperature in rooms you use less often, the system uses less energy overall. The Energy Saving Trust recommends setting each TRV to the lowest number that keeps the room comfortable.',
+          },
+          {
+            question: 'What temperature should I set my thermostat to?',
+            answer: 'The Energy Saving Trust recommends setting your room thermostat to the lowest comfortable temperature, which for most people is between 18 and 21 degrees Celsius. Reducing the thermostat by just one degree, from 22 to 21, can save around £90 a year on heating bills. You do not need to turn the thermostat up when it is colder outside — the boiler will reach the set temperature regardless.',
+          },
+        ],
       },
       {
         slug: 'radiator-services',
@@ -228,6 +371,32 @@ export const categories: Category[] = [
         keywords: ['radiator installation London', 'radiator repair London', 'TRV replacement London'],
         coverImage:
           'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'How do I bleed a radiator?',
+            answer: 'To bleed a radiator, place a towel and bowl under the bleed valve, then insert a radiator key and turn it a quarter to half turn anticlockwise. You will hear a hissing sound as air escapes. When the hissing stops and water begins to flow, close the valve again. On a combi boiler, check the system pressure afterwards and top up using the filling loop if the gauge has dropped below the recommended range.',
+          },
+          {
+            question: 'Why is my radiator cold at the top?',
+            answer: 'A radiator that is cold at the top but warm at the bottom has air trapped in the upper section. The air prevents hot water from filling the whole panel. Bleeding the radiator releases the trapped air and allows hot water to circulate fully. This is a straightforward job that does not require a plumber and can be done with a radiator key available from any hardware shop for around three pounds.',
+          },
+          {
+            question: 'Why is my radiator cold at the bottom?',
+            answer: 'A radiator that is warm at the top but cold at the bottom has sludge sitting in the lower section of the panel. This is iron oxide debris that has settled out of the water and blocks heat transfer in that area of the radiator. Bleeding the radiator will not fix this — the sludge needs to be removed either by flushing the individual radiator or by carrying out a power flush on the whole system.',
+          },
+          {
+            question: 'What is a TRV and how does it work?',
+            answer: 'A TRV, or thermostatic radiator valve, controls the flow of hot water into a radiator based on the temperature of the room. It has a numbered dial, usually from 0 to 6, where higher numbers allow more heat. The valve senses room temperature and automatically reduces flow when the room is warm enough, then opens again when the room cools. This helps avoid overheating individual rooms and saves energy.',
+          },
+          {
+            question: 'Do radiator reflector panels actually work?',
+            answer: 'Yes. Radiator reflector panels fit behind radiators on external walls and reflect heat back into the room rather than allowing the wall to absorb it. According to the Energy Saving Trust, installing them costs around £13 and can reduce heating bills by approximately £25 a year in Great Britain. They work best on uninsulated external walls where heat loss through the wall would otherwise be significant.',
+          },
+          {
+            question: 'Why is only one radiator not heating up?',
+            answer: 'If one radiator is cold while the rest of the system is working normally, the most likely cause is a stuck TRV, a closed lockshield valve, or a blockage specific to that radiator. A TRV seized in the closed position will prevent hot water entering the radiator regardless of the boiler output. Checking the TRV first is the quickest diagnostic step — turning it to the highest setting or removing the TRV head should allow the radiator to heat if the valve is the cause.',
+          },
+        ],
       },
       {
         slug: 'heating-system-repairs',
@@ -255,6 +424,32 @@ export const categories: Category[] = [
         keywords: ['heating system repair London', 'central heating repair London', 'heating engineer London'],
         coverImage:
           'https://images.unsplash.com/photo-1635221798248-8a3452ad07cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'Why is my central heating making a banging noise?',
+            answer: 'Banging or knocking sounds from a central heating system are most often caused by kettling, where scale or sludge on the heat exchanger causes localised boiling and steam formation, or by a pump that is starting to fail. Pipes expanding and contracting as they heat up can also cause ticking or knocking sounds. If the noise is coming from the boiler itself it is worth having a Gas Safe engineer investigate before the fault develops further.',
+          },
+          {
+            question: 'What does a heating pump do?',
+            answer: 'The circulating pump moves hot water from the boiler through the pipework to the radiators and back again. Without a working pump, the boiler heats the water but nothing circulates — the boiler overheats and shuts down on its safety protection while the radiators remain cold. A failing pump often becomes audible before it stops completely, making a grinding or humming noise that was not previously present.',
+          },
+          {
+            question: 'How do I know if my expansion vessel needs replacing?',
+            answer: 'The most common sign of a failed expansion vessel is a boiler that loses pressure every time it heats up and needs topping up every few days. When the vessel\'s internal membrane fails, the pressure relief valve opens instead of the vessel absorbing the expansion. If your boiler pressure drops repeatedly after topping up, an expansion vessel fault is a likely cause and should be diagnosed by an engineer.',
+          },
+          {
+            question: 'What is central heating balancing and why does it matter?',
+            answer: 'Central heating balancing adjusts the flow rate through each radiator so that the whole system heats evenly. On an unbalanced system, radiators close to the boiler get too much flow and overheat, while distant radiators get less flow and stay cooler than they should. Balancing involves measuring the temperature differential across each radiator and adjusting the lockshield valves until the flow is equal throughout the circuit.',
+          },
+          {
+            question: 'Why does my boiler keep losing pressure?',
+            answer: 'A boiler that repeatedly loses pressure has a leak somewhere in the system or a failed expansion vessel. Common leak points include radiator valves, pipe joints, and the pressure relief valve itself. If the pressure drops slowly over days, start by checking all visible radiator valves and pipe connections for signs of moisture. If the pressure drops every time the boiler heats up, the expansion vessel is more likely to be the cause.',
+          },
+          {
+            question: 'What causes kettling in a central heating system?',
+            answer: 'Kettling is caused by limescale or sludge coating the heat exchanger inside the boiler. The scale acts as an insulator, causing the water in contact with the burner to overheat locally and form steam bubbles, which produce the rumbling or kettling sound. It is more common in hard water areas. Descaling the heat exchanger or carrying out a power flush on the system is the usual treatment.',
+          },
+        ],
       },
     ],
   },
@@ -319,6 +514,32 @@ export const categories: Category[] = [
         keywords: ['shower installation London', 'electric shower fitting London', 'shower repair London'],
         coverImage:
           'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'Do I need a plumber or electrician to install a shower?',
+            answer: 'It depends on the shower type. A mixer shower requires a plumber to connect it to the hot and cold supply. An electric shower requires both a plumber for the water connection and a Part P registered electrician for the electrical connection, as it involves a dedicated circuit from the consumer unit. Some plumbers hold both qualifications, but it is important to check before booking.',
+          },
+          {
+            question: 'What is the difference between an electric shower and a mixer shower?',
+            answer: 'An electric shower heats cold mains water directly inside the unit as it flows through, so it works independently of the boiler and is not affected by hot water demand elsewhere in the house. A mixer shower draws on the boiler\'s hot water supply, giving a better flow rate and a more consistent temperature but dependent on having adequate hot water pressure from the boiler or cylinder.',
+          },
+          {
+            question: 'How long does it take to install a shower?',
+            answer: 'A straightforward electric shower replacement, where an existing shower unit is swapped for a new one using the existing wiring and plumbing connections, typically takes two to four hours. A new shower installation with new pipework, a shower tray, waste, and enclosure is a larger job that can take a full day or more depending on the complexity of the plumbing route.',
+          },
+          {
+            question: 'How do I know if my water pressure is suitable for a power shower?',
+            answer: 'A power shower uses a built-in pump to boost the flow of hot and cold water from the supply. It requires a gravity-fed hot water system with a cold water tank in the loft and a hot water cylinder — it will not work with a combi boiler. If your home has a combi boiler, a mixer shower or electric shower is more suitable. An engineer can test your water pressure before recommending the right shower type.',
+          },
+          {
+            question: 'What is a thermostatic shower and is it worth having?',
+            answer: 'A thermostatic shower valve maintains a set water temperature and prevents sudden changes when someone uses another tap or flushes a toilet elsewhere in the house. It reacts to changes in supply temperature and adjusts the mix automatically. This is particularly useful in homes with fluctuating water pressure and is considered a safety feature in households with young children or elderly occupants.',
+          },
+          {
+            question: 'Can any plumber install a shower or do they need to be registered?',
+            answer: 'Plumbing work on water supply connections does not legally require registration in England and Wales, but the electrical connections for an electric shower must be carried out by a Part P registered electrician or a dual-qualified engineer. For peace of mind, using a plumber who is a member of an approved contractor scheme such as WaterSafe means their work meets water regulations standards.',
+          },
+        ],
       },
       {
         slug: 'bathroom-plumbing',
@@ -346,6 +567,36 @@ export const categories: Category[] = [
         keywords: ['tap repair London', 'toilet installation London', 'sink plumber London'],
         coverImage:
           'https://images.unsplash.com/photo-1585771724684-38269d6639fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'Can I replace a tap myself or do I need a plumber?',
+            answer: 'Replacing a tap is a job many homeowners can manage if they are comfortable turning off the water supply and undoing compression fittings. However, if the isolation valves under the sink are seized, the supply pipes are corroded, or the new tap requires different connections, the job can become more involved. A plumber can usually complete a tap replacement in under an hour and will spot and address any related issues at the same time.',
+          },
+          {
+            question: 'Why is my tap dripping and how do I fix it?',
+            answer: 'A dripping tap is almost always caused by a worn cartridge or washer inside the tap body. As the tap is used repeatedly over years, the rubber or ceramic seating material wears and no longer forms a watertight seal when the tap is closed. The fix is to replace the cartridge or washer. The specific type depends on whether you have a traditional pillar tap, a mixer tap, or a ceramic disc tap.',
+          },
+          {
+            question: 'How long does it take to install a new toilet?',
+            answer: 'Installing a like-for-like toilet replacement, where the new unit uses the same floor fixing positions and supply connections, typically takes two to three hours. A new toilet installation in a different location or with different pipe routing takes longer. The engineer will need to isolate the water supply, remove the old toilet, make any necessary adjustments to the supply and waste connections, and fit and test the new unit.',
+          },
+          {
+            question: 'What causes a toilet to keep running?',
+            answer: 'A toilet that keeps running after flushing usually has a worn flap valve that no longer seals the outlet from the cistern to the pan, or a float valve that is not shutting off the water supply when the cistern is full. Both are inexpensive internal cistern components. A continuously running toilet can waste over 200 litres of water per day, so it is worth fixing promptly. Replacing the internal components typically takes 30 to 45 minutes.',
+          },
+          {
+            question: 'Do I need to turn off the water to fix a dripping tap?',
+            answer: 'Yes. To replace a tap cartridge or washer you need to isolate the water supply to that tap. Most modern taps have isolation valves on the supply pipes under the sink that can be turned with a flat-headed screwdriver. If these valves are absent or seized, the water will need to be turned off at the main stopcock. Always test that the isolation valve works before starting the repair.',
+          },
+          {
+            question: 'What should I do if my sink is leaking underneath?',
+            answer: 'If the leak is coming from the waste pipe or trap under the sink, check whether the connections are tight. The trap — the U-shaped section — can often be hand-tightened if it has worked loose. If the leak is coming from the supply pipes or compression fittings, turn off the isolation valves and call a plumber. Water dripping inside a cabinet can cause significant damage to the cabinet floor and the structure below it if left.',
+          },
+          {
+            question: 'How do I know if a plumber is approved?',
+            answer: 'In the UK, plumbers who are members of WaterSafe or similar approved contractor schemes have been vetted and their work is checked against water regulations standards. You can search for approved contractors on the WaterSafe website by entering your postcode. Membership of a scheme does not replace checking reviews and references, but it provides an independent assurance that the plumber meets a defined standard.',
+          },
+        ],
       },
     ],
   },
@@ -410,6 +661,32 @@ export const categories: Category[] = [
         keywords: ['gas engineer London', 'gas leak London', 'emergency gas engineer London'],
         coverImage:
           'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'What should I do if I smell gas at home?',
+            answer: 'If you smell gas, open windows and doors to ventilate the property, do not turn any electrical switches on or off, do not use a phone inside the building, and leave the property. Once outside, call the National Gas Emergency Service on 0800 111 999. Once the situation has been made safe by the emergency service, a Gas Safe registered engineer should carry out a gas tightness test and inspect the property before gas appliances are used again.',
+          },
+          {
+            question: 'Does a gas engineer have to be Gas Safe registered?',
+            answer: 'Yes. All gas work in the UK must be carried out by an engineer registered with the Gas Safe Register. It is a legal requirement under the Gas Safety (Installation and Use) Regulations 1998. Using an unregistered person to carry out gas work is illegal and can result in criminal prosecution, invalidation of home insurance, and a serious risk to the occupants of the property.',
+          },
+          {
+            question: 'Can all Gas Safe engineers do all types of gas work?',
+            answer: 'No. Gas Safe registration covers specific categories of gas work, and each engineer is qualified only for the categories shown on their Gas Safe ID card. For example, an engineer qualified for natural gas domestic boilers may not be qualified for LPG appliances or commercial catering equipment. Always check that the engineer\'s card shows the relevant category for the work you need.',
+          },
+          {
+            question: 'How do I check if a gas engineer is registered?',
+            answer: 'You can check an engineer\'s registration on the Gas Safe Register website by entering their registration number or the name of their employer. You should also ask to see the engineer\'s Gas Safe ID card before any work begins. The card shows their name, registration number, and the categories of gas work they are qualified to carry out, along with an expiry date.',
+          },
+          {
+            question: 'What is a Gas Safe ID card and what should I check on it?',
+            answer: 'A Gas Safe ID card is the card every registered gas engineer is required to carry. It shows the engineer\'s name, photograph, unique registration number, the categories of gas work they are licensed to carry out, and the expiry date of the registration. You should check that the card has not expired and that the categories listed include the type of work being carried out on your property.',
+          },
+          {
+            question: 'What happens if gas work is done by an unregistered engineer?',
+            answer: 'Gas work carried out by an unregistered person is illegal under UK law. The person carrying out the work and in some cases the person who commissioned it can face criminal prosecution. The work itself will not meet safety standards, will not be certifiable, and may make the property unsafe. Home insurance policies typically do not cover damage or liability arising from gas work carried out by an unregistered person.',
+          },
+        ],
       },
       {
         slug: 'gas-safety-certificate',
@@ -437,6 +714,36 @@ export const categories: Category[] = [
         keywords: ['gas safety certificate London', 'CP12 London', 'landlord gas safety London'],
         coverImage:
           'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'What must a landlord gas safety record contain?',
+            answer: 'Under gas safety regulations, a landlord gas safety record must include the date of the check, the address of the property, the landlord\'s name and address or that of their agent, a description and location of every appliance or flue checked, any defects identified, remedial action taken, confirmation that the required checks were carried out, and the name, signature, and Gas Safe registration number of the engineer.',
+          },
+          {
+            question: 'How long must a landlord keep gas safety records?',
+            answer: 'Landlords must keep gas safety records for at least two years from the date of the inspection. If a landlord uses the flexibility to carry out checks up to two months early while maintaining the original annual deadline, records must be kept until two further gas safety checks have been completed.',
+          },
+          {
+            question: 'When must a landlord give a gas safety record to a new tenant?',
+            answer: 'A landlord must give a copy of the most recent gas safety record to a new tenant before they move into the property. For existing tenants, a copy of each new record must be provided within 28 days of the inspection. For short-term tenants staying for fewer than 28 days, a legible copy may be displayed prominently in the property instead.',
+          },
+          {
+            question: 'Can a gas safety record be sent electronically to a tenant?',
+            answer: 'Yes, provided the tenant has agreed to receive documents electronically. The electronic record must be reproducible in hard copy form and must be secure from loss or interference. The record must also clearly identify the engineer who carried out the check, either through an electronic signature, a scanned signature, or their name and licence number. A paper copy must be provided if a tenant requests one.',
+          },
+          {
+            question: 'What happens if a landlord does not carry out a gas safety check?',
+            answer: 'Failing to carry out an annual gas safety check is a breach of the Gas Safety (Installation and Use) Regulations 1998. Landlords who fail to comply can face prosecution, unlimited fines, and in serious cases imprisonment. It also exposes tenants to potential risk from unsafe gas appliances. A landlord cannot serve a valid Section 21 notice if gas safety obligations have not been met.',
+          },
+          {
+            question: 'Can a landlord carry out the gas safety check early?',
+            answer: 'Yes. Under a flexibility rule introduced in 2018, landlords can have the annual check carried out up to two months before the current record expires while keeping the original annual renewal date. This allows landlords to schedule checks at a convenient time without losing the renewal date for future years. The early check date must be documented and the records kept accordingly.',
+          },
+          {
+            question: 'What action must a landlord take if a fault is found during a gas safety check?',
+            answer: 'If an unsafe gas appliance or flue is found during the inspection, the engineer will classify it and may immediately disconnect it from the gas supply if it poses an immediate danger. The landlord is responsible for arranging and funding any remedial repairs. The gas safety record should be issued on the day of the inspection noting the defect, and a further inspection may be required once the repair is complete.',
+          },
+        ],
       },
       {
         slug: 'gas-appliance-installation',
@@ -464,6 +771,36 @@ export const categories: Category[] = [
         keywords: ['gas appliance installation London', 'gas cooker installation London', 'gas hob fitting London'],
         coverImage:
           'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        faqs: [
+          {
+            question: 'Do I need a Gas Safe engineer to install a gas cooker?',
+            answer: 'Yes. Connecting any gas appliance to a gas supply must be carried out by an engineer registered with the Gas Safe Register. This includes gas cookers, gas hobs, gas fires, and gas boilers. Connecting a gas appliance yourself or using an unregistered person is illegal under the Gas Safety (Installation and Use) Regulations 1998 and poses a serious safety risk.',
+          },
+          {
+            question: 'What certificates should I receive after a gas appliance is installed?',
+            answer: 'After a gas appliance is installed you should receive a commissioning document confirming the appliance has been tested and is operating correctly, and where required, a Building Regulations Compliance Certificate. The engineer should also carry out and document a gas tightness test on the supply pipework. Keep all documentation in a safe place as it may be needed if you sell the property.',
+          },
+          {
+            question: 'What is a Building Regulations Compliance Certificate for a gas appliance?',
+            answer: 'A Building Regulations Compliance Certificate is issued for notifiable gas work to confirm it has been carried out to the standard required by Building Regulations. A Gas Safe registered engineer or their employer can self-certify notifiable gas work, which means they notify the local authority on your behalf and issue the certificate. A new boiler installation is a common example of notifiable gas work.',
+          },
+          {
+            question: 'How do I check a gas engineer is qualified to install my appliance?',
+            answer: 'Ask to see the engineer\'s Gas Safe ID card before work starts. The card lists the categories of gas work the engineer is licensed to carry out. You can also verify their registration on the Gas Safe Register website using their registration number or their employer\'s business name. Make sure the category on the card matches the type of appliance being installed.',
+          },
+          {
+            question: 'Should all gas appliances be serviced annually?',
+            answer: 'Yes. All gas appliances should be serviced at least once a year by a Gas Safe registered engineer. Regular servicing keeps appliances running safely and efficiently, extends their working life, and allows the engineer to identify and address wear or faults before they become serious. For landlords, annual servicing of all gas appliances in a rented property is a legal requirement.',
+          },
+          {
+            question: 'Can a plumber or electrician replace a non-gas part inside a boiler casing?',
+            answer: 'No. Any person working on components inside a boiler casing must be Gas Safe registered, even if the part being replaced is not itself a gas component. The boiler casing contains gas pipework and components, and opening it constitutes gas work under the regulations. Only a Gas Safe registered engineer is legally authorised to work inside the boiler casing.',
+          },
+          {
+            question: 'What should I check before an engineer starts gas work in my home?',
+            answer: 'Before any gas work begins, ask to see the engineer\'s Gas Safe ID card and check that it has not expired and that it covers the relevant category of work. You can also verify the registration on the Gas Safe Register website. Check that the engineer explains what work will be carried out and what documentation you will receive at the end of the job, including the gas tightness test result and any certificates.',
+          },
+        ],
       },
     ],
   },

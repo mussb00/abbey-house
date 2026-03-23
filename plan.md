@@ -780,6 +780,147 @@
       "Navigate to a service page and confirm zero console errors and no failed network requests"
     ],
     "passes": true
+  },
+   {
+    "id": "F-58",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Install shadcn accordion component",
+    "steps": [
+      "Run: npx shadcn@latest add accordion",
+      "Confirm components/ui/accordion.tsx is created",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to any existing page and confirm zero console errors — no regressions from the install"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-59",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Add faqs field to Service type in lib/services.ts",
+    "steps": [
+      "Open lib/services.ts",
+      "Add faqs?: { question: string; answer: string }[] to the Service type — optional field, not Category",
+      "Confirm the field is optional so all existing service entries without faqs compile without errors",
+      "Run tsc --noEmit and confirm zero TypeScript errors"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-60",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Create FaqSchema component that outputs FAQPage JSON-LD for service pages",
+    "steps": [
+      "Create components/FaqSchema.tsx",
+      "Component accepts { faqs: { question: string; answer: string }[] } as its only prop",
+      "Returns null if faqs is empty or undefined",
+      "Outputs a <script type=application/ld+json> tag with @type FAQPage schema",
+      "The mainEntity array must contain one Question entry per FAQ item, each with acceptedAnswer containing the matching answer text",
+      "Answers in the schema must match the faqs array values exactly — no paraphrasing",
+      "Use a Script component with a unique id prop (faq-schema-[service.slug]) to avoid duplicate IDs",
+      "Run tsc --noEmit and confirm zero TypeScript errors"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-61",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Update ServicePageTemplate to render FAQ accordion section and FaqSchema",
+    "steps": [
+      "Open components/ServicePageTemplate.tsx",
+      "Import Accordion, AccordionContent, AccordionItem, AccordionTrigger from @/components/ui/accordion",
+      "Import FaqSchema from @/components/FaqSchema",
+      "Add FaqSchema before the closing </main> tag, passing service.faqs — rendered only when service.faqs has entries",
+      "Add an FAQ section between the sections content and the parent category link",
+      "Section heading should be a plain h2 using existing site Tailwind classes",
+      "Render service.faqs using the Accordion component — each item uses AccordionItem, AccordionTrigger for the question, AccordionContent for the answer",
+      "The entire FAQ section must be conditionally rendered — only shown when service.faqs exists and has at least one entry",
+      "Do not introduce dangerouslySetInnerHTML anywhere",
+      "Do not introduce any new CSS classes",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to a service page and confirm the FAQ section does not appear when faqs is empty",
+      "Add a placeholder faqs entry to one service in lib/services.ts and confirm the accordion renders correctly",
+      "Confirm Lighthouse SEO score is still 100/100",
+      "Confirm zero console errors"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-62",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Place the updated service-page config.json with faq fields and the faq-generation skill files",
+    "steps": [
+      "Replace .claude/skills/service-page/config.json with the updated file — now includes article_url, paa_questions, and faq_generated: false for all 12 service entries",
+      "Create .claude/skills/faq-generation/SKILL.md using the provided skill file",
+      "Create .claude/skills/faq-generation/ directory if it does not exist",
+      "Create .claude/skills/faq-generation/opportunities/ directory for per-slug opportunity output files",
+      "Confirm .claude/skills/service-page/config.json has faq_generated set to false for all 12 entries",
+      "Confirm every entry has a non-empty article_url and at least 5 paa_questions"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-63",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Generate faqs for all 12 service pages using the faq-generation skill, toggling faq_generated per entry until all are complete",
+    "steps": [
+      "Read .claude/skills/faq-generation/SKILL.md in full before generating any content",
+      "Read .claude/skills/service-page/config.json and find the first entry where faq_generated is false",
+      "Fetch and read the full content of the article_url for that entry",
+      "For each paa_question, check if the article contains a factual answer — skip any it does not answer",
+      "Draft 5–10 Q&A pairs using only information from the article — no invented facts, no promotional content, no links in answers",
+      "Write the generated faqs array into the matching service entry in lib/services.ts",
+      "Set faq_generated to true for that entry in .claude/skills/service-page/config.json",
+      "Append unanswered questions and article opportunity notes to .claude/skills/faq-generation/opportunities/[slug].md",
+      "Repeat for the next entry where faq_generated is false until all 12 service entries are complete",
+      "Confirm .claude/skills/service-page/config.json has faq_generated set to true for all 12 entries",
+      "Run tsc --noEmit and confirm zero TypeScript errors after all faqs have been written to lib/services.ts"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-64",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Full FAQ content audit pass across all 12 service pages",
+    "steps": [
+      "Confirm every service entry in lib/services.ts has a faqs array with at least 5 entries",
+      "Confirm no faqs array has more than 10 entries",
+      "Confirm every question ends with a question mark",
+      "Confirm every answer is between 40 and 120 words",
+      "Confirm no answer contains HTML tags, markdown, or links",
+      "Confirm no answer references the business by name or contains promotional content",
+      "Confirm no two questions within the same service page are duplicates or near-duplicates",
+      "Confirm the questions and answers in the faqs array match exactly what the Accordion renders on the page — no paraphrasing",
+      "Confirm no answer contains any word from the Words to Avoid list in .claude/skills/faq-generation/SKILL.md"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-65",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Validate FaqSchema passes Google Rich Results Test on at least two service pages",
+    "steps": [
+      "Navigate to a service page with faqs populated",
+      "Inspect <head> and confirm a second <script type=application/ld+json> tag exists with @type FAQPage",
+      "Extract the FAQPage JSON and confirm mainEntity contains one Question entry per FAQ item displayed on the page",
+      "Confirm acceptedAnswer text in the schema matches the Accordion answer text exactly",
+      "Submit the page URL to https://search.google.com/test/rich-results and confirm zero errors and zero warnings for the FAQPage result type",
+      "Repeat for a second service page from a different category",
+      "Confirm the existing LocalBusiness schema on the page is unaffected and still passes with zero errors"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-66",
+    "category": "Epic 15 - FAQ Generation and Schema",
+    "description": "Lighthouse SEO 100/100 and zero console errors after FAQ additions",
+    "steps": [
+      "Run a Lighthouse SEO audit on one service page with faqs via Chrome DevTools MCP",
+      "Confirm score is 100/100 with no failing SEO checks",
+      "Open browser console and Network tab via Chrome DevTools MCP",
+      "Navigate to a service page with faqs and confirm zero console errors and no failed network requests",
+      "Navigate to a service page without faqs and confirm the FAQ section is absent and zero console errors"
+    ],
+    "passes": true
   }
 ]
 ```

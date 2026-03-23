@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import { Button } from '@/components/ui/button'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import FaqSchema from '@/components/FaqSchema'
 import type { Category, Service } from '@/lib/services'
 
 export default function ServicePageTemplate(
@@ -34,6 +36,20 @@ export default function ServicePageTemplate(
             </div>
           ))}
 
+          {service.faqs && service.faqs.length > 0 && (
+            <div className="max-w-3xl mt-10">
+              <h2 className="text-2xl md:text-3xl text-foreground mb-6">Frequently Asked Questions</h2>
+              <Accordion type="single" collapsible className="w-full">
+                {service.faqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`faq-${index}`}>
+                    <AccordionTrigger className="text-foreground text-left">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          )}
+
           <p className="mt-6 text-muted-foreground">
             This service is part of our{' '}
             <Link href={`/services/${category.slug}`} className="text-primary hover:underline">
@@ -43,6 +59,8 @@ export default function ServicePageTemplate(
           </p>
         </div>
       </section>
+
+      <FaqSchema faqs={service.faqs} id={`${category.slug}-${service.slug}`} />
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

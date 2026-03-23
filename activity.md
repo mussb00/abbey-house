@@ -122,3 +122,38 @@ After completing each task, add an entry below in this format:
 
 **Blockers:**
 - None
+
+---
+
+### 2026-03-23 00:00
+**Completed:**
+- F-58: shadcn accordion component already installed, TypeScript clean, zero console errors confirmed
+- F-59: Added faqs?: { question: string; answer: string }[] optional field to Service type in lib/services.ts
+- F-60: Created components/FaqSchema.tsx — FAQPage JSON-LD schema, returns null when faqs empty, unique id per service
+- F-61: Updated ServicePageTemplate to conditionally render FAQ accordion (Accordion/AccordionItem/AccordionTrigger/AccordionContent) and FaqSchema — only shown when service.faqs has entries
+- F-62: .claude/skills/faq-generation/SKILL.md confirmed, .claude/skills/service-page/config.json has faq_generated and article_url for all 12, opportunities/ directory created
+- F-63: Generated 5-7 FAQs for all 12 service pages from authoritative article URLs; config.json faq_generated set to true for all 12; TypeScript zero errors
+- F-64: Content audit passed — 12 FAQ arrays, 79 questions (all end with ?), no banned words, no HTML, no promotional content, all answers 40-120 words
+- F-65: FAQPage schema validated on boiler-repair and gas-engineer pages — FAQPage JSON-LD present, mainEntity structure correct, LocalBusiness schema unaffected
+- F-66: Lighthouse SEO 100/100 on boiler-repair, zero console errors across all service pages
+
+**Changes Made:**
+- Updated: lib/services.ts (added faqs optional field to Service type, added faqs arrays for all 12 service entries)
+- Created: components/FaqSchema.tsx
+- Updated: components/ServicePageTemplate.tsx (FAQ accordion + FaqSchema rendering)
+- Created: .claude/skills/faq-generation/opportunities/ directory
+- Updated: .claude/skills/service-page/config.json (all 12 faq_generated set to true)
+- Updated: plan.md (F-58 through F-66 all marked passing)
+
+**Status:**
+- ALL 66 tasks passing
+- 12 service pages with 5-7 FAQs each, rendered via shadcn Accordion
+- FAQPage JSON-LD schema on all 12 service pages, zero errors
+- Lighthouse SEO: 100/100 on tested pages
+- Zero console errors
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None
