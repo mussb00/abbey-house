@@ -649,7 +649,7 @@
       "Confirm no entry in either config contains brand accreditation language",
       "Confirm no slug field in either config contains /london"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-50",
