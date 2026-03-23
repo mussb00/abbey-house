@@ -1,36 +1,42 @@
-import { Wrench, Droplets, Flame, ShowerHead, AlertCircle, Shield } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Wrench, Flame, Settings, RefreshCw, Gauge, ShieldCheck } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 
 const services = [
   {
-    icon: Droplets,
-    title: "Leak Repair",
-    description: "Quick detection and repair of leaks to prevent water damage and save on utility bills.",
+    icon: Wrench,
+    title: "Boiler Repair",
+    description:
+      "Most boiler problems are small faults — a faulty thermocouple, a stuck valve, low pressure. We carry spare parts in the van and fix most breakdowns on the first visit.",
   },
   {
-    icon: Wrench,
-    title: "Pipe Installation",
-    description: "Professional installation and replacement of pipes for residential and commercial properties.",
+    icon: Settings,
+    title: "Boiler Service",
+    description:
+      "A yearly boiler service can cut your heating bills. Landlords in Brent are legally required to have boilers serviced once a year. We issue Gas Safety Certificates.",
   },
   {
     icon: Flame,
-    title: "Water Heater Service",
-    description: "Installation, repair, and maintenance of all types of water heaters.",
+    title: "New Boiler Installation",
+    description:
+      "We install Worcester Bosch, Vaillant, Ideal, and Baxi boilers. We assess your home and recommend the right size and model. All units come with manufacturer warranties.",
   },
   {
-    icon: ShowerHead,
-    title: "Bathroom Plumbing",
-    description: "Complete bathroom plumbing services including fixtures, toilets, and shower installations.",
+    icon: RefreshCw,
+    title: "Boiler Replacement",
+    description:
+      "If your boiler is more than 12–15 years old, replacement may be the smarter call. We remove the old unit, install the new one, and take the old boiler away.",
   },
   {
-    icon: AlertCircle,
-    title: "Emergency Repairs",
-    description: "24/7 emergency plumbing service for urgent issues that can't wait.",
+    icon: Gauge,
+    title: "Gas Installation Service",
+    description:
+      "New supply connections, gas meter fitting, pipework extensions. As a registered Gas Safe business, all gas installation work in Brent meets current British Standards.",
   },
   {
-    icon: Shield,
-    title: "Preventive Maintenance",
-    description: "Regular inspections and maintenance to prevent costly repairs down the line.",
+    icon: ShieldCheck,
+    title: "Gas Engineer",
+    description:
+      "Every engineer on our team holds a current Gas Safe card. We carry CO analysers on every visit. Carbon monoxide is odourless — regular checks keep your home safe.",
   },
 ];
 
@@ -39,10 +45,11 @@ export function Services() {
     <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl mb-4 text-foreground">Our Services</h2>
+          <h2 className="text-3xl md:text-4xl mb-4 text-foreground">
+            Our Central Heating Services in Brent
+          </h2>
           <p className="text-lg text-muted-foreground">
-            Comprehensive plumbing solutions for every need. From routine maintenance 
-            to emergency repairs, we've got you covered.
+            Boiler repair, boiler service, new boiler installation, boiler replacement, gas installation, and more. One call sorts it all.
           </p>
         </div>
 
@@ -56,7 +63,7 @@ export function Services() {
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
                   <CardTitle>{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
+                  <CardDescription className="pb-4">{service.description}</CardDescription>
                 </CardHeader>
               </Card>
             );
