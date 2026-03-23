@@ -8,11 +8,12 @@ const BUSINESS = {
   email: 'info@abbeyservicesgroup.co.uk',
   address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
   areaServed: [
-    'West London', 'North West London', 'North London', 'Paddington', 'Marylebone',
+    'London', 'West London', 'North West London', 'North London', 'Paddington', 'Marylebone',
     'Notting Hill', 'Camden Town', 'West Kilburn', 'South Hampstead', 'Belsize Park',
     'Maida Vale', 'Brondesbury', 'Chiswick', 'Ealing', 'West Hampstead', 'Hampstead',
     'Richmond', 'Hammersmith', 'Kilburn', 'Kentish Town', "St John's Wood",
     'Cricklewood', 'Westminster', 'Willesden Green', 'Colindale', 'London Borough of Brent',
+    'Fulham', 'Chelsea', 'Kensington'
   ].map((name) => ({ '@type': 'AdministrativeArea', name })),
 }
 

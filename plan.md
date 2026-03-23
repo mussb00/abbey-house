@@ -629,7 +629,7 @@
       "Navigate to all 15 pages and confirm HTTP 200 on each",
       "Navigate to /sitemap.xml and confirm all 15 URLs are present"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-49",
