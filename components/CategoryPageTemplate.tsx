@@ -23,9 +23,14 @@ export default function CategoryPageTemplate({ category }: { category: Category 
             alt={category.name}
             className="w-full max-h-80 object-cover rounded-2xl shadow-lg mb-8"
           />
-          <div className="text-muted-foreground max-w-3xl">
-            <p>{category.intro}</p>
-          </div>
+          <p className="text-muted-foreground max-w-3xl mb-8">{category.intro}</p>
+
+          {category.sections.map((section) => (
+            <div key={section.heading} className="max-w-3xl mb-8">
+              <h2 className="text-2xl md:text-3xl text-foreground mb-3">{section.heading}</h2>
+              <p className="text-muted-foreground">{section.body}</p>
+            </div>
+          ))}
         </div>
       </section>
 

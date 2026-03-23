@@ -575,7 +575,7 @@
       "Confirm Lighthouse SEO score is still 100/100",
       "Confirm zero console errors"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-46",
@@ -593,7 +593,7 @@
       "Confirm Lighthouse SEO score is still 100/100",
       "Confirm zero console errors"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-47",
@@ -609,7 +609,7 @@
       "Confirm the service page screenshot shows no visual regression",
       "Confirm zero failed network requests on all three page types"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-48",
