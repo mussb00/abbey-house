@@ -34,7 +34,7 @@
   "pages": [
     {
       "slug": "central-heating",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Central Heating Services",
       "city": "London",
       "primary_service": "Central Heating",
@@ -61,7 +61,7 @@
     },
     {
       "slug": "plumbing-services",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Plumber",
       "city": "London",
       "primary_service": "Plumbing Services",
@@ -81,7 +81,7 @@
     },
     {
       "slug": "gas-services",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Gas Services",
       "city": "London",
       "primary_service": "Gas Services",

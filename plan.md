@@ -672,7 +672,7 @@
       "Confirm .claude/skills/service-page/config.json has content_generated set to true for all 12 entries",
       "Run tsc --noEmit and confirm zero TypeScript errors after all content has been written to lib/services.ts"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-51",

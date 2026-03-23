@@ -34,7 +34,7 @@
   "pages": [
     {
       "slug": "boiler-repair",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Boiler Repair Service",
       "city": "London",
       "primary_service": "Boiler Repair",
@@ -57,7 +57,7 @@
     },
     {
       "slug": "boiler-service",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Boiler Service",
       "city": "London",
       "primary_service": "Boiler Service",
@@ -80,7 +80,7 @@
     },
     {
       "slug": "new-boiler-installation",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Boiler Installation",
       "city": "London",
       "primary_service": "New Boiler Installation",
@@ -103,7 +103,7 @@
     },
     {
       "slug": "power-flush",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Power Flush",
       "city": "London",
       "primary_service": "Power Flush",
@@ -126,7 +126,7 @@
     },
     {
       "slug": "smart-thermostat-installation",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Smart Thermostat Installation",
       "city": "London",
       "primary_service": "Smart Thermostat Installation",
@@ -149,7 +149,7 @@
     },
     {
       "slug": "radiator-services",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Radiator Installation",
       "city": "London",
       "primary_service": "Radiator Installation & Repair",
@@ -173,7 +173,7 @@
     },
     {
       "slug": "heating-system-repairs",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Heating Engineer",
       "city": "London",
       "primary_service": "Heating System Repairs",
@@ -196,7 +196,7 @@
     },
     {
       "slug": "shower-installation",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Shower Installation",
       "city": "London",
       "primary_service": "Shower Installation",
@@ -219,7 +219,7 @@
     },
     {
       "slug": "bathroom-plumbing",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Plumber",
       "city": "London",
       "primary_service": "Tap, Toilet & Sink Plumber",
@@ -242,7 +242,7 @@
     },
     {
       "slug": "gas-engineer",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Gas Engineer",
       "city": "London",
       "primary_service": "Gas Engineer",
@@ -265,7 +265,7 @@
     },
     {
       "slug": "gas-safety-certificate",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Gas Safety Certificate",
       "city": "London",
       "primary_service": "Gas Safety Certificate",
@@ -289,7 +289,7 @@
     },
     {
       "slug": "gas-appliance-installation",
-      "content_generated": false,
+      "content_generated": true,
       "primary_category": "Gas Appliance Installation",
       "city": "London",
       "primary_service": "Gas Appliance Installation",
