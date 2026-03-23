@@ -11,7 +11,7 @@
 ## Project Goal
 
 Build an SEO-optimised website for Abbey House
-Plumbing & Heating Services. The site structure must mirror the Google Business Profile (GBP)
+Plumbing & Heating . The site structure must mirror the Google Business Profile (GBP)
 hierarchy exactly — homepage → category pages → service pages — so Google sees
 identical topical relevance on the website as on the Business Profile.
 
@@ -25,20 +25,23 @@ only a data entry — no new components, routes, or schema files.
 ```
 Homepage  ("Plumber London")
 │
-├── Category: Boiler & Gas Engineering        /services/boiler-gas
-│     ├── Service: Boiler Repair              /services/boiler-gas/boiler-repair
-│     ├── Service: New Boiler Installation    /services/boiler-gas/new-boiler-installation
-│     └── Service: Annual Boiler Servicing    /services/boiler-gas/annual-boiler-servicing
+├── Category: Central Heating                    /services/central-heating
+│     ├── Service: Boiler Repair                 /services/central-heating/boiler-repair
+│     ├── Service: Boiler Service                /services/central-heating/boiler-service
+│     ├── Service: New Boiler Installation       /services/central-heating/new-boiler-installation
+│     ├── Service: Power Flush                   /services/central-heating/power-flush
+│     ├── Service: Smart Thermostat Installation /services/central-heating/smart-thermostat-installation
+│     ├── Service: Radiator Installation & Repair/services/central-heating/radiator-services
+│     └── Service: Heating System Repairs        /services/central-heating/heating-system-repairs
 │
-├── Category: Central Heating & Efficiency    /services/central-heating
-│     ├── Service: Power Flushing             /services/central-heating/power-flushing
-│     └── Service: Smart Heating Controls     /services/central-heating/smart-heating-controls
+├── Category: Plumbing Services                  /services/plumbing-services
+│     ├── Service: Shower Installation           /services/plumbing-services/shower-installation
+│     └── Service: Tap, Toilet & Sink Plumber    /services/plumbing-services/bathroom-plumbing
 │
-├── Category: Plumbing & Maintenance          /services/plumbing-maintenance
-│     └── Service: Leak Detection             /services/plumbing-maintenance/leak-detection
-│
-└── Category: Landlord & Safety Compliance    /services/landlord-safety
-      └── Service: Gas Safety Certificates    /services/landlord-safety/gas-safety-certificates
+└── Category: Gas Services                       /services/gas-services
+      ├── Service: Gas Engineer                  /services/gas-services/gas-engineer
+      ├── Service: Gas Safety Certificate        /services/gas-services/gas-safety-certificate
+      └── Service: Gas Appliance Installation    /services/gas-services/gas-appliance-installation
 ```
 
 Internal links follow this hierarchy exactly. Every service page links back to its
@@ -57,8 +60,7 @@ Before writing any markup or styles, the agent must:
 2. Extract the exact Tailwind classes for: headings, body text, buttons, containers,
    cards, and link styles
 3. Use those exact classes in all new components — never invent new ones
-4. After implementing any UI, take a screenshot alongside an existing page and confirm
-   they are visually indistinguishable
+4. After implementing any UI, take a screenshot alongside an existing page and confirm they are visually indistinguishable
 
 All `MATCH_EXISTING_*` placeholders in code patterns below must be replaced with the
 actual classes found in the existing codebase before any component is committed.
@@ -69,8 +71,7 @@ actual classes found in the existing codebase before any component is committed.
 
 ### Requirements
 
-The navbar must dynamically highlight the active route. The Services link must remain
-active for any route under `/services/*` — including category and service sub-pages.
+The navbar must dynamically highlight the active route. The Services link must remain active for any route under `/services/*` — including category and service sub-pages.
 
 ### Code Pattern
 
@@ -142,7 +143,8 @@ export type Service = {
   slug: string
   name: string
   tagline: string
-  description: string
+  intro: string            // opening paragraph — primary keyword must appear here
+  sections: { heading: string; body: string }[]  // ordered H2 heading + body pairs
   metaTitle: string        // under 60 chars
   metaDescription: string  // under 160 chars
   keywords: string[]
@@ -153,7 +155,8 @@ export type Category = {
   slug: string
   name: string
   tagline: string
-  description: string      // comprehensive in-depth content for the category page
+  intro: string            // opening paragraph — primary keyword must appear here
+  sections: { heading: string; body: string }[]  // ordered H2 heading + body pairs
   metaTitle: string        // under 60 chars
   metaDescription: string  // under 160 chars
   keywords: string[]
@@ -163,20 +166,26 @@ export type Category = {
 
 export const categories: Category[] = [
   {
-    slug: 'boiler-gas',
-    name: 'Boiler & Gas Engineering',
-    tagline: 'Gas Safe registered engineers across London',
-    description: 'Comprehensive in-depth content about boiler and gas services...',
-    metaTitle: 'Boiler & Gas Engineering London | Abbey House',
-    metaDescription: 'Expert boiler and gas engineering across London. Gas Safe registered.',
-    keywords: ['boiler engineer London', 'gas safe engineer'],
-    coverImage: '/images/boiler-gas.jpg',
+    slug: 'central-heating',
+    name: 'Central Heating',
+    tagline: 'Central heating installation, repair, and servicing across London',
+    intro: 'Central heating services in London from Abbey House Plumbing & Heating...',
+    sections: [
+      { heading: 'Boiler Repair', body: 'Placeholder body text for boiler repair section.' },
+    ],
+    metaTitle: 'Central Heating London | Abbey House',
+    metaDescription: 'Central heating installation, repair, and servicing across London.',
+    keywords: ['central heating London', 'boiler repair London'],
+    coverImage: '/images/central-heating.jpg',
     services: [
       {
         slug: 'boiler-repair',
         name: 'Boiler Repair',
         tagline: 'Fast boiler repairs by Gas Safe engineers',
-        description: 'Detailed service page content for boiler repair...',
+        intro: 'Boiler repair in London from Abbey House Plumbing & Heating...',
+        sections: [
+          { heading: 'Emergency Boiler Repair', body: 'Placeholder body text.' },
+        ],
         metaTitle: 'Boiler Repair London | Abbey House Plumbing',
         metaDescription: 'Gas Safe boiler repair across London. All makes and models.',
         keywords: ['boiler repair London', 'boiler not working'],
@@ -435,9 +444,14 @@ export default function CategoryPageTemplate({ category }: { category: Category 
       <img src={category.coverImage} alt={category.name}
         className="MATCH_EXISTING_IMAGE_STYLE" />
 
-      <div className="MATCH_EXISTING_BODY_TEXT">
-        <p>{category.description}</p>
-      </div>
+      <p className="MATCH_EXISTING_BODY_TEXT">{category.intro}</p>
+
+      {category.sections.map((section) => (
+        <div key={section.heading}>
+          <h2 className="MATCH_EXISTING_H2">{section.heading}</h2>
+          <p className="MATCH_EXISTING_BODY_TEXT">{section.body}</p>
+        </div>
+      ))}
 
       {/* Downward internal links to all child service pages */}
       <section>
@@ -480,9 +494,10 @@ export default function CategoryPageTemplate({ category }: { category: Category 
 
 ### Requirements
 
-`ServicePageTemplate` renders the full layout for a service page. It must link back
-to its parent category — completing the upward internal link chain. The design must
-be seamless with the existing site.
+`ServicePageTemplate` renders the full layout for a service page. It outputs: an
+intro paragraph, one H2+paragraph block per sections entry, an upward inline body
+link to the parent category page, and a CTA block linking to /contact. The design
+must be seamless with the existing site.
 
 ### Code Pattern
 
@@ -510,9 +525,14 @@ export default function ServicePageTemplate(
       <img src={service.coverImage} alt={service.name}
         className="MATCH_EXISTING_IMAGE_STYLE" />
 
-      <div className="MATCH_EXISTING_BODY_TEXT">
-        <p>{service.description}</p>
-      </div>
+      <p className="MATCH_EXISTING_BODY_TEXT">{service.intro}</p>
+
+      {service.sections.map((section) => (
+        <div key={section.heading}>
+          <h2 className="MATCH_EXISTING_H2">{section.heading}</h2>
+          <p className="MATCH_EXISTING_BODY_TEXT">{section.body}</p>
+        </div>
+      ))}
 
       {/* Upward internal link back to parent category */}
       <p className="MATCH_EXISTING_BODY_TEXT">
@@ -630,8 +650,9 @@ const BUSINESS = {
     'West London','North West London','North London','Paddington','Marylebone',
     'Notting Hill','Camden Town','West Kilburn','South Hampstead','Belsize Park',
     'Maida Vale','Brondesbury','Chiswick','Ealing','West Hampstead','Hampstead',
-    'Richmond','Hammersmith','Kilburn','Kentish Town',"St John's Wood",
-    'Cricklewood','Westminster','Willesden Green','Colindale','London Borough of Brent',
+    'Richmond','Hammersmith', 'Fulham', 'Kilburn','Kentish Town',"St John's Wood",
+    'Cricklewood','Westminster','Willesden Green','Colindale','London Borough of Brent', 
+    'Kensington', 'Chelsea'
   ].map((name) => ({ '@type': 'AdministrativeArea', name })),
 }
 

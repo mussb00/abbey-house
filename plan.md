@@ -526,6 +526,260 @@
       "Navigate to a service page and confirm no failed requests"
     ],
     "passes": true
+  },
+  {
+    "id": "F-43",
+    "category": "Epic 11 - Template and Content Structure",
+    "description": "Update prd.md to reflect the agreed type structure, template rendering pattern, and site architecture",
+    "steps": [
+      "Open prd.md",
+      "Update the Site Architecture block to show exactly 3 categories (central-heating, plumbing-services, gas-services) and their 12 agreed service slugs — remove the old 4-category structure",
+      "Update the Epic 2 code pattern: replace description: string in both Service and Category types with intro: string and sections: { heading: string; body: string }[]",
+      "Retain all other type fields unchanged including coverImage: string",
+      "Update the Epic 5 code pattern to show CategoryPageTemplate rendering intro as a paragraph followed by sections.map() producing an h2 and p per entry",
+      "Update the Epic 6 code pattern to show ServicePageTemplate rendering intro as a paragraph followed by sections.map() producing an h2 and p per entry",
+      "Update the Epic 6 ServicePageTemplate description comment from a readme-style summary to describe the actual rendered structure: intro paragraph, H2+paragraph sections, parent category link, CTA",
+      "Do not change any acceptance criteria, E2E tests, or other epic content in prd.md",
+      "Confirm coverImage is present and unchanged in both type definitions after the edit"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F-44",
+    "category": "Epic 11 - Template and Content Structure",
+    "description": "Restructure Service and Category types in lib/services.ts to use intro and sections instead of description",
+    "steps": [
+      "Open lib/services.ts",
+      "Remove description: string from both the Service and Category type definitions",
+      "Add intro: string to both types — this is the opening paragraph where the primary keyword must appear",
+      "Add sections: { heading: string; body: string }[] to both types — ordered array of H2 heading and body paragraph pairs",
+      "Update all existing category and service entries in the categories array: convert any existing description string into an intro field and add at least one placeholder sections entry",
+      "Confirm slug, name, tagline, metaTitle, metaDescription, keywords, and coverImage are all present and unchanged in both types",
+      "Run tsc --noEmit and confirm zero TypeScript errors"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-45",
+    "category": "Epic 11 - Template and Content Structure",
+    "description": "Update CategoryPageTemplate to render intro and sections as normal React components",
+    "steps": [
+      "Open components/CategoryPageTemplate.tsx",
+      "Replace the existing <div><p>{category.description}</p></div> block with a <p> rendering category.intro followed by a category.sections.map() that renders each entry as an <h2> and a <p>",
+      "Use existing site Tailwind classes for h2 and p — match text-foreground, text-muted-foreground, and spacing consistent with surrounding sections",
+      "Do not introduce dangerouslySetInnerHTML",
+      "Do not introduce any new CSS classes",
+      "Confirm the cover image section remains present and unchanged",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to a category page and confirm intro renders as a paragraph and each sections entry renders as an h2 followed by a paragraph",
+      "Confirm Lighthouse SEO score is still 100/100",
+      "Confirm zero console errors"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-46",
+    "category": "Epic 11 - Template and Content Structure",
+    "description": "Update ServicePageTemplate to render intro and sections as normal React components",
+    "steps": [
+      "Open components/ServicePageTemplate.tsx",
+      "Replace the existing <div><p>{service.description}</p></div> block with a <p> rendering service.intro followed by a service.sections.map() that renders each entry as an <h2> and a <p>",
+      "Use existing site Tailwind classes for h2 and p — match text-foreground, text-muted-foreground, and spacing consistent with surrounding sections",
+      "Do not introduce dangerouslySetInnerHTML",
+      "Do not introduce any new CSS classes",
+      "Confirm the cover image section remains present and unchanged",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to a service page and confirm intro renders as a paragraph and each sections entry renders as an h2 followed by a paragraph",
+      "Confirm Lighthouse SEO score is still 100/100",
+      "Confirm zero console errors"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-47",
+    "category": "Epic 11 - Template and Content Structure",
+    "description": "Verify zero TypeScript errors and zero visual regressions across all page types after type and template changes",
+    "steps": [
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to /services and confirm zero console errors and no failed network requests",
+      "Navigate to a category page and take a screenshot",
+      "Navigate to an existing site page and take a screenshot",
+      "Confirm the category page screenshot shows no visual regression — typography, colours, spacing, and image all consistent with the existing site",
+      "Navigate to a service page and take a screenshot",
+      "Confirm the service page screenshot shows no visual regression",
+      "Confirm zero failed network requests on all three page types"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-48",
+    "category": "Epic 12 - Data Layer Reconciliation",
+    "description": "Reconcile lib/services.ts with the agreed SEO architecture and fix the Chelsea typo in ServiceSchema.tsx",
+    "steps": [
+      "Open components/ServiceSchema.tsx and find the areaServed array",
+      "Fix the typo: replace 'Chelea' with 'Chelsea'",
+      "Replace current 4 categories and 7 services with exactly 3 categories: central-heating, plumbing-services, gas-services",
+      "Add exactly 12 service entries matching the agreed slugs across the 3 categories",
+      "Remove all brand-specific service entries — no Worcester Bosch, Vaillant, Ideal, or Baxi pages",
+      "Confirm no slug contains /london",
+      "Remove all accreditation language from any existing intro or sections fields",
+      "Placeholder intro and sections content is acceptable at this stage — they will be replaced in Epic 13",
+      "Confirm slug, name, tagline, metaTitle, metaDescription, keywords, and coverImage are all present and populated for every entry",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Navigate to all 15 pages and confirm HTTP 200 on each",
+      "Navigate to /sitemap.xml and confirm all 15 URLs are present"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-49",
+    "category": "Epic 12 - Data Layer Reconciliation",
+    "description": "Place the two populated content config files into the skill directories",
+    "steps": [
+      "Copy the provided category-page config.json into the repo at .claude/skills/category-page/config.json",
+      "Copy the provided service-page config.json into the repo at .claude/skills/service-page/config.json",
+      "Open .claude/skills/category-page/config.json and confirm the top-level areas_served array contains exactly 29 entries matching the agreed service areas",
+      "Confirm the pages array contains exactly 3 entries with slugs: central-heating, plumbing-services, gas-services",
+      "Confirm every entry in the pages array has content_generated set to false",
+      "Confirm no entry has a services field — category hub configs do not list sub-tasks",
+      "Open .claude/skills/service-page/config.json and confirm the top-level areas_served array contains exactly 29 entries matching the agreed service areas",
+      "Confirm the pages array contains exactly 12 entries covering all agreed service slugs",
+      "Confirm every entry in the pages array has content_generated set to false",
+      "Confirm every service page entry has a services array listing the GBP sub-tasks for that page",
+      "Confirm no entry in either config contains brand accreditation language",
+      "Confirm no slug field in either config contains /london"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-50",
+    "category": "Epic 13 - SEO Content Population",
+    "description": "Generate intro and sections for all 15 pages using the skill files, toggling content_generated per entry until all pages are complete",
+    "steps": [
+      "Read .claude/skills/category-page/SKILL.md in full",
+      "Read .claude/skills/category-page/config.json and find the first entry where content_generated is false",
+      "Generate intro and sections for that entry following all rules in SKILL.md, using the areas_served list for all location references",
+      "Write the generated intro string and sections array into the matching category entry in lib/services.ts",
+      "Set content_generated to true for that entry in .claude/skills/category-page/config.json",
+      "Repeat for the next entry where content_generated is false until all 3 hub entries are complete",
+      "Read .claude/skills/service-page/SKILL.md in full",
+      "Read .claude/skills/service-page/config.json and find the first entry where content_generated is false",
+      "Generate intro and sections for that entry following all rules in SKILL.md, using the areas_served list for all location references",
+      "Write the generated intro string and sections array into the matching service entry in lib/services.ts",
+      "Set content_generated to true for that entry in .claude/skills/service-page/config.json",
+      "Repeat for the next entry where content_generated is false until all 12 service entries are complete",
+      "Confirm .claude/skills/category-page/config.json has content_generated set to true for all 3 entries",
+      "Confirm .claude/skills/service-page/config.json has content_generated set to true for all 12 entries",
+      "Run tsc --noEmit and confirm zero TypeScript errors after all content has been written to lib/services.ts"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-51",
+    "category": "Epic 13 - SEO Content Population",
+    "description": "Update metaTitle, metaDescription, and keywords for all 15 pages",
+    "steps": [
+      "Rewrite metaTitle, metaDescription, and keywords arrays for all 3 hub and 12 service entries in lib/services.ts",
+      "London may appear in meta titles even though it is absent from slugs",
+      "Confirm no two pages share an identical metaTitle",
+      "Confirm no two pages share an identical metaDescription",
+      "Confirm all meta titles are under 60 characters",
+      "Confirm all meta descriptions are under 160 characters"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-52",
+    "category": "Epic 13 - SEO Content Population",
+    "description": "Full content audit pass across all 15 pages",
+    "steps": [
+      "Review all intro and sections fields for every page against the Words to Avoid list in .claude/skills/category-page/SKILL.md and confirm zero matches",
+      "Confirm zero placeholder or lorem ipsum text remains in any intro or sections field",
+      "Confirm each hub page intro and sections combined is between 800 and 1200 words",
+      "Confirm each service page intro and sections combined is between 800 and 1200 words",
+      "Confirm each hub intro references the primary keyword within its first 50 words",
+      "Confirm each service intro references the primary keyword within its first 50 words",
+      "Confirm each hub page has at least 3 sections entries with headings matching its config secondary_categories",
+      "Confirm each service page has at least 2 sections entries with headings matching its config secondary_categories",
+      "Confirm each hub page references at least 3 areas from the areas_served list across intro and sections",
+      "Confirm each hub page mentions all child_services from its config by name",
+      "Confirm each service page references at least 2 areas from the areas_served list across intro and sections",
+      "Confirm each service page mentions its parent_category by name at least once",
+      "Confirm no intro or sections field references any area outside the areas_served list",
+      "Confirm zero FAQ or Q&A formatted content across all 15 pages",
+      "Confirm zero brand accreditation claims across all 15 pages",
+      "Confirm zero HTML tags in any intro or sections field across all 15 pages"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-53",
+    "category": "Epic 14 - Post-Content Validation",
+    "description": "Full internal link chain is walkable after all changes",
+    "steps": [
+      "Start from the homepage",
+      "Navigate to /services using a nav or body link",
+      "Click a category card and confirm the category page loads correctly",
+      "Click a service card on the category page and confirm the service page loads correctly",
+      "Confirm the This service is part of our [Category] offering link is present on the service page",
+      "Click that link and confirm it returns to the correct category page without a 404",
+      "Confirm all steps resolve without a 404 and with zero console errors"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-54",
+    "category": "Epic 14 - Post-Content Validation",
+    "description": "Sitemap reflects all 15 final URLs after data layer reconciliation",
+    "steps": [
+      "Navigate to /sitemap.xml",
+      "Confirm the file is accessible and well-formed XML",
+      "Confirm exactly 15 loc entries are present",
+      "Confirm a loc entry exists for each of the 3 hub category slugs: central-heating, plumbing-services, gas-services",
+      "Confirm a loc entry exists for each of the 12 service slug pairs at the correct nested path",
+      "Confirm no legacy slugs from the old structure are present: boiler-gas, plumbing-maintenance, landlord-safety"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-55",
+    "category": "Epic 14 - Post-Content Validation",
+    "description": "Lighthouse SEO score is 100/100 on a hub page and a service page after all changes",
+    "steps": [
+      "Run a Lighthouse SEO audit on one hub category page via Chrome DevTools MCP",
+      "Confirm score is 100/100 with no failing SEO checks",
+      "Run a Lighthouse SEO audit on one service page via Chrome DevTools MCP",
+      "Confirm score is 100/100 with no failing SEO checks"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-56",
+    "category": "Epic 14 - Post-Content Validation",
+    "description": "Lighthouse Performance score is 90+ on a hub page and a service page after all changes",
+    "steps": [
+      "Run a Lighthouse Performance audit on one hub category page via Chrome DevTools MCP",
+      "Confirm LCP is under 2.5 seconds",
+      "Confirm CLS is under 0.1",
+      "Confirm TBT is under 200ms",
+      "Run the same audit on one service page via Chrome DevTools MCP",
+      "Confirm LCP is under 2.5 seconds",
+      "Confirm CLS is under 0.1",
+      "Confirm TBT is under 200ms"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-57",
+    "category": "Epic 14 - Post-Content Validation",
+    "description": "Zero console errors and zero failed network requests after all changes",
+    "steps": [
+      "Open browser console and Network tab via Chrome DevTools MCP",
+      "Navigate to /services and confirm zero console errors and no failed network requests",
+      "Navigate to a hub category page and confirm zero console errors and no failed network requests",
+      "Navigate to a service page and confirm zero console errors and no failed network requests"
+    ],
+    "passes": false
   }
 ]
 ```
