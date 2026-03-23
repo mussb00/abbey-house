@@ -24,7 +24,7 @@ export default function CategoryPageTemplate({ category }: { category: Category 
             className="w-full max-h-80 object-cover rounded-2xl shadow-lg mb-8"
           />
           <div className="text-muted-foreground max-w-3xl">
-            <p>{category.description}</p>
+            <p>{category.intro}</p>
           </div>
         </div>
       </section>

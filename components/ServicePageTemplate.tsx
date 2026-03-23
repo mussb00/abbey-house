@@ -26,7 +26,7 @@ export default function ServicePageTemplate(
             className="w-full max-h-80 object-cover rounded-2xl shadow-lg mb-8"
           />
           <div className="text-muted-foreground max-w-3xl">
-            <p>{service.description}</p>
+            <p>{service.intro}</p>
           </div>
           <p className="mt-6 text-muted-foreground">
             This service is part of our{' '}

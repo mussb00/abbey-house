@@ -557,7 +557,7 @@
       "Confirm slug, name, tagline, metaTitle, metaDescription, keywords, and coverImage are all present and unchanged in both types",
       "Run tsc --noEmit and confirm zero TypeScript errors"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-45",
