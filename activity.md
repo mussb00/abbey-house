@@ -1,9 +1,9 @@
 # Abbey House Plumbing & Heating — Activity Log
 
 ## Current Status
-**Last Updated:** Not started
-**Tasks Completed:** 0 / 42
-**Current Task:** None
+**Last Updated:** 2026-03-23
+**Tasks Completed:** 71 / 71
+**Current Task:** Complete
 
 ---
 
@@ -116,6 +116,92 @@ After completing each task, add an entry below in this format:
 - Lighthouse SEO: 100/100 on both hub and service pages
 - Lighthouse Performance: LCP well under 2.5s, CLS 0.00 on all tested pages
 - Zero console errors across all pages
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None
+
+---
+
+### 2026-03-23 00:00
+**Completed:**
+- F-58: shadcn accordion component already installed, TypeScript clean, zero console errors confirmed
+- F-59: Added faqs?: { question: string; answer: string }[] optional field to Service type in lib/services.ts
+- F-60: Created components/FaqSchema.tsx — FAQPage JSON-LD schema, returns null when faqs empty, unique id per service
+- F-61: Updated ServicePageTemplate to conditionally render FAQ accordion (Accordion/AccordionItem/AccordionTrigger/AccordionContent) and FaqSchema — only shown when service.faqs has entries
+- F-62: .claude/skills/faq-generation/SKILL.md confirmed, .claude/skills/service-page/config.json has faq_generated and article_url for all 12, opportunities/ directory created
+- F-63: Generated 5-7 FAQs for all 12 service pages from authoritative article URLs; config.json faq_generated set to true for all 12; TypeScript zero errors
+- F-64: Content audit passed — 12 FAQ arrays, 79 questions (all end with ?), no banned words, no HTML, no promotional content, all answers 40-120 words
+- F-65: FAQPage schema validated on boiler-repair and gas-engineer pages — FAQPage JSON-LD present, mainEntity structure correct, LocalBusiness schema unaffected
+- F-66: Lighthouse SEO 100/100 on boiler-repair, zero console errors across all service pages
+
+**Changes Made:**
+- Updated: lib/services.ts (added faqs optional field to Service type, added faqs arrays for all 12 service entries)
+- Created: components/FaqSchema.tsx
+- Updated: components/ServicePageTemplate.tsx (FAQ accordion + FaqSchema rendering)
+- Created: .claude/skills/faq-generation/opportunities/ directory
+- Updated: .claude/skills/service-page/config.json (all 12 faq_generated set to true)
+- Updated: plan.md (F-58 through F-66 all marked passing)
+
+**Status:**
+- ALL 66 tasks passing
+- 12 service pages with 5-7 FAQs each, rendered via shadcn Accordion
+- FAQPage JSON-LD schema on all 12 service pages, zero errors
+- Lighthouse SEO: 100/100 on tested pages
+- Zero console errors
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None
+
+---
+
+### 2026-03-23 01:00
+**Completed:**
+- F-67: Rebuilt Navbar with hub mega-menu dropdowns (desktop) and hamburger overlay (mobile)
+- F-68: Verified navbar active state across all routes
+
+**Changes Made:**
+- Updated: components/Navbar.tsx (hub dropdowns with CSS group-hover, mobile full-screen overlay with expandable category rows, useState for overlay/hub expand)
+- Updated: plan.md (F-67 and F-68 marked passing)
+
+**Status:**
+- ALL 68 tasks passing
+- Desktop: three hub dropdowns (Central Heating, Plumbing Services, Gas Services) with CSS group-hover, active highlight via pathname.startsWith
+- Mobile: hamburger button opens full-screen overlay with expandable hub rows, chevron, X close button, phone + Get Quote CTA
+- Lighthouse SEO: 100/100 on boiler-repair service page
+- Zero console errors on all tested routes
+- TypeScript: zero errors (tsc --noEmit)
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None
+
+---
+
+### 2026-03-23 02:00
+**Completed:**
+- F-69: Removed all manual hover timer state (openDesktopHub, openDesktopHubRef, closeTimer, switchTimer, handleHubEnter, handleHubLeave) from Navbar.tsx
+- F-70: Replaced desktop nav block with Radix NavigationMenu (Nav.Root, Nav.List, Nav.Item, Nav.Trigger, Nav.Content, Nav.Link, Nav.Viewport)
+- F-71: Verified active state, visual consistency, Lighthouse SEO 100/100, zero console errors after Radix migration
+
+**Changes Made:**
+- Updated: components/Navbar.tsx (migrated desktop nav to @radix-ui/react-navigation-menu, removed all manual timer/ref hover logic)
+- Updated: plan.md (F-69, F-70, F-71 marked passing)
+
+**Status:**
+- ALL 71 tasks passing
+- Desktop nav now uses Radix NavigationMenu for accessible hover dropdown handling
+- Mobile overlay accordion unchanged
+- Lighthouse SEO: 100/100 on /services/central-heating
+- Zero console errors
+- TypeScript: zero errors (tsc --noEmit)
 
 **Next:**
 - All tasks complete
