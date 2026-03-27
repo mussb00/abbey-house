@@ -4,3 +4,5 @@
 - Match existing site styles exactly — no new design patterns
 - One task at a time — finish and test before moving on
 - Always update `activity.md` before ending a session
+- Prioritize **native JSX/TSX** structures over `dangerouslySetInnerHTML` to maintain security and DOM integrity.
+- Default to **React Server Components (RSC)**; use Client Components only when browser-specific APIs or interactivity are strictly required.
