@@ -1028,6 +1028,111 @@
       "Amend the previous navbar commit: git commit --amend with message feat(navbar): migrate desktop nav to radix navigation-menu"
     ],
     "passes": true
+  },
+  {
+    "id": "F-72",
+    "category": "Epic 18 - Footer Service Links",
+    "description": "Rebuild footer Quick Links into a per-category service link grid driven by the data layer",
+    "steps": [
+      "Read app/footer.tsx and components/Navbar.tsx before writing any code — note the exact Tailwind classes used for text, links, opacity, and spacing",
+      "Add 'use client' directive to app/footer.tsx only if required — prefer a server component import of getAllCategories if possible",
+      "Import getAllCategories from @/lib/services at the top of the footer file",
+      "Replace the existing static Quick Links <ul> with a dynamic block that renders one column per category returned by getAllCategories()",
+      "Each column must have a heading that is a Next.js Link to /services/[category.slug] — heading text is category.name",
+      "Below the heading render a <ul> listing every service in that category as a Next.js Link to /services/[category.slug]/[service.slug] — link text is service.name",
+      "All new links must use the same opacity and hover classes as the existing footer links — do not introduce new Tailwind classes",
+      "Retain the existing company blurb column and Contact Info column completely unchanged — only the Quick Links column is replaced",
+      "The footer grid must adapt correctly at all breakpoints — confirm no horizontal overflow on mobile",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Start dev server and navigate to / via Chrome DevTools MCP",
+      "Take a screenshot and confirm the footer renders all three category columns with their service links beneath each heading",
+      "Click each category heading link and confirm it navigates to the correct /services/[category.slug] page without a 404",
+      "Click at least one service link under each category and confirm it navigates to the correct /services/[category.slug]/[service.slug] page without a 404",
+      "Confirm zero console errors and no failed network requests on / and on at least one service page",
+      "Confirm the footer renders correctly on /services, /about, and /contact as well"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-73",
+    "category": "Epic 18 - Footer Service Links",
+    "description": "Verify footer service links render and resolve correctly after a data layer change",
+    "steps": [
+      "Add a temporary new service entry to lib/services.ts under an existing category",
+      "Navigate to / via Chrome DevTools MCP and confirm the new service link appears in the footer under the correct category column without any code changes to the footer component",
+      "Click the new link and confirm it navigates to the correct page without a 404",
+      "Remove the temporary entry and confirm the footer reverts correctly",
+      "Confirm zero TypeScript errors after removal"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-74",
+    "category": "Epic 19 - Areas Served Section",
+    "description": "Add a contextualised Areas Served section to CategoryPageTemplate with a page-specific heading and a 3-column area grid",
+    "steps": [
+      "Read components/CategoryPageTemplate.tsx and lib/services.ts before writing any code",
+      "Add an areasServed: string[] field to the Category type in lib/services.ts — this is the list of service areas relevant to that category page",
+      "Populate areasServed for all 3 hub categories using the 29-entry areas_served list from .claude/skills/category-page/config.json — all 3 hub pages use the same 29 areas",
+      "Add an areasHeading: string field to the Category type — this is the page-specific H2 shown above the areas grid",
+      "Set areasHeading for each category: central-heating → 'Find your local central heating engineer', plumbing-services → 'Find your local plumber', gas-services → 'Find your local gas engineer'",
+      "Open components/CategoryPageTemplate.tsx and add an Areas Served section as a new <section className='py-20 bg-secondary/30'> placed between the services card grid section and the CTA section — this background alternates with the bg-white sections already in the file, maintaining the existing page rhythm",
+      "Render category.areasHeading as <h2 className='text-3xl md:text-4xl text-foreground mb-4'> — these are the exact classes used on the two existing section-level H2s in the file; do not add any underline, border, accent bar, or any decorative element below or around the heading",
+      "Render category.areasServed below the heading in a responsive grid using className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-4' or the closest equivalent already present in the codebase — do not introduce new Tailwind classes",
+      "Each area item renders the area name only as a <p className='text-muted-foreground'> — no dash, no icon, no bullet, no border; plain text matching the body copy style used throughout the templates",
+      "Do not introduce dangerouslySetInnerHTML — render all items as plain JSX",
+      "Do not introduce any new Tailwind classes not already present in the codebase",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Start dev server and navigate to /services/central-heating via Chrome DevTools MCP",
+      "Take a screenshot and confirm the areasHeading H2 renders in the same visual style as the other section headings on the page — same size, same colour, no underline — above a 3-column grid of the 29 area names in muted text",
+      "Navigate to /services/plumbing-services and confirm the heading reads 'Find your local plumber' and the area grid is present",
+      "Navigate to /services/gas-services and confirm the heading reads 'Find your local gas engineer' and the area grid is present",
+      "Confirm zero console errors on all three category pages"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-75",
+    "category": "Epic 19 - Areas Served Section",
+    "description": "Add a contextualised Areas Served section to ServicePageTemplate with a service-specific heading and a 3-column area grid",
+    "steps": [
+      "Read components/ServicePageTemplate.tsx and lib/services.ts before writing any code",
+      "Add an areasServed: string[] field to the Service type in lib/services.ts",
+      "Add an areasHeading: string field to the Service type",
+      "Populate areasServed and areasHeading for all 12 service entries — areasServed uses the same 29-area list for all services; areasHeading is service-specific following the pattern 'Find your local [service name] in London', for example: boiler-repair → 'Find your local boiler repair engineer', gas-safety-certificate → 'Find your local gas safety inspector'",
+      "Open components/ServicePageTemplate.tsx and add an Areas Served section as a new <section className='py-20 bg-secondary/30'> placed between the bg-secondary/30 content section and the CTA section — same structural pattern as the category template",
+      "Render service.areasHeading as <h2 className='text-3xl md:text-4xl text-foreground mb-4'> — identical classes to the existing section-level H2s in the file; no underline, no border, no accent bar, no decorative element of any kind",
+      "Render service.areasServed in the identical grid markup used in CategoryPageTemplate — same className on the grid wrapper and the same <p className='text-muted-foreground'> on each area item; copy the markup directly so the two sections are pixel-identical",
+      "Do not introduce dangerouslySetInnerHTML",
+      "Do not introduce any new Tailwind classes not already present in the codebase",
+      "Run tsc --noEmit and confirm zero TypeScript errors",
+      "Start dev server and navigate to /services/central-heating/boiler-repair via Chrome DevTools MCP",
+      "Take a screenshot and confirm the areasHeading H2 matches the visual style of the other section headings on the page — same size, same weight, same colour, no underline — and the area grid shows all 29 entries in muted text",
+      "Navigate to /services/gas-services/gas-safety-certificate and confirm the heading reads 'Find your local gas safety inspector' and the area grid is present",
+      "Navigate to /services/plumbing-services/shower-installation and confirm the heading and area grid are present",
+      "Confirm zero console errors on all three service pages",
+      "Take a screenshot of a service page Areas Served section and a category page Areas Served section and confirm they are visually identical — same section background, same heading style, same grid layout, same text colour"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-76",
+    "category": "Epic 19 - Areas Served Section",
+    "description": "Post-Areas-Served validation — Lighthouse, TypeScript, and full link chain",
+    "steps": [
+      "Run tsc --noEmit and confirm zero TypeScript errors across the full project",
+      "Run Lighthouse SEO audit on a category page via Chrome DevTools MCP — confirm score is 100/100",
+      "Run Lighthouse SEO audit on a service page via Chrome DevTools MCP — confirm score is 100/100",
+      "Open browser console via Chrome DevTools MCP",
+      "Navigate to /services/central-heating and confirm zero console errors and no failed network requests",
+      "Navigate to /services/central-heating/boiler-repair and confirm zero console errors and no failed network requests",
+      "Navigate to /services/plumbing-services/bathroom-plumbing and confirm zero console errors and no failed network requests",
+      "Navigate to /services/gas-services/gas-engineer and confirm zero console errors and no failed network requests",
+      "Confirm the Areas Served section appears on every category and service page visited",
+      "Confirm the areasHeading is unique and service-contextualised on every page — no two pages share an identical heading",
+      "Confirm no page has a broken layout at mobile (375px) or desktop (1440px) viewport widths"
+    ],
+    "passes": false
   }
 ]
 ```
