@@ -1,28 +1,42 @@
 {
   "mcpServers": {
     "filesystem": {
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/Users/mussieberhane/personal_projects/abbey_house"
+        "C:\\Users\\mussi\\projects\\abbey-house"
       ]
     },
     "puppeteer": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
     },
     "sequential-thinking": {
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "-y",
         "@modelcontextprotocol/server-sequential-thinking",
         "--no-usage-statistics"
       ]
     },
     "chrome-devtools": {
-      "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@latest"]
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
     }
-	}
+  }
 }

@@ -1,0 +1,6 @@
+- Edit `lib/services.ts` to add new categories or services — no other files need changing
+- Categories contain nested services — the full hierarchy lives in one config file
+- Only tick off tasks in `plan.md` — never edit task descriptions
+- Match existing site styles exactly — no new design patterns
+- One task at a time — finish and test before moving on
+- Always update `activity.md` before ending a session

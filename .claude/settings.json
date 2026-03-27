@@ -8,7 +8,6 @@
       "Bash(* --version)",
       "Bash(* --help *)",
       "Read(*)",
-      "Edit(*)",
       "WebFetch(domain:fonts.googleapis.com)",
       "WebFetch(domain:validator.schema.org)",
       "mcp__chrome-devtools__navigate_page",
@@ -20,7 +19,9 @@
       "Bash(git push *)",
       "Bash(git init *)"
     ],
-    "ask": []
+    "ask": [
+      "Edit(*)"
+    ]
   },
   "enableAllProjectMcpServers": true,
   "sandbox": {
