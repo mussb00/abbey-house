@@ -14,13 +14,53 @@ export function Contact() {
     phone: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted:", formData);
-    alert("Thank you for your inquiry! We'll get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsLoading(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message:
+            "Thank you for your inquiry! We'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message:
+            data.error ||
+            "Something went wrong. Please try again or call us directly.",
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Failed to send message. Please try again or call us directly.",
+      });
+      console.error("Form submission error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -53,6 +93,17 @@ export function Contact() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {submitStatus.type && (
+                    <div
+                      className={`p-3 rounded-md text-sm ${submitStatus.type === "success"
+                          ? "bg-green-50 text-green-800 border border-green-200"
+                          : "bg-red-50 text-red-800 border border-red-200"
+                        }`}
+                    >
+                      {submitStatus.message}
+                    </div>
+                  )}
+
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm">
@@ -64,6 +115,7 @@ export function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         placeholder="Your name"
                       />
                     </div>
@@ -78,6 +130,7 @@ export function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         placeholder="your@email.com"
                       />
                     </div>
@@ -94,6 +147,7 @@ export function Contact() {
                       value={formData.phone}
                       onChange={handleChange}
                       required
+                      disabled={isLoading}
                       placeholder="(555) 123-4567"
                     />
                   </div>
@@ -108,13 +162,14 @@ export function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={isLoading}
                       rows={5}
                       placeholder="Tell us about your plumbing needs..."
                     />
                   </div>
 
-                  <Button type="submit" className="w-full">
-                    Send Message
+                  <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
