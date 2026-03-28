@@ -10,8 +10,8 @@
       "Read(*)",
       "WebFetch(domain:fonts.googleapis.com)",
       "WebFetch(domain:validator.schema.org)",
-      "mcp__chrome-devtools__navigate_page",
-      "mcp__chrome-devtools__take_screenshot"
+      "mcp__chrome-devtools__*",
+      "Bash(npx tsc:*)"
     ],
     "deny": [
       "Bash(sudo *)",
