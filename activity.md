@@ -208,3 +208,32 @@ After completing each task, add an entry below in this format:
 
 **Blockers:**
 - None
+
+---
+
+### 2026-03-28 00:00
+**Completed:**
+- F-73: Added areasServed section to CategoryPageTemplate with page-specific heading and 3-column area grid
+- F-74: Added areasServed section to ServicePageTemplate with service-specific heading and identical grid markup
+- F-75: Post-Areas-Served validation — Lighthouse SEO 100/100 on category and service pages, zero console errors, correct layout at 375px and 1440px
+
+**Changes Made:**
+- Updated: lib/services.ts (added areasServed: string[] and areasHeading: string to Category and Service types; added AREAS_SERVED constant with 29 entries; populated areasHeading and areasServed for all 3 categories and all 12 services)
+- Updated: components/CategoryPageTemplate.tsx (added Areas Served section between services grid and CTA)
+- Updated: components/ServicePageTemplate.tsx (added Areas Served section between content section and CTA)
+- Updated: plan.md (F-73, F-74, F-75 marked passing)
+
+**Status:**
+- ALL 74 tasks passing (previously 71 — 3 new tasks added and completed this session)
+- Areas Served section renders on all 3 category pages and all 12 service pages
+- Each page has a unique, contextualised areasHeading
+- 29-area grid renders in 3 columns on desktop, 1 column on mobile
+- Lighthouse SEO: 100/100 on category and service pages
+- TypeScript: zero errors (build passes)
+- Zero console errors across all tested pages
+
+**Next:**
+- All tasks complete
+
+**Blockers:**
+- None

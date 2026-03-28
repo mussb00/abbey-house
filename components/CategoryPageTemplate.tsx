@@ -58,6 +58,19 @@ export default function CategoryPageTemplate({ category }: { category: Category 
       </section>
 
       <section className="py-20 bg-secondary/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl text-foreground mb-4">
+            {category.areasHeading}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-4">
+            {category.areasServed.map((area) => (
+              <p key={area} className="text-muted-foreground">{area}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl text-foreground mb-4">
             Need help with {category.name}?

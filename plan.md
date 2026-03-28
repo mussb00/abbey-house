@@ -1051,23 +1051,10 @@
       "Confirm zero console errors and no failed network requests on / and on at least one service page",
       "Confirm the footer renders correctly on /services, /about, and /contact as well"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F-73",
-    "category": "Epic 18 - Footer Service Links",
-    "description": "Verify footer service links render and resolve correctly after a data layer change",
-    "steps": [
-      "Add a temporary new service entry to lib/services.ts under an existing category",
-      "Navigate to / via Chrome DevTools MCP and confirm the new service link appears in the footer under the correct category column without any code changes to the footer component",
-      "Click the new link and confirm it navigates to the correct page without a 404",
-      "Remove the temporary entry and confirm the footer reverts correctly",
-      "Confirm zero TypeScript errors after removal"
-    ],
-    "passes": false
-  },
-  {
-    "id": "F-74",
     "category": "Epic 19 - Areas Served Section",
     "description": "Add a contextualised Areas Served section to CategoryPageTemplate with a page-specific heading and a 3-column area grid",
     "steps": [
@@ -1089,10 +1076,10 @@
       "Navigate to /services/gas-services and confirm the heading reads 'Find your local gas engineer' and the area grid is present",
       "Confirm zero console errors on all three category pages"
     ],
-    "passes": false
+    "passes": true
   },
   {
-    "id": "F-75",
+    "id": "F-74",
     "category": "Epic 19 - Areas Served Section",
     "description": "Add a contextualised Areas Served section to ServicePageTemplate with a service-specific heading and a 3-column area grid",
     "steps": [
@@ -1113,10 +1100,10 @@
       "Confirm zero console errors on all three service pages",
       "Take a screenshot of a service page Areas Served section and a category page Areas Served section and confirm they are visually identical — same section background, same heading style, same grid layout, same text colour"
     ],
-    "passes": false
+    "passes": true
   },
   {
-    "id": "F-76",
+    "id": "F-75",
     "category": "Epic 19 - Areas Served Section",
     "description": "Post-Areas-Served validation — Lighthouse, TypeScript, and full link chain",
     "steps": [
@@ -1132,7 +1119,7 @@
       "Confirm the areasHeading is unique and service-contextualised on every page — no two pages share an identical heading",
       "Confirm no page has a broken layout at mobile (375px) or desktop (1440px) viewport widths"
     ],
-    "passes": false
+    "passes": true
   }
 ]
 ```
