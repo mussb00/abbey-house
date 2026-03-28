@@ -1,12 +1,15 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
+import { getAllCategories } from "@/lib/services";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const categories = getAllCategories();
 
   return (
     <footer className="bg-primary text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
@@ -34,26 +37,30 @@ export function Footer() {
             </p>
           </div>
 
-          <div>
-            <h4 className="mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm opacity-90">
-              <li>
-                <a href="#services" className="hover:opacity-100 transition-opacity">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:opacity-100 transition-opacity">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:opacity-100 transition-opacity">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+          {categories.map((category) => (
+            <div key={category.slug}>
+              <h4 className="mb-4">
+                <Link
+                  href={`/services/${category.slug}`}
+                  className="hover:opacity-100 transition-opacity"
+                >
+                  {category.name}
+                </Link>
+              </h4>
+              <ul className="space-y-2 text-sm opacity-90">
+                {category.services.map((service) => (
+                  <li key={service.slug}>
+                    <Link
+                      href={`/services/${category.slug}/${service.slug}`}
+                      className="hover:opacity-100 transition-opacity"
+                    >
+                      {service.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           <div>
             <h4 className="mb-4">Contact Info</h4>
