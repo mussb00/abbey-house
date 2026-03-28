@@ -9,6 +9,8 @@ export type Service = {
   keywords: string[]
   coverImage: string
   faqs?: { question: string; answer: string }[]
+  areasServed: string[]
+  areasHeading: string
 }
 
 export type Category = {
@@ -22,7 +24,17 @@ export type Category = {
   keywords: string[]
   coverImage: string
   services: Service[]
+  areasServed: string[]
+  areasHeading: string
 }
+
+const AREAS_SERVED = [
+  'London', 'West London', 'North West London', 'North London', 'Paddington', 'Marylebone',
+  'Notting Hill', 'Camden Town', 'West Kilburn', 'South Hampstead', 'Belsize Park', 'Maida Vale',
+  'Brondesbury', 'Chiswick', 'Ealing', 'West Hampstead', 'Hampstead', 'Richmond', 'Hammersmith',
+  'Kilburn', "St John's Wood", 'Cricklewood', 'Westminster', 'Willesden Green', 'Colindale',
+  'London Borough of Brent', 'Fulham', 'Chelsea', 'Kensington',
+]
 
 export const categories: Category[] = [
   {
@@ -67,6 +79,8 @@ export const categories: Category[] = [
     keywords: ['central heating London', 'boiler repair London', 'central heating engineer London'],
     coverImage:
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+    areasHeading: 'Find your local central heating engineer',
+    areasServed: AREAS_SERVED,
     services: [
       {
         slug: 'boiler-repair',
@@ -94,6 +108,8 @@ export const categories: Category[] = [
         keywords: ['boiler repair London', 'emergency boiler repair London', 'boiler not working London'],
         coverImage:
           'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local boiler repair engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'What are the most common boiler problems?',
@@ -143,6 +159,8 @@ export const categories: Category[] = [
         keywords: ['boiler service London', 'annual boiler service London', 'boiler maintenance London'],
         coverImage:
           'https://images.unsplash.com/photo-1597762117709-859f744b84c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local boiler service engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'How often should a boiler be serviced?',
@@ -200,6 +218,8 @@ export const categories: Category[] = [
         keywords: ['new boiler installation London', 'boiler replacement London', 'combi boiler installation London'],
         coverImage:
           'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local boiler installation engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'What certificates do I need after a new boiler is installed?',
@@ -257,6 +277,8 @@ export const categories: Category[] = [
         keywords: ['power flush London', 'power flushing London', 'central heating power flush London'],
         coverImage:
           'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local power flush engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'What is a power flush and do I need one?',
@@ -314,6 +336,8 @@ export const categories: Category[] = [
         keywords: ['smart thermostat installation London', 'Nest installation London', 'Hive thermostat London'],
         coverImage:
           'https://images.unsplash.com/photo-1585771724684-38269d6639fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local smart thermostat installer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'How much can a smart thermostat save on heating bills?',
@@ -371,6 +395,8 @@ export const categories: Category[] = [
         keywords: ['radiator installation London', 'radiator repair London', 'TRV replacement London'],
         coverImage:
           'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local radiator engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'How do I bleed a radiator?',
@@ -424,6 +450,8 @@ export const categories: Category[] = [
         keywords: ['heating system repair London', 'central heating repair London', 'heating engineer London'],
         coverImage:
           'https://images.unsplash.com/photo-1635221798248-8a3452ad07cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local heating engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'Why is my central heating making a banging noise?',
@@ -487,6 +515,8 @@ export const categories: Category[] = [
     keywords: ['plumber London', 'plumbing services London', 'plumbing repairs London'],
     coverImage:
       'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+    areasHeading: 'Find your local plumber',
+    areasServed: AREAS_SERVED,
     services: [
       {
         slug: 'shower-installation',
@@ -514,6 +544,8 @@ export const categories: Category[] = [
         keywords: ['shower installation London', 'electric shower fitting London', 'shower repair London'],
         coverImage:
           'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local shower installer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'Do I need a plumber or electrician to install a shower?',
@@ -567,6 +599,8 @@ export const categories: Category[] = [
         keywords: ['tap repair London', 'toilet installation London', 'sink plumber London'],
         coverImage:
           'https://images.unsplash.com/photo-1585771724684-38269d6639fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local plumber for taps, toilets and sinks',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'Can I replace a tap myself or do I need a plumber?',
@@ -634,6 +668,8 @@ export const categories: Category[] = [
     keywords: ['gas services London', 'gas engineer London', 'gas safety certificate London'],
     coverImage:
       'https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+    areasHeading: 'Find your local gas engineer',
+    areasServed: AREAS_SERVED,
     services: [
       {
         slug: 'gas-engineer',
@@ -661,6 +697,8 @@ export const categories: Category[] = [
         keywords: ['gas engineer London', 'gas leak London', 'emergency gas engineer London'],
         coverImage:
           'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local gas engineer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'What should I do if I smell gas at home?',
@@ -714,6 +752,8 @@ export const categories: Category[] = [
         keywords: ['gas safety certificate London', 'CP12 London', 'landlord gas safety London'],
         coverImage:
           'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local gas safety inspector',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'What must a landlord gas safety record contain?',
@@ -771,6 +811,8 @@ export const categories: Category[] = [
         keywords: ['gas appliance installation London', 'gas cooker installation London', 'gas hob fitting London'],
         coverImage:
           'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080',
+        areasHeading: 'Find your local gas appliance installer',
+        areasServed: AREAS_SERVED,
         faqs: [
           {
             question: 'Do I need a Gas Safe engineer to install a gas cooker?',
