@@ -1,0 +1,36 @@
+{
+  "attribution": {},
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git commit *)",
+      "Bash(git * main)",
+      "Bash(* --version)",
+      "Bash(* --help *)",
+      "Read(*)",
+      "WebFetch(domain:fonts.googleapis.com)",
+      "WebFetch(domain:validator.schema.org)",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__chrome-devtools__take_screenshot"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm *)",
+      "Bash(git push *)",
+      "Bash(git init *)"
+    ],
+    "ask": [
+      "Edit(*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowUnixSockets": [],
+      "allowLocalBinding": true
+    }
+  }
+}
