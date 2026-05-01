@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = "edge";
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface ContactFormData {
@@ -8,6 +10,18 @@ interface ContactFormData {
     email: string;
     phone: string;
     message: string;
+}
+
+// Helper function to escape HTML special characters
+function escapeHtml(text: string): string {
+    const map: Record<string, string> = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+    };
+    return text.replace(/[&<>"']/g, (char) => map[char]);
 }
 
 // Validation function
@@ -108,16 +122,4 @@ export async function POST(request: NextRequest) {
             { status: 500 }
         );
     }
-}
-
-// Helper function to escape HTML special characters
-function escapeHtml(text: string): string {
-    const map: Record<string, string> = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;",
-    };
-    return text.replace(/[&<>"']/g, (char) => map[char]);
 }
