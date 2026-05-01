@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = "edge";
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface ContactFormData {
@@ -8,6 +10,18 @@ interface ContactFormData {
     email: string;
     phone: string;
     message: string;
+}
+
+// Helper function to escape HTML special characters
+function escapeHtml(text: string): string {
+    const map: Record<string, string> = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+    };
+    return text.replace(/[&<>"']/g, (char) => map[char]);
 }
 
 // Validation function
@@ -53,7 +67,7 @@ export async function POST(request: NextRequest) {
 
         // Send email to Abbey House (internal notification)
         const internalEmailResult = await resend.emails.send({
-            from: "Abbey House Contact Form <onboarding@resend.dev>", // Replace with your verified sender domain
+            from: "Abbey House Contact Form <noreply@abbeyservicesgroup.co.uk>",
             to: process.env.CONTACT_EMAIL || "info@abbeyservicesgroup.co.uk",
             subject: `New Contact Form Submission from ${name}`,
             html: `
@@ -77,7 +91,7 @@ export async function POST(request: NextRequest) {
 
         // Send confirmation email to user
         const confirmationEmailResult = await resend.emails.send({
-            from: "Abbey House <onboarding@resend.dev>", // Replace with your verified sender domain
+            from: "Abbey House <noreply@abbeyservicesgroup.co.uk>",
             to: email,
             subject: "We've received your inquiry - Abbey House Plumbing & Heating",
             html: `
@@ -108,16 +122,4 @@ export async function POST(request: NextRequest) {
             { status: 500 }
         );
     }
-}
-
-// Helper function to escape HTML special characters
-function escapeHtml(text: string): string {
-    const map: Record<string, string> = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;",
-    };
-    return text.replace(/[&<>"']/g, (char) => map[char]);
 }
