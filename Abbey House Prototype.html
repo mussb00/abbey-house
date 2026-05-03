@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abbey House Plumbing & Heating — UX Prototype</title>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: 'Inter', system-ui, sans-serif; font-size: 16px; scroll-behavior: smooth; }
+  body { min-height: 100vh; background: #fff; color: #1e293b; overflow-x: hidden; }
+  html { overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { cursor: pointer; font-family: inherit; }
+  input, textarea, select { font-family: inherit; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+  @keyframes fadeSlideDown { from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none} }
+  @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "formStyle": "wizard",
+  "showEmergencyBanner": true,
+  "showTrustBar": true
+}/*EDITMODE-END*/;
+
+/* ── tokens ── */
+const C = {
+  primary: '#1e40af', primaryLight: '#eff6ff', primaryMid: '#dbeafe',
+  fg: '#1e293b', muted: '#64748b', border: 'rgba(0,0,0,0.1)',
+  green: '#16a34a', greenLight: '#f0fdf4',
+  amber: '#d97706', amberLight: '#fffbeb',
+  red: '#dc2626', redLight: '#fef2f2'
+};
+
+/* ── breakpoint hook ── */
+function useBreakpoint() {
+  const [w, setW] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    const fn = () => setW(window.innerWidth);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  return { isMobile: w < 640, isTablet: w < 1024, isNavMobile: w < 860, w };
+}
+
+/* ── small primitives ── */
+const Btn = ({ children, variant = 'primary', size = 'md', onClick, href, style, fullWidth }) => {
+  const base = {
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+    borderRadius: 8, fontWeight: 500, cursor: 'pointer', border: 'none',
+    transition: 'all .15s', textDecoration: 'none', whiteSpace: 'nowrap',
+    width: fullWidth ? '100%' : undefined,
+    ...(size === 'lg' ? { padding: '14px 24px', fontSize: 16 } : { padding: '10px 18px', fontSize: 14 })
+  };
+  const variants = {
+    primary: { background: C.primary, color: '#fff' },
+    outline: { background: 'transparent', color: C.primary, border: `2px solid ${C.primary}` },
+    ghost: { background: 'transparent', color: C.primary }
+  };
+  return React.createElement(href ? 'a' : 'button', { href, onClick, style: { ...base, ...variants[variant], ...style } }, children);
+};
+
+/* icons */
+const PhoneIcon = ({ size = 20 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.02 1.2 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z" /></svg>;
+const CheckIcon = ({ size = 20, color = 'currentColor' }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>;
+const MailIcon = ({ size = 20 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 7l-10 7L2 7" /></svg>;
+const ClockIcon = ({ size = 20 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>;
+const MapPinIcon = ({ size = 20 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>;
+const ArrowRight = ({ size = 14 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>;
+const MenuIcon = () => <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg>;
+const XIcon = () => <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg>;
+const StarIcon = ({ size = 14 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>;
+
+/* ── placeholder image ── */
+const ImgPlaceholder = ({ label, style }) =>
+<div style={{ background: C.primaryMid, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, ...style }}>
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={C.primary} strokeWidth="1.5" opacity="0.35"><rect x="2" y="2" width="44" height="44" rx="4" /><line x1="2" y1="2" x2="46" y2="46" /><line x1="46" y1="2" x2="2" y2="46" /></svg>
+    <span style={{ fontSize: 11, fontFamily: 'monospace', color: C.primary, opacity: .6 }}>{label}</span>
+  </div>;
+
+
+/* ════════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════════ */
+/* ── nav data ── */
+const NAV_CATS = [
+  { slug:'central-heating', name:'Central Heating', services:['Boiler Repair','Boiler Service','New Boiler Installation','Power Flush','Smart Thermostat Installation','Radiator Installation & Repair','Heating System Repairs'] },
+  { slug:'plumbing-services', name:'Plumbing', services:['Shower Installation','Tap, Toilet & Sink Plumber'] },
+  { slug:'gas-services', name:'Gas Services', services:['Gas Engineer','Gas Safety Certificate','Gas Appliance Installation'] },
+];
+function toSlug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+
+function DesktopDropdown({ cat }) {
+  return (
+    <div style={{ position: 'absolute', top: '100%', left: 0, paddingTop: 8, zIndex: 100 }}>
+      <div style={{ background: '#fff', border: `1px solid ${C.border}`, borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,.12)', minWidth: 240, padding: 8, animation: 'fadeSlideDown .15s ease' }}>
+        <a href={`/services/${cat.slug}`} style={{ display: 'block', padding: '8px 12px', borderRadius: 7, fontSize: 13, fontWeight: 600, color: C.primary, marginBottom: 4, textDecoration: 'none' }}>
+          All {cat.name} →
+        </a>
+        <div style={{ height: 1, background: C.border, margin: '4px 0 6px' }} />
+        {cat.services.map(s => (
+          <a key={s} href={`/services/${cat.slug}/${toSlug(s)}`}
+            style={{ display: 'block', padding: '8px 12px', borderRadius: 7, fontSize: 13, color: C.fg, textDecoration: 'none' }}
+            onMouseEnter={e => e.currentTarget.style.background = C.primaryLight}
+            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+            {s}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Navbar() {
+  const { isMobile, isNavMobile } = useBreakpoint();
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [openCat, setOpenCat] = React.useState(null);
+  const [mobileExpanded, setMobileExpanded] = React.useState(null);
+
+  return (
+    <header style={{ background: '#fff', borderBottom: `1px solid ${C.border}`, position: 'sticky', top: 0, zIndex: 50 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68, gap: 12 }}>
+        {/* Logo */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+          <div style={{ width: 38, height: 38, background: C.primary, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><path d="M14 7l-5 5 5 5" /><path d="M19 7l-5 5 5 5" /></svg>
+          </div>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: C.primary, lineHeight: 1.2 }}>Abbey House</div>
+            <div style={{ fontSize: 10, color: C.muted, lineHeight: 1.2 }}>Plumbing &amp; Heating</div>
+          </div>
+        </div>
+
+        {/* Desktop nav */}
+        {!isNavMobile && (
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            {NAV_CATS.map(cat => (
+              <div key={cat.slug} style={{ position: 'relative' }}
+                onMouseEnter={() => setOpenCat(cat.slug)}
+                onMouseLeave={() => setOpenCat(null)}>
+                <a href={`/services/${cat.slug}`}
+                  style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 500, color: openCat === cat.slug ? C.primary : C.fg, background: openCat === cat.slug ? C.primaryLight : 'transparent', transition: 'background .1s', textDecoration: 'none' }}>
+                  {cat.name}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ transition: 'transform .15s', transform: openCat === cat.slug ? 'rotate(180deg)' : 'none' }}><path d="M6 9l6 6 6-6" /></svg>
+                </a>
+                {openCat === cat.slug && <DesktopDropdown cat={cat} />}
+              </div>
+            ))}
+            <a href="/about" style={{ padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 500, color: C.fg, textDecoration: 'none' }}>About</a>
+            <a href="#contact" style={{ padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 500, color: C.fg, textDecoration: 'none' }}>Contact</a>
+          </nav>
+        )}
+
+        {/* Right */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+          <a href="tel:07930909496" style={{ display: 'flex', alignItems: 'center', gap: 6, color: C.primary, fontSize: 13, fontWeight: 500, whiteSpace: 'nowrap' }}>
+            <PhoneIcon size={15} />{isNavMobile ? '' : ' 07930 909496'}
+          </a>
+          {!isNavMobile && <Btn href="#contact">Get Quote</Btn>}
+          {isNavMobile && (
+            <button onClick={() => setMenuOpen(o => !o)} style={{ background: 'none', border: 'none', color: C.fg, display: 'flex', padding: 4 }}>
+              {menuOpen ? <XIcon /> : <MenuIcon />}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile drawer */}
+      {isNavMobile && menuOpen && (
+        <div style={{ borderTop: `1px solid ${C.border}`, background: '#fff', animation: 'fadeSlideDown .18s ease', maxHeight: '80vh', overflowY: 'auto' }}>
+          {NAV_CATS.map(cat => (
+            <div key={cat.slug} style={{ borderBottom: `1px solid ${C.border}` }}>
+              <button onClick={() => setMobileExpanded(e => e === cat.slug ? null : cat.slug)}
+                style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', fontSize: 15, fontWeight: 500, color: C.fg, background: 'none', border: 'none', textAlign: 'left' }}>
+                {cat.name}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ transform: mobileExpanded === cat.slug ? 'rotate(180deg)' : 'none', transition: 'transform .15s' }}><path d="M6 9l6 6 6-6" /></svg>
+              </button>
+              {mobileExpanded === cat.slug && (
+                <div style={{ paddingBottom: 10 }}>
+                  <a href={`/services/${cat.slug}`} onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '8px 20px 8px 32px', fontSize: 13, fontWeight: 600, color: C.primary, textDecoration: 'none' }}>All {cat.name}</a>
+                  {cat.services.map(s => (
+                    <a key={s} href={`/services/${cat.slug}/${toSlug(s)}`} onClick={() => setMenuOpen(false)}
+                      style={{ display: 'block', padding: '8px 20px 8px 32px', fontSize: 13, color: C.fg, textDecoration: 'none' }}>
+                      {s}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          <a href="/about" onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '14px 20px', fontSize: 15, fontWeight: 500, color: C.fg, borderBottom: `1px solid ${C.border}`, textDecoration: 'none' }}>About</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '14px 20px', fontSize: 15, fontWeight: 500, color: C.fg, borderBottom: `1px solid ${C.border}`, textDecoration: 'none' }}>Contact</a>
+          <div style={{ padding: '16px 20px' }}>
+            <Btn href="#contact" fullWidth size="lg" onClick={() => setMenuOpen(false)}>Get a Free Quote</Btn>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+/* ════════════════════════════════════════════
+   EMERGENCY BANNER
+════════════════════════════════════════════ */
+function EmergencyBanner() {
+  const { isMobile } = useBreakpoint();
+  const [visible, setVisible] = React.useState(true);
+  if (!visible) return null;
+  return (
+    <div style={{ background: '#1e3a8a', color: '#fff', padding: '10px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', fontSize: 13 }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#4ade80', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+        <strong>Emergency callouts available today</strong>
+        {!isMobile && ' — Gas Safe engineers on the road across Brent'}
+      </span>
+      <a href="tel:07930909496" style={{ background: '#fff', color: C.primary, padding: '4px 14px', borderRadius: 20, fontWeight: 600, fontSize: 12, whiteSpace: 'nowrap' }}>
+        Call: 07930 909496
+      </a>
+      <button onClick={() => setVisible(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.5)', fontSize: 18, lineHeight: 1, padding: '0 4px' }}>×</button>
+    </div>);
+
+}
+
+/* ════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════ */
+function Hero() {
+  const { isMobile, isTablet } = useBreakpoint();
+  return (
+    <section style={{ background: `linear-gradient(160deg,${C.primaryLight} 0%,#fff 65%)`, padding: isMobile ? '32px 20px 48px' : isTablet ? '40px 24px 56px' : '0px 24px 72px', overflow: 'hidden' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 1fr', gap: isTablet ? 40 : 64, alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 18 : 22 }}>
+          <div style={{ display: 'inline-flex', width: 'fit-content', alignItems: 'center', gap: 8, background: C.primaryMid, color: C.primary, padding: '6px 14px', borderRadius: 20, fontSize: 12, fontWeight: 500 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: C.green, display: 'inline-block' }} />
+            Gas Safe Registered · Same-Day Service
+          </div>
+          <h1 style={{ fontSize: isMobile ? 36 : isTablet ? 44 : 52, fontWeight: 600, lineHeight: 1.1, color: C.fg, letterSpacing: '-0.02em' }}>
+            Boiler broken?<br />
+            <span style={{ color: C.primary }}>We're on our way.</span>
+          </h1>
+          <p style={{ fontSize: isMobile ? 15 : 17, color: C.muted, lineHeight: 1.7 }}>
+            Gas Safe engineers based in Brent. From Kilburn to Wembley, Brondesbury to Neasden — same-day breakdowns, annual services, and new installs.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {['Gas Safe Registered Engineers', 'Same-Day Breakdown Response', 'All Major Boiler Brands Covered', 'No Subcontractors — Our Own Team'].map((item) =>
+            <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14 }}>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: C.primaryLight, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <CheckIcon size={11} />
+                </div>
+                {item}
+              </div>
+            )}
+          </div>
+          <div style={{ display: 'flex', gap: 10, paddingTop: 4, flexWrap: 'wrap' }}>
+            <Btn size="lg" href="tel:07930909496" style={{ background: C.red, gap: 10 }}>
+              <PhoneIcon size={17} /> Emergency? Call Now
+            </Btn>
+            <Btn size="lg" variant="outline" href="#contact">Get a Free Quote</Btn>
+          </div>
+          <p style={{ fontSize: 12, color: C.muted, marginTop: -4 }}>Not an emergency? <a href="#contact" style={{ color: C.primary, textDecoration: 'underline' }}>Use the form below</a> — we reply within 2 hours.</p>
+        </div>
+
+        {/* Right col — hidden on tablet/mobile */}
+        {!isTablet &&
+        <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 20 }}>
+            <div style={{ borderRadius: 20, overflow: 'hidden', boxShadow: '0 20px 60px rgba(30,64,175,.15)', aspectRatio: '4/3' }}>
+              <ImgPlaceholder label="gas engineer / boiler work" style={{ width: '100%', height: '100%' }} />
+            </div>
+            <div style={{ position: 'absolute', bottom: 16, left: 16, background: '#fff', borderRadius: 14, padding: '12px 18px', boxShadow: '0 8px 28px rgba(0,0,0,.1)', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 40, height: 40, background: C.primaryLight, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.primary, fontWeight: 700, fontSize: 10, textAlign: 'center', lineHeight: 1.2 }}>GAS<br />SAFE</div>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600 }}>Gas Safe Registered</div>
+                <div style={{ fontSize: 11, color: C.muted }}>All engineers certified</div>
+              </div>
+            </div>
+            <div style={{ position: 'absolute', top: 16, right: 16, background: '#fff', borderRadius: 14, padding: '11px 16px', boxShadow: '0 8px 28px rgba(0,0,0,.1)' }}>
+              <div style={{ display: 'flex', gap: 2, marginBottom: 3 }}>{[1, 2, 3, 4, 5].map((i) => <StarIcon key={i} />)}</div>
+              <div style={{ fontSize: 11, color: C.muted, fontWeight: 500 }}>5.0 · 84 Google reviews</div>
+            </div>
+          </div>
+        }
+      </div>
+
+      {/* Star rating on mobile/tablet */}
+      {isTablet &&
+      <div style={{ maxWidth: 1280, margin: '28px auto 0', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 2 }}>{[1, 2, 3, 4, 5].map((i) => <StarIcon key={i} />)}</div>
+          <span style={{ fontSize: 13, color: C.muted, fontWeight: 500 }}>5.0 on Google · 84 verified reviews</span>
+        </div>
+      }
+    </section>);
+
+}
+
+/* ════════════════════════════════════════════
+   TRUST BAR
+════════════════════════════════════════════ */
+function TrustBar() {
+  const { isMobile } = useBreakpoint();
+  const items = [
+  { label: 'Gas Safe Registered', sub: 'All engineers certified' },
+  { label: 'Same-Day Response', sub: 'Breakdowns prioritised' },
+  { label: 'No Subcontractors', sub: 'Our own trained team' },
+  { label: 'All Boiler Brands', sub: 'Worcester · Vaillant · Baxi' },
+  { label: '5★ on Google', sub: '84 verified reviews' }];
+
+  return (
+    <div style={{ borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, background: '#fff', padding: '16px 20px', overflowX: 'auto' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', gap: isMobile ? 24 : 0, justifyContent: isMobile ? 'flex-start' : 'space-between', minWidth: isMobile ? 'max-content' : 'auto' }}>
+        {items.map(({ label, sub }) =>
+        <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: isMobile ? '0' : '0 12px' }}>
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: C.primary, flexShrink: 0 }} />
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: C.fg, whiteSpace: 'nowrap' }}>{label}</div>
+              <div style={{ fontSize: 10, color: C.muted, whiteSpace: 'nowrap' }}>{sub}</div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>);
+
+}
+
+/* ════════════════════════════════════════════
+   SERVICES
+════════════════════════════════════════════ */
+
+const TOP_SERVICES = [
+  { icon: '🔧', title: 'Boiler Repair', desc: 'Most faults fixed on the first visit. Spare parts in the van.', href: '/services/central-heating/boiler-repair', tag: 'Most popular' },
+  { icon: '⚙️', title: 'Boiler Service', desc: 'Annual service cuts bills. Landlords legally required. Gas Safety Certs issued.', href: '/services/central-heating/boiler-service' },
+  { icon: '🔥', title: 'New Boiler Installation', desc: 'Worcester Bosch, Vaillant, Ideal, Baxi. Right size, right model, warranty.', href: '/services/central-heating/new-boiler-installation' },
+  { icon: '🔄', title: 'Power Flush', desc: 'Clears sludge from your system. Restores heat output and efficiency.', href: '/services/central-heating/power-flush' },
+  { icon: '📋', title: 'Gas Safety Certificate', desc: 'CP12 certificates for landlords. Legally required every year.', href: '/services/gas-services/gas-safety-certificate' },
+  { icon: '🛡️', title: 'Gas Engineer', desc: 'CO analysers on every visit. Carbon monoxide checks keep your home safe.', href: '/services/gas-services/gas-engineer' },
+];
+
+function Services() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const [hovered, setHovered] = React.useState(null);
+  const cols = isMobile ? 1 : isTablet ? 2 : 3;
+  const allCards = [...TOP_SERVICES, { isViewAll: true }];
+  return (
+    <section id="services" style={{ padding: isMobile ? '56px 20px' : '80px 24px', background: '#fff' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto', marginBottom: isMobile ? 36 : 52 }}>
+          <h2 style={{ fontSize: isMobile ? 28 : 34, fontWeight: 600, color: C.fg, marginBottom: 10, letterSpacing: '-0.01em' }}>Central Heating Services in Brent</h2>
+          <p style={{ fontSize: isMobile ? 14 : 16, color: C.muted, lineHeight: 1.6 }}>Boiler repair, service, installation and gas work. One call sorts it all.</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols},1fr)`, gap: 16 }}>
+          {allCards.map((s, i) => s.isViewAll ? (
+            <a key="all" href="/services"
+              onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, padding: isMobile ? 20 : 24, borderRadius: 14, border: `2px dashed ${hovered === i ? C.primary : C.border}`, background: hovered === i ? C.primaryLight : '#fafafa', transition: 'all .15s', textDecoration: 'none', minHeight: 140 }}>
+              <div style={{ width: 40, height: 40, borderRadius: '50%', background: C.primaryLight, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <ArrowRight size={18} />
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 15, fontWeight: 600, color: C.primary, marginBottom: 4 }}>View all 12 services</div>
+                <div style={{ fontSize: 13, color: C.muted }}>Central heating, plumbing &amp; gas</div>
+              </div>
+            </a>
+          ) : (
+            <a key={i} href={s.href}
+              onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}
+              style={{ display: 'block', padding: isMobile ? 20 : 24, borderRadius: 14, border: `2px solid ${hovered === i ? C.primary : C.border}`, background: hovered === i ? C.primaryLight : '#fff', transition: 'all .15s', textDecoration: 'none', position: 'relative' }}>
+              {s.tag && <div style={{ position: 'absolute', top: 14, right: 14, background: C.primary, color: '#fff', fontSize: 10, fontWeight: 600, padding: '2px 9px', borderRadius: 20 }}>{s.tag}</div>}
+              <div style={{ fontSize: 26, marginBottom: 12 }}>{s.icon}</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: C.fg, marginBottom: 6 }}>{s.title}</div>
+              <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.6, marginBottom: 14 }}>{s.desc}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 500, color: C.primary }}>
+                View details <ArrowRight size={13} />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ════════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════════ */
+function About() {
+  const { isMobile, isTablet } = useBreakpoint();
+  const stats = [{ val: 'Gas Safe', lbl: 'Registered' }, { val: 'Same Day', lbl: 'Response' }, { val: 'Brent', lbl: 'Based Locally' }, { val: 'No Subs', lbl: 'Own Team' }];
+  return (
+    <section id="about" style={{ padding: isMobile ? '56px 20px' : '80px 24px', background: C.primaryLight }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 1fr', gap: isTablet ? 40 : 64, alignItems: 'center' }}>
+        {!isMobile &&
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            {[{ label: 'boiler installation', mt: 0 }, { label: 'heating pipework', mt: 32 }].map(({ label, mt }) =>
+          <ImgPlaceholder key={label} label={label} style={{ borderRadius: 16, height: 240, boxShadow: '0 4px 20px rgba(0,0,0,.08)', marginTop: mt }} />
+          )}
+          </div>
+        }
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+          <h2 style={{ fontSize: isMobile ? 28 : 34, fontWeight: 600, color: C.fg, letterSpacing: '-0.01em', lineHeight: 1.2 }}>Why Choose Us in Brent</h2>
+          <p style={{ fontSize: isMobile ? 14 : 15, color: C.muted, lineHeight: 1.75 }}>
+            We're based in Brent. Our engineers live here. They know these streets, these houses, these boilers. A Victorian terrace in Brondesbury has different heating needs to a 1970s block in Wembley.
+          </p>
+          <p style={{ fontSize: isMobile ? 14 : 15, color: C.muted, lineHeight: 1.75 }}>
+            We don't use subcontractors. Every engineer who comes to your door is part of our team, Gas Safe registered, and trained on the equipment they're working on.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, paddingTop: 4 }}>
+            {stats.map(({ val, lbl }) =>
+            <div key={lbl} style={{ background: '#fff', borderRadius: 12, padding: '16px 18px', boxShadow: '0 2px 8px rgba(0,0,0,.06)', textAlign: 'center' }}>
+                <div style={{ fontSize: 18, fontWeight: 600, color: C.primary, marginBottom: 4 }}>{val}</div>
+                <div style={{ fontSize: 12, color: C.muted }}>{lbl}</div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ════════════════════════════════════════════
+   CONTACT — WIZARD FORM
+════════════════════════════════════════════ */
+const SERVICE_TYPES = [
+{ id: 'repair', label: 'Boiler Repair', icon: '🔧', desc: 'Boiler not working or broken' },
+{ id: 'service', label: 'Boiler Service', icon: '⚙️', desc: 'Annual service or Gas Safety Cert' },
+{ id: 'install', label: 'New Boiler', icon: '🔥', desc: 'Installation or replacement' },
+{ id: 'gas', label: 'Gas Work', icon: '📋', desc: 'Pipes, appliances, gas engineer' },
+{ id: 'plumbing', label: 'Plumbing', icon: '🚿', desc: 'Shower, tap, toilet, sink' },
+{ id: 'other', label: 'Other', icon: '💬', desc: 'Something else' }];
+
+const URGENCY = [
+{ id: 'emergency', label: 'Emergency today', sub: 'No heating / hot water now', color: C.red, bg: C.redLight },
+{ id: 'soon', label: 'This week', sub: 'Urgent but not an emergency', color: C.amber, bg: C.amberLight },
+{ id: 'quote', label: 'Just a quote', sub: 'No rush — planning ahead', color: C.green, bg: C.greenLight }];
+
+
+function WizardForm() {
+  const { isMobile } = useBreakpoint();
+  const [step, setStep] = React.useState(0);
+  const [data, setData] = React.useState({ service: '', urgency: '', name: '', phone: '', email: '', message: '', callTime: 'anytime' });
+  const [submitted, setSubmitted] = React.useState(false);
+  const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
+  const steps = ['Service', 'Urgency', 'Details'];
+
+  const inputStyle = { padding: '10px 14px', borderRadius: 8, border: `1.5px solid ${C.border}`, fontSize: 14, outline: 'none', background: '#f8fafc', width: '100%' };
+
+  if (submitted) return (
+    <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+      <div style={{ width: 56, height: 56, borderRadius: '50%', background: C.greenLight, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+        <CheckIcon size={28} color={C.green} />
+      </div>
+      <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 8 }}>Request received</h3>
+      <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, maxWidth: 340, margin: '0 auto 20px' }}>
+        {data.urgency === 'emergency' ? "As you've flagged this as an emergency, we'll call you back within 30 minutes." : "We'll get back to you within 2 hours during business hours."}
+      </p>
+      {data.urgency === 'emergency' && <Btn size="lg" href="tel:07930909496" style={{ background: C.red, margin: '0 auto' }}><PhoneIcon size={16} /> Can't wait? Call now</Btn>}
+    </div>);
+
+
+  return (
+    <div>
+      {/* Step indicator */}
+      <div style={{ display: 'flex', marginBottom: 28 }}>
+        {steps.map((s, i) =>
+        <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, position: 'relative' }}>
+            {i > 0 && <div style={{ position: 'absolute', top: 13, right: '50%', width: '100%', height: 2, background: i <= step ? C.primary : C.border, zIndex: 0 }} />}
+            <div style={{ width: 26, height: 26, borderRadius: '50%', background: i < step ? C.primary : i === step ? C.primary : '#fff', border: `2px solid ${i <= step ? C.primary : C.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1, transition: 'all .2s' }}>
+              {i < step ? <CheckIcon size={12} color="#fff" /> : <span style={{ fontSize: 11, fontWeight: 600, color: i === step ? '#fff' : C.muted }}>{i + 1}</span>}
+            </div>
+            <span style={{ fontSize: 11, color: i === step ? C.primary : C.muted, fontWeight: i === step ? 600 : 400 }}>{s}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Step 0 */}
+      {step === 0 &&
+      <div>
+          <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 4 }}>What do you need?</h3>
+          <p style={{ fontSize: 13, color: C.muted, marginBottom: 18 }}>Select the service that best fits your job.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : '1fr 1fr', gap: 10 }}>
+            {SERVICE_TYPES.map((s) =>
+          <button key={s.id} onClick={() => {set('service', s.id);setStep(1);}}
+          style={{ padding: '14px', borderRadius: 10, border: `2px solid ${data.service === s.id ? C.primary : C.border}`, background: data.service === s.id ? C.primaryLight : '#fff', textAlign: 'left', cursor: 'pointer', transition: 'all .15s' }}>
+                <div style={{ fontSize: 22, marginBottom: 6 }}>{s.icon}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: C.fg, marginBottom: 2 }}>{s.label}</div>
+                <div style={{ fontSize: 11, color: C.muted }}>{s.desc}</div>
+              </button>
+          )}
+          </div>
+        </div>
+      }
+
+      {/* Step 1 */}
+      {step === 1 &&
+      <div>
+          <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 4 }}>How urgent is this?</h3>
+          <p style={{ fontSize: 13, color: C.muted, marginBottom: 18 }}>This helps us prioritise your request.</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {URGENCY.map((u) =>
+          <button key={u.id} onClick={() => {set('urgency', u.id);setStep(2);}}
+          style={{ padding: '15px 18px', borderRadius: 12, border: `2px solid ${data.urgency === u.id ? u.color : C.border}`, background: data.urgency === u.id ? u.bg : '#fff', textAlign: 'left', cursor: 'pointer', transition: 'all .15s', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: u.color }}>{u.label}</div>
+                  <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>{u.sub}</div>
+                </div>
+                <ArrowRight size={15} />
+              </button>
+          )}
+          </div>
+          {data.urgency === 'emergency' &&
+        <div style={{ marginTop: 14, padding: '12px 14px', borderRadius: 10, background: C.redLight, border: '1px solid #fecaca', fontSize: 13, color: '#991b1b' }}>
+              <strong>For emergencies, calling is fastest:</strong>{' '}
+              <a href="tel:07930909496" style={{ color: C.red, fontWeight: 600 }}>07930 909496</a>
+            </div>
+        }
+          <button onClick={() => setStep(0)} style={{ marginTop: 14, fontSize: 13, color: C.muted, background: 'none', border: 'none', cursor: 'pointer' }}>← Back</button>
+        </div>
+      }
+
+      {/* Step 2 */}
+      {step === 2 &&
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div>
+            <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 4 }}>Your details</h3>
+            <p style={{ fontSize: 13, color: C.muted }}>We'll confirm your booking by phone or email.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 12 }}>
+            <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <span style={{ fontSize: 12, fontWeight: 500 }}>Name *</span>
+              <input value={data.name} onChange={(e) => set('name', e.target.value)} placeholder="Your name" style={inputStyle} />
+            </label>
+            <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <span style={{ fontSize: 12, fontWeight: 500 }}>Phone *</span>
+              <input value={data.phone} onChange={(e) => set('phone', e.target.value)} placeholder="07700 000000" type="tel" style={inputStyle} />
+            </label>
+          </div>
+          <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ fontSize: 12, fontWeight: 500 }}>Email <span style={{ fontWeight: 400, color: C.muted }}>(optional)</span></span>
+            <input value={data.email} onChange={(e) => set('email', e.target.value)} placeholder="your@email.com" type="email" style={inputStyle} />
+          </label>
+          <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ fontSize: 12, fontWeight: 500 }}>Best time to call</span>
+            <select value={data.callTime} onChange={(e) => set('callTime', e.target.value)} style={inputStyle}>
+              <option value="anytime">Any time</option>
+              <option value="morning">Morning (7am–12pm)</option>
+              <option value="afternoon">Afternoon (12pm–5pm)</option>
+              <option value="evening">Evening (5pm–7pm)</option>
+            </select>
+          </label>
+          <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ fontSize: 12, fontWeight: 500 }}>Notes <span style={{ fontWeight: 400, color: C.muted }}>(optional)</span></span>
+            <textarea value={data.message} onChange={(e) => set('message', e.target.value)} rows={3} placeholder="Tell us what's happening..."
+          style={{ ...inputStyle, resize: 'vertical' }} />
+          </label>
+          {/* Summary */}
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {data.service && <div style={{ background: C.primaryLight, color: C.primary, padding: '3px 11px', borderRadius: 20, fontSize: 12, fontWeight: 500 }}>{SERVICE_TYPES.find((s) => s.id === data.service)?.label}</div>}
+            {data.urgency && <div style={{ background: URGENCY.find((u) => u.id === data.urgency)?.bg, color: URGENCY.find((u) => u.id === data.urgency)?.color, padding: '3px 11px', borderRadius: 20, fontSize: 12, fontWeight: 500 }}>{URGENCY.find((u) => u.id === data.urgency)?.label}</div>}
+          </div>
+          <Btn fullWidth size="lg" onClick={() => data.name && data.phone && setSubmitted(true)}>Send Request</Btn>
+          <p style={{ fontSize: 12, color: C.muted, textAlign: 'center' }}>We reply within 2 hours. Emergency? <a href="tel:07930909496" style={{ color: C.primary }}>Call 07930 909496</a></p>
+          <button onClick={() => setStep(1)} style={{ fontSize: 13, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', marginTop: -4 }}>← Back</button>
+        </div>
+      }
+    </div>);
+
+}
+
+function ClassicForm() {
+  const inputStyle = { padding: '10px 14px', borderRadius: 8, border: `1.5px solid ${C.border}`, fontSize: 14, outline: 'none', background: '#f8fafc', width: '100%' };
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        {['Name', 'Email'].map((f) =>
+        <label key={f} style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ fontSize: 12, fontWeight: 500 }}>{f}</span>
+            <input placeholder={f === 'Name' ? 'Your name' : 'your@email.com'} style={inputStyle} />
+          </label>
+        )}
+      </div>
+      <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        <span style={{ fontSize: 12, fontWeight: 500 }}>Phone</span>
+        <input placeholder="07700 000000" style={inputStyle} />
+      </label>
+      <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        <span style={{ fontSize: 12, fontWeight: 500 }}>Message</span>
+        <textarea rows={5} placeholder="Tell us about your plumbing needs..." style={{ ...inputStyle, resize: 'vertical' }} />
+      </label>
+      <Btn fullWidth size="lg">Send Message</Btn>
+    </div>);
+
+}
+
+/* ════════════════════════════════════════════
+   CONTACT SECTION
+════════════════════════════════════════════ */
+function Contact({ formStyle }) {
+  const { isMobile, isTablet } = useBreakpoint();
+  return (
+    <section id="contact" style={{ padding: isMobile ? '56px 20px' : '80px 24px', background: '#fff' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: 520, margin: '0 auto', marginBottom: isMobile ? 36 : 52 }}>
+          <h2 style={{ fontSize: isMobile ? 28 : 34, fontWeight: 600, color: C.fg, marginBottom: 10, letterSpacing: '-0.01em' }}>Get In Touch</h2>
+          <p style={{ fontSize: isMobile ? 14 : 16, color: C.muted, lineHeight: 1.6 }}>Boiler broken? Need a service or a quote? Call us or fill in the form. We cover all of Brent.</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '2fr 1fr', gap: 24 }}>
+          {/* Form card */}
+          <div style={{ background: '#fff', borderRadius: 16, border: `1px solid ${C.border}`, padding: isMobile ? 24 : 32, boxShadow: '0 4px 24px rgba(0,0,0,.06)' }}>
+            <div style={{ marginBottom: 24 }}>
+              <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 4 }}>{formStyle === 'wizard' ? 'Request a Callback' : 'Send Us a Message'}</h3>
+              <p style={{ fontSize: 13, color: C.muted }}>{formStyle === 'wizard' ? "Tell us what you need — takes 60 seconds." : "Fill out the form and we'll get back to you."}</p>
+            </div>
+            {formStyle === 'wizard' ? <WizardForm /> : <ClassicForm />}
+          </div>
+
+          {/* Sidebar */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ background: '#1e3a8a', borderRadius: 16, padding: 22, color: '#fff' }}>
+              <div style={{ fontSize: 11, fontWeight: 500, opacity: .7, marginBottom: 6, textTransform: 'uppercase', letterSpacing: '.05em' }}>Emergency Line</div>
+              <a href="tel:07930909496" style={{ fontSize: 22, fontWeight: 700, color: '#fff', display: 'block', marginBottom: 4 }}>07930 909496</a>
+              <div style={{ fontSize: 12, opacity: .7, marginBottom: 14 }}>Available 7 days · Same-day response</div>
+              <Btn href="tel:07930909496" fullWidth style={{ background: '#fff', color: C.primary, justifyContent: 'center' }}>
+                <PhoneIcon size={15} /> Call Now
+              </Btn>
+            </div>
+            {/* Phone */}
+            <div style={{ background: '#fff', borderRadius: 12, border: `1px solid ${C.border}`, padding: '16px 18px', boxShadow: '0 2px 8px rgba(0,0,0,.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: C.primary, marginBottom: 8 }}><PhoneIcon size={16}/><span style={{ fontSize: 13, fontWeight: 600 }}>Phone</span></div>
+              <a href="tel:07930909496" style={{ fontSize: 14, color: C.primary, fontWeight: 500 }}>07930 909496</a>
+              <div style={{ fontSize: 12, color: C.muted, marginTop: 3 }}>24/7 Emergency Line</div>
+            </div>
+            {/* Email */}
+            <div style={{ background: '#fff', borderRadius: 12, border: `1px solid ${C.border}`, padding: '16px 18px', boxShadow: '0 2px 8px rgba(0,0,0,.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: C.primary, marginBottom: 8 }}><MailIcon size={16}/><span style={{ fontSize: 13, fontWeight: 600 }}>Email</span></div>
+              <a href="mailto:info@abbeyservicesgroup.co.uk" style={{ fontSize: 13, color: C.primary, textDecoration: 'underline', wordBreak: 'break-all' }}>info@abbeyservicesgroup.co.uk</a>
+            </div>
+            {/* Location */}
+            <div style={{ background: '#fff', borderRadius: 12, border: `1px solid ${C.border}`, padding: '16px 18px', boxShadow: '0 2px 8px rgba(0,0,0,.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: C.primary, marginBottom: 8 }}><MapPinIcon size={16}/><span style={{ fontSize: 13, fontWeight: 600 }}>Area Covered</span></div>
+              <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.6 }}>Brent, NW &amp; W London<br/>Kilburn · Wembley · Brondesbury</div>
+            </div>
+            {/* Hours */}
+            <div style={{ background: '#fff', borderRadius: 12, border: `1px solid ${C.border}`, padding: '16px 18px', boxShadow: '0 2px 8px rgba(0,0,0,.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: C.primary, marginBottom: 8 }}><ClockIcon size={16}/><span style={{ fontSize: 13, fontWeight: 600 }}>Hours</span></div>
+              <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.7 }}>Mon–Fri: 7am–7pm<br/>Saturday: 8am–5pm<br/>Sunday: Emergency only</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+function Footer() {
+  const { isMobile, isTablet } = useBreakpoint();
+  return (
+    <footer style={{ background: C.primary, color: '#fff', padding: isMobile ? '40px 20px 24px' : '48px 24px 28px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+        {/* 5-col footer: brand + 4 link cols, wraps to 2-col on tablet, 1-col on mobile */}
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '1.6fr 1fr 1fr 1fr 1fr', gap: isMobile ? 28 : isTablet ? 24 : 32, marginBottom: 32, alignItems: 'start' }}>
+          {/* Brand col */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+              <div style={{ width: 36, height: 36, background: 'rgba(255,255,255,.15)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><path d="M14 7l-5 5 5 5" /><path d="M19 7l-5 5 5 5" /></svg>
+              </div>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600 }}>Abbey House</div>
+                <div style={{ fontSize: 10, opacity: .7 }}>Plumbing &amp; Heating · Gas Safe Registered</div>
+              </div>
+            </div>
+            <p style={{ fontSize: 12, opacity: .75, lineHeight: 1.8 }}>Central heating services in Brent. Gas Safe engineers covering Kilburn, Wembley, Brondesbury, and all of Brent.</p>
+          </div>
+          {/* Link cols */}
+          {[
+            { title: 'Central Heating', links: [['Boiler Repair','/services/central-heating/boiler-repair'],['Boiler Service','/services/central-heating/boiler-service'],['New Boiler Install','/services/central-heating/new-boiler-installation'],['Power Flush','/services/central-heating/power-flush'],['Smart Thermostat','/services/central-heating/smart-thermostat-installation']] },
+            { title: 'Gas Services', links: [['Gas Engineer','/services/gas-services/gas-engineer'],['Gas Safety Cert','/services/gas-services/gas-safety-certificate'],['Appliance Install','/services/gas-services/gas-appliance-installation']] },
+            { title: 'Plumbing', links: [['Shower Installation','/services/plumbing-services/shower-installation'],['Tap, Toilet & Sink','/services/plumbing-services/bathroom-plumbing']] },
+            { title: 'Contact', links: [['07930 909496','tel:07930909496'],['info@abbeyservicesgroup.co.uk','mailto:info@abbeyservicesgroup.co.uk'],['Brent, London', null]] },
+          ].map(({ title, links }) => (
+            <div key={title}>
+              <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 14, opacity: 1, letterSpacing: '0.03em', textTransform: 'uppercase' }}>{title}</div>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 9 }}>
+                {links.map(([l, href]) => (
+                  <li key={l} style={{ fontSize: 12, opacity: .75 }}>
+                    {href ? <a href={href} style={{ color: '#fff', textDecoration: 'none' }}>{l}</a> : l}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,.15)', paddingTop: 20, textAlign: 'center', fontSize: 12, opacity: .7 }}>
+          © 2026 Abbey House Plumbing &amp; Heating Services Ltd. All rights reserved.
+        </div>
+      </div>
+    </footer>);
+
+}
+
+/* ════════════════════════════════════════════
+   APP
+════════════════════════════════════════════ */
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  return (
+    <>
+      {t.showEmergencyBanner && <EmergencyBanner />}
+      <Navbar />
+      <Hero />
+      {t.showTrustBar && <TrustBar />}
+      <Services />
+      <About />
+      <Contact formStyle={t.formStyle} />
+      <Footer />
+      <TweaksPanel>
+        <TweakSection label="Contact Form" />
+        <TweakRadio label="Form style" value={t.formStyle}
+        options={['wizard', 'classic']}
+        onChange={(v) => setTweak('formStyle', v)} />
+        <TweakSection label="Page Elements" />
+        <TweakToggle label="Emergency banner" value={t.showEmergencyBanner}
+        onChange={(v) => setTweak('showEmergencyBanner', v)} />
+        <TweakToggle label="Trust bar" value={t.showTrustBar}
+        onChange={(v) => setTweak('showTrustBar', v)} />
+      </TweaksPanel>
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

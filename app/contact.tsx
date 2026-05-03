@@ -73,26 +73,26 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl md:text-4xl mb-4 text-foreground">Get In Touch</h2>
           <p className="text-lg text-muted-foreground">
             Boiler broken down? Need a service or quote for a new installation? Call us or fill in the form. We cover all of Brent — Kilburn, Wembley, Brondesbury, and beyond.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2">
-            <Card>
+        <div className="grid md:grid-cols-3 gap-8 md:items-stretch">
+          <div className="md:col-span-2 flex flex-col">
+            <Card className="flex flex-col flex-1">
               <CardHeader>
                 <CardTitle>Send Us a Message</CardTitle>
                 <CardDescription>
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Fill out the form below and we&apos;ll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <CardContent className="flex flex-col flex-1 pb-6">
+                <form onSubmit={handleSubmit} className="flex flex-col flex-1 gap-4">
                   {submitStatus.type && (
                     <div
                       className={`p-3 rounded-md text-sm ${submitStatus.type === "success"
@@ -148,11 +148,11 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       disabled={isLoading}
-                      placeholder="(555) 123-4567"
+                      placeholder="07700 000000"
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="flex flex-col flex-1 space-y-2 min-h-0">
                     <label htmlFor="message" className="text-sm">
                       Message
                     </label>
@@ -163,8 +163,8 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       disabled={isLoading}
-                      rows={5}
-                      placeholder="Tell us about your plumbing needs..."
+                      className="flex-1 min-h-[120px] resize-none"
+                      placeholder="Tell us about your plumbing or heating needs..."
                     />
                   </div>
 
@@ -176,17 +176,39 @@ export function Contact() {
             </Card>
           </div>
 
-          <div className="space-y-6">
+          {/* Sidebar */}
+          <div className="space-y-4">
+            {/* Emergency card */}
+            <div className="bg-[#1e3a8a] text-white rounded-xl p-5">
+              <p className="text-[11px] font-medium uppercase tracking-widest opacity-70 mb-1">Emergency Line</p>
+              <a
+                href="tel:07930909496"
+                className="text-2xl font-bold text-white block mb-1 hover:opacity-90"
+              >
+                07930 909496
+              </a>
+              <p className="text-xs opacity-70 mb-4">Available 7 days · Same-day response</p>
+              <Button
+                asChild
+                className="w-full bg-white text-primary hover:bg-secondary"
+              >
+                <a href="tel:07930909496" className="flex items-center justify-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  Call Now
+                </a>
+              </Button>
+            </div>
+
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Phone className="w-5 h-5 text-primary" />
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Phone className="w-4 h-4 text-primary" />
                   Phone
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <a href="tel:555-0123" className="text-primary hover:underline">
-                  (555) 123-4567
+                <a href="tel:07930909496" className="text-primary hover:underline font-medium">
+                  07930 909496
                 </a>
                 <p className="text-sm text-muted-foreground mt-1">
                   24/7 Emergency Line
@@ -195,49 +217,48 @@ export function Contact() {
             </Card>
 
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Mail className="w-5 h-5 text-primary" />
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Mail className="w-4 h-4 text-primary" />
                   Email
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <a
-                  href="mailto:info@bluelineplumbing.com"
-                  className="text-primary hover:underline"
+                  href="mailto:info@abbeyservicesgroup.co.uk"
+                  className="text-primary hover:underline text-sm break-all"
                 >
-                  info@bluelineplumbing.com
+                  info@abbeyservicesgroup.co.uk
                 </a>
               </CardContent>
             </Card>
 
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  Location
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  Area Covered
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  123 Main Street
-                  <br />
-                  Your City, ST 12345
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Brent, NW &amp; W London<br />
+                  Kilburn · Wembley · Brondesbury
                 </p>
               </CardContent>
             </Card>
 
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-primary" />
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Clock className="w-4 h-4 text-primary" />
                   Hours
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-muted-foreground text-sm space-y-1">
-                <p>Monday - Friday: 7am - 7pm</p>
-                <p>Saturday: 8am - 5pm</p>
-                <p>Sunday: Emergency Only</p>
+              <CardContent className="text-sm text-muted-foreground space-y-1">
+                <p>Mon–Fri: 7am–7pm</p>
+                <p>Saturday: 8am–5pm</p>
+                <p>Sunday: Emergency only</p>
               </CardContent>
             </Card>
           </div>

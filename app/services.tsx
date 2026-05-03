@@ -1,50 +1,40 @@
-import { Wrench, Flame, Settings, RefreshCw, Gauge, ShieldCheck } from "lucide-react";
-import { Card, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { getAllCategories } from "@/lib/services";
 
-const services = [
-  {
-    icon: Wrench,
-    title: "Boiler Repair",
-    description:
-      "Most boiler problems are small faults — a faulty thermocouple, a stuck valve, low pressure. We carry spare parts in the van and fix most breakdowns on the first visit.",
-  },
-  {
-    icon: Settings,
-    title: "Boiler Service",
-    description:
-      "A yearly boiler service can cut your heating bills. Landlords in Brent are legally required to have boilers serviced once a year. We issue Gas Safety Certificates.",
-  },
-  {
-    icon: Flame,
-    title: "New Boiler Installation",
-    description:
-      "We install Worcester Bosch, Vaillant, Ideal, and Baxi boilers. We assess your home and recommend the right size and model. All units come with manufacturer warranties.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Boiler Replacement",
-    description:
-      "If your boiler is more than 12–15 years old, replacement may be the smarter call. We remove the old unit, install the new one, and take the old boiler away.",
-  },
-  {
-    icon: Gauge,
-    title: "Gas Installation Service",
-    description:
-      "New supply connections, gas meter fitting, pipework extensions. As a registered Gas Safe business, all gas installation work in Brent meets current British Standards.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Gas Engineer",
-    description:
-      "Every engineer on our team holds a current Gas Safe card. We carry CO analysers on every visit. Carbon monoxide is odourless — regular checks keep your home safe.",
-  },
-];
+const EMOJI: Record<string, string> = {
+  'boiler-repair': '🔧',
+  'boiler-service': '⚙️',
+  'new-boiler-installation': '🔥',
+  'power-flush': '🔄',
+  'smart-thermostat-installation': '🌡️',
+  'radiator-services': '🏠',
+  'heating-system-repairs': '🛠️',
+  'shower-installation': '🚿',
+  'tap-toilet-sink-plumber': '🚰',
+  'gas-engineer': '🛡️',
+  'gas-safety-certificate': '📋',
+  'gas-appliance-installation': '⚡',
+}
 
 export function Services() {
+  const categories = getAllCategories()
+
+  // Flatten all services across categories, keep category slug for href, take first 6
+  const allServices = categories.flatMap((cat) =>
+    cat.services.map((svc) => ({
+      ...svc,
+      categorySlug: cat.slug,
+      emoji: EMOJI[svc.slug] ?? '🔧',
+    }))
+  ).slice(0, 6)
+
+  const totalCount = categories.reduce((sum, c) => sum + c.services.length, 0)
+
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 className="text-3xl md:text-4xl mb-4 text-foreground">
             Our Central Heating Services in Brent
           </h2>
@@ -54,20 +44,37 @@ export function Services() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+          {allServices.map((svc) => {
+            const href = `/services/${svc.categorySlug}/${svc.slug}`
             return (
-              <Card key={index} className="border-2 hover:border-primary transition-colors">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <CardTitle>{service.title}</CardTitle>
-                  <CardDescription className="pb-4">{service.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            );
+              <Link
+                key={svc.slug}
+                href={href}
+                className="group block p-6 rounded-xl border-2 border-border hover:border-primary hover:bg-secondary/20 transition-all"
+              >
+                <div className="text-3xl mb-4">{svc.emoji}</div>
+                <h3 className="text-base font-semibold text-foreground mb-2">{svc.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{svc.tagline}</p>
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                  View details <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </Link>
+            )
           })}
+
+          {/* View all card */}
+          <Link
+            href="/services"
+            className="group flex flex-col items-center justify-center gap-3 p-6 rounded-xl border-2 border-dashed border-border hover:border-primary hover:bg-secondary/20 transition-all min-h-[160px]"
+          >
+            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+              <ArrowRight className="w-5 h-5 text-primary" />
+            </div>
+            <div className="text-center">
+              <div className="text-sm font-semibold text-primary mb-1">View all {totalCount} services</div>
+              <div className="text-xs text-muted-foreground">Central heating, plumbing &amp; gas</div>
+            </div>
+          </Link>
         </div>
       </div>
     </section>

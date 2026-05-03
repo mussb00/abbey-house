@@ -67,25 +67,23 @@ export function Footer() {
             <ul className="space-y-3 text-sm opacity-90">
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <a href="tel:555-0123" className="hover:opacity-100 transition-opacity">
-                  (555) 123-4567
+                <a href="tel:07930909496" className="hover:opacity-100 transition-opacity">
+                  07930 909496
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 <a
-                  href="mailto:info@bluelineplumbing.com"
+                  href="mailto:info@abbeyservicesgroup.co.uk"
                   className="hover:opacity-100 transition-opacity"
                 >
-                  info@bluelineplumbing.com
+                  info@abbeyservicesgroup.co.uk
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5" />
                 <span>
-                  123 Main Street
-                  <br />
-                  Your City, ST 12345
+                  Brent, NW &amp; W London
                 </span>
               </li>
             </ul>
@@ -93,7 +91,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm opacity-90">
-          <p>&copy; {currentYear} BlueLine Plumbing. All rights reserved.</p>
+          <p>&copy; {currentYear} Abbey House Plumbing &amp; Heating Services Ltd. All rights reserved.</p>
         </div>
       </div>
     </footer>
