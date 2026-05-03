@@ -46,14 +46,14 @@ export function Footer() {
           {/* Service category columns */}
           {categories.map((category) => (
             <div key={category.slug} className="col-span-1">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
                 <Link
                   href={`/services/${category.slug}`}
                   className="hover:text-white/90 transition-colors"
                 >
                   {category.name}
                 </Link>
-              </h4>
+              </h3>
               <ul className="space-y-2.5">
                 {category.services.map((service) => (
                   <li key={service.slug}>
@@ -71,9 +71,9 @@ export function Footer() {
 
           {/* Contact */}
           <div className="col-span-1">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
               Contact
-            </h4>
+            </h3>
             <ul className="space-y-3">
               <li>
                 <a

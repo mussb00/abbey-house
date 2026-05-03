@@ -108,7 +108,7 @@ export default function ServicePageTemplate(
 
               <p className="text-sm text-muted-foreground pt-2 border-t border-border">
                 This service is part of our{' '}
-                <Link href={`/services/${category.slug}`} className="text-primary hover:underline">
+                <Link href={`/services/${category.slug}`} className="text-primary underline hover:no-underline">
                   {category.name}
                 </Link>{' '}
                 offering.
