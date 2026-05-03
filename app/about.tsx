@@ -1,32 +1,15 @@
-import { MapPin, UserCheck, Clock, Star } from "lucide-react";
 import { ImageWithFallback } from "../components/errors/ImageWithFallback";
 
 const stats = [
-  {
-    icon: MapPin,
-    value: "Brent",
-    label: "Based Locally",
-  },
-  {
-    icon: UserCheck,
-    value: "Gas Safe",
-    label: "Registered Engineers",
-  },
-  {
-    icon: Clock,
-    value: "Same Day",
-    label: "Breakdown Response",
-  },
-  {
-    icon: Star,
-    value: "No Subs",
-    label: "All Our Own Engineers",
-  },
+  { value: "Gas Safe", label: "Registered" },
+  { value: "Same Day", label: "Response" },
+  { value: "Brent", label: "Based Locally" },
+  { value: "No Subs", label: "Own Team" },
 ];
 
 export function About() {
   return (
-    <section id="about" className="py-20 bg-secondary/30">
+    <section id="about" className="py-14 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="grid grid-cols-2 gap-4">
@@ -57,17 +40,13 @@ export function About() {
               We don&apos;t use subcontractors. Every engineer who comes to your door is part of our team, Gas Safe registered, and trained on the equipment they&apos;re working on. Central heating services in Brent is what we do. Our customers come back to us every year for their boiler service. They call us when something goes wrong. They recommend us to their neighbours.
             </p>
 
-            <div className="grid grid-cols-2 gap-6 pt-6">
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={index} className="text-center p-4 bg-white rounded-lg shadow-sm">
-                    <Icon className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <div className="text-2xl text-foreground mb-1">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                );
-              })}
+            <div className="grid grid-cols-2 gap-4 pt-6">
+              {stats.map(({ value, label }) => (
+                <div key={label} className="text-center p-4 bg-white rounded-xl shadow-sm">
+                  <div className="text-xl font-semibold text-primary mb-1">{value}</div>
+                  <div className="text-sm text-muted-foreground">{label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
